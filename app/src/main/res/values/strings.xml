@@ -132,4 +132,15 @@
     <string name="partner_profile_match">Dữ liệu mẫu · Phù hợp 92%: hai bạn có kỹ năng bổ trợ và cùng rảnh tối thứ Năm 19:00 – 20:00.</string>
     <string name="partner_profile_exchange">Đề nghị trao đổi kỹ năng</string>
     <string name="partner_profile_report">Báo cáo hồ sơ</string>
+    <string name="exchange_request_title">Đề nghị trao đổi</string>
+    <string name="exchange_request_subtitle">Nêu rõ điều hai bạn có thể hỗ trợ</string>
+    <string name="exchange_request_partner">Bạn học · Kotlin / Android</string>
+    <string name="exchange_request_share_label">TÔI CHIA SẺ</string>
+    <string name="exchange_request_share_hint">Figma cơ bản · Thiết kế màn hình mobile</string>
+    <string name="exchange_request_learn_label">TÔI MUỐN ĐƯỢC HỖ TRỢ</string>
+    <string name="exchange_request_learn_hint">Kotlin · Activity và Intent</string>
+    <string name="exchange_request_message_label">LỜI NHẮN</string>
+    <string name="exchange_request_message_hint">Chào Minh Anh! Mình có thể giúp bạn làm quen với Figma và muốn học Kotlin cùng bạn.</string>
+    <string name="exchange_request_tip">Dữ liệu mẫu · Sau khi Minh Anh chấp nhận, hai bạn có thể nhắn tin và thống nhất lịch học.</string>
+    <string name="exchange_request_send">Gửi đề nghị kết nối</string>
 </resources>
