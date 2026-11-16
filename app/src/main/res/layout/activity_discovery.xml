@@ -77,7 +77,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
                         android:layout_marginTop="@dimen/co_study_space_4"
-                        android:text="@string/discovery_filter_summary" />
+                        android:id="@+id/filter_summary" />
                 </LinearLayout>
 
                 <ImageView

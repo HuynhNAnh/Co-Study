@@ -95,11 +95,10 @@
     <string name="discovery_search_label">TÌM KỸ NĂNG</string>
     <string name="discovery_search_hint">Kotlin / Android</string>
     <string name="discovery_filter_title">Bộ lọc đang áp dụng</string>
-    <string name="discovery_filter_summary">Trực tuyến · Tối thứ Năm · 19:00</string>
     <string name="discovery_partner_skills">Có thể dạy Kotlin · Muốn học Figma</string>
     <string name="discovery_partner_match">92% phù hợp · Uy tín 96/100</string>
     <string name="discovery_partner_details">Cùng mục tiêu thực hành, phù hợp lịch rảnh.\nChạm để xem hồ sơ và gửi đề nghị.</string>
-    <string name="discovery_empty">Chưa tìm thấy bạn học phù hợp. Hãy thử tên hoặc kỹ năng khác.</string>
+    <string name="discovery_empty">Chưa tìm thấy bạn học phù hợp. Hãy thử từ khóa hoặc điều chỉnh bộ lọc.</string>
     <string name="discovery_demo_note">Dữ liệu mẫu · Gợi ý dựa trên kỹ năng bạn có, kỹ năng muốn học và khung giờ hai bên cùng rảnh.</string>
     <string name="match_filter_title">Bộ lọc ghép cặp</string>
     <string name="match_filter_subtitle">Thu hẹp theo nhu cầu học của bạn</string>
@@ -115,4 +114,6 @@
     <string name="match_filter_choose_again">Chọn lại</string>
     <string name="match_filter_tip">Ưu tiên người có thể chia sẻ Kotlin và muốn học Figma từ bạn.</string>
     <string name="match_filter_apply">Áp dụng bộ lọc</string>
+    <string name="match_filter_separator">" · "</string>
+    <string name="match_filter_none">Chưa chọn tiêu chí</string>
 </resources>
