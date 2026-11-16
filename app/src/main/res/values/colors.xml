@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="co_study_surface">#F4F7F8</color>
+    <color name="co_study_ink">#142D40</color>
+    <color name="co_study_muted">#536B7B</color>
+    <color name="co_study_mint">#C4F1DF</color>
+    <color name="co_study_outline">#D6E1EA</color>
 </resources>

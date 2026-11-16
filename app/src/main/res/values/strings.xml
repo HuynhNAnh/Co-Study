@@ -1,3 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Co-Study</string>
+    <string name="welcome_tagline">Trao đổi kỹ năng · Kết nối bạn học</string>
+    <string name="welcome_hero_title">Bạn giỏi một điều.\nCùng nhau giỏi hơn.</string>
+    <string name="welcome_hero_description">Tìm người bạn cần học — và chia sẻ điều bạn biết.</string>
+    <string name="welcome_match_title">Ghép cặp phù hợp</string>
+    <string name="welcome_match_description">Theo kỹ năng, mục tiêu và thời gian rảnh.</string>
+    <string name="welcome_session_title">Học cùng nhau</string>
+    <string name="welcome_session_description">Nhắn tin, hẹn lịch và trao đổi kỹ năng.</string>
+    <string name="welcome_trust_title">Kết nối đáng tin cậy</string>
+    <string name="welcome_trust_description">Xem đánh giá và uy tín của bạn học.</string>
+    <string name="auth_login">Đăng nhập</string>
+    <string name="auth_register">Tạo tài khoản</string>
+    <string name="auth_registration_unavailable">Tính năng tạo tài khoản đang được phát triển.</string>
+    <string name="auth_login_unavailable">Tính năng đăng nhập đang được phát triển.</string>
 </resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="co_study_space_4">4dp</dimen>
+    <dimen name="co_study_space_8">8dp</dimen>
+    <dimen name="co_study_space_12">12dp</dimen>
+    <dimen name="co_study_space_16">16dp</dimen>
+    <dimen name="co_study_space_20">20dp</dimen>
+    <dimen name="co_study_space_24">24dp</dimen>
+    <dimen name="co_study_space_28">28dp</dimen>
+    <dimen name="co_study_radius_card">16dp</dimen>
+</resources>
