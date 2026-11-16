@@ -162,4 +162,123 @@
     <string name="exchange_connected_partner_skill">Minh Anh chia sẻ: Kotlin / Android</string>
     <string name="exchange_connected_message">Nhắn tin cho Minh Anh</string>
     <string name="exchange_pending_simulate_acceptance">Mô phỏng Minh Anh đồng ý</string>
+    <string name="mod_login_title">Co-Study</string>
+    <string name="mod_login_subtitle">Đăng nhập · Khu vực kiểm duyệt</string>
+    <string name="mod_login_banner_title">Cộng đồng học tập tích cực</string>
+    <string name="mod_login_banner_desc">Xem xét công bằng. Xử lý có căn cứ.\nMỗi quyết định góp phần xây dựng môi trường trao đổi kỹ năng tin cậy.</string>
+    <string name="mod_code_label">MÃ KIỂM DUYỆT VIÊN</string>
+    <string name="mod_code_hint">KDV-01</string>
+    <string name="mod_login_notice">Tài khoản kiểm duyệt được cấp và quản lý bởi Quản trị viên hệ thống.</string>
+    <string name="mod_login_demo_badge">Demo · Không thể đăng nhập ngoài tài khoản KDV</string>
+    <string name="mod_login_btn">Đăng nhập kiểm duyệt</string>
+    <string name="mod_login_code_required">Vui lòng nhập mã kiểm duyệt viên.</string>
+    <string name="mod_overview_title">Tổng quan kiểm duyệt</string>
+    <string name="mod_overview_greeting">Xin chào, Kiểm duyệt viên</string>
+    <string name="mod_stat_new">Mới tiếp nhận</string>
+    <string name="mod_stat_processing">Đang xử lý</string>
+    <string name="mod_stat_escalated">Chờ Admin</string>
+    <string name="mod_notifications_banner">Thông báo · 2 cập nhật mới</string>
+    <string name="mod_study_session_reports">Báo cáo lượt học · 1 cần xem ›</string>
+    <string name="mod_see_all_reports">Xem tất cả báo cáo</string>
+    <string name="mod_tab_overview">Tổng quan</string>
+    <string name="mod_tab_reports">Báo cáo</string>
+    <string name="mod_tab_history">Lịch sử</string>
+    <string name="mod_tab_account">Tài khoản</string>
+    <string name="mod_report_list_title">Danh sách báo cáo</string>
+    <string name="mod_report_list_subtitle">Hàng đợi cần xử lý</string>
+    <string name="mod_search_filter_title">Tìm kiếm &amp; bộ lọc</string>
+    <string name="mod_search_filter_desc">Mã báo cáo · Loại · Trạng thái</string>
+    <string name="mod_report_detail_title">Chi tiết báo cáo</string>
+    <string name="mod_report_detail_subtitle">CS-202610-001 · Mới</string>
+    <string name="mod_btn_accept_and_view">Tiếp nhận &amp; xem bằng chứng</string>
+
+    <!-- M04 Evidence -->
+    <string name="mod_evidence_title">Xem bằng chứng</string>
+    <string name="mod_evidence_subtitle">CS-202610-001 · Đang xử lý</string>
+    <string name="mod_btn_request_more_info">Yêu cầu bổ sung thông tin</string>
+    <string name="mod_btn_dismiss_report">Bác bỏ do thiếu căn cứ</string>
+
+    <!-- M05 Request info -->
+    <string name="mod_req_info_title">Yêu cầu bổ sung</string>
+    <string name="mod_req_info_subtitle">CS-202610-001 · Cần thêm bằng chứng</string>
+    <string name="mod_btn_send_request_info">Gửi yêu cầu bổ sung</string>
+    <string name="mod_btn_back_to_evidence">Quay lại bằng chứng</string>
+
+    <!-- M06 Info requested -->
+    <string name="mod_info_sent_title">Đã gửi yêu cầu</string>
+    <string name="mod_info_sent_subtitle">CS-202610-001 · Chờ bổ sung</string>
+    <string name="mod_btn_back_to_report_list">Về danh sách báo cáo</string>
+    <string name="mod_btn_back_to_overview">Về tổng quan</string>
+
+    <!-- M07 Dismiss report -->
+    <string name="mod_dismiss_title">Bác bỏ báo cáo</string>
+    <string name="mod_dismiss_subtitle">CS-202610-001 · Xác nhận lý do</string>
+    <string name="mod_btn_confirm_dismiss">Xác nhận bác bỏ</string>
+    <string name="mod_btn_back_to_review">Quay lại xem xét</string>
+
+    <!-- M08 Report dismissed -->
+    <string name="mod_dismissed_title">Đã đóng báo cáo</string>
+    <string name="mod_dismissed_subtitle">CS-202610-001 · Thiếu căn cứ</string>
+
+    <!-- M09 Spam Report 002 -->
+    <string name="mod_spam_title">Báo cáo nội dung spam</string>
+    <string name="mod_spam_subtitle">CS-202610-002 · Được giao cho bạn</string>
+    <string name="mod_btn_choose_action">Chọn phương án xử lý</string>
+    <string name="mod_btn_escalate_admin">Chuyển Admin xem xét</string>
+
+    <!-- M10 Action options -->
+    <string name="mod_action_options_title">Phương án xử lý</string>
+    <string name="mod_action_options_subtitle">CS-202610-002 · Nội dung ND-002</string>
+    <string name="mod_btn_review_action">Xem lại trước khi xác nhận</string>
+
+    <!-- M11 Confirm action -->
+    <string name="mod_confirm_action_title">Xác nhận xử lý</string>
+    <string name="mod_confirm_action_subtitle">CS-202610-002 · Kiểm tra lần cuối</string>
+    <string name="mod_btn_apply_action">Xác nhận áp dụng</string>
+    <string name="mod_btn_back_to_options">Quay lại chỉnh phương án</string>
+
+    <!-- M12 Action completed -->
+    <string name="mod_action_done_title">Xử lý thành công</string>
+    <string name="mod_action_done_subtitle">CS-202610-002 · Đã giải quyết</string>
+
+    <!-- M13 Escalate Admin -->
+    <string name="mod_escalate_title">Chuyển Admin</string>
+    <string name="mod_escalate_subtitle">CS-202610-002 · Cần quyết định thêm</string>
+    <string name="mod_btn_confirm_escalate">Xác nhận chuyển Admin</string>
+    <string name="mod_btn_back_to_report">Quay lại báo cáo</string>
+
+    <!-- M14 Admin escalated -->
+    <string name="mod_escalated_title">Đã chuyển Admin</string>
+    <string name="mod_escalated_subtitle">CS-202610-002 · Chờ Admin</string>
+    <string name="mod_btn_view_notifications">Xem thông báo</string>
+
+    <!-- M15 History -->
+    <string name="mod_history_title">Lịch sử xử lý</string>
+    <string name="mod_history_subtitle">Tra cứu các quyết định đã lưu</string>
+
+    <!-- M16 History detail -->
+    <string name="mod_history_detail_title">Chi tiết lịch sử</string>
+    <string name="mod_history_detail_subtitle">CS-202609-018 · Đã giải quyết</string>
+    <string name="mod_btn_back_to_history">Về lịch sử xử lý</string>
+
+    <!-- M17 Notifications -->
+    <string name="mod_notif_title">Thông báo kiểm duyệt</string>
+    <string name="mod_notif_subtitle">Cập nhật công việc của bạn</string>
+
+    <!-- M18 Profile -->
+    <string name="mod_profile_title">Tài khoản kiểm duyệt</string>
+    <string name="mod_profile_subtitle">KDV-01 · Đang hoạt động</string>
+    <string name="mod_btn_logout">Đăng xuất</string>
+
+    <!-- M19 Logout -->
+    <string name="mod_logout_title">Đăng xuất</string>
+    <string name="mod_logout_subtitle">Bạn muốn kết thúc phiên kiểm duyệt?</string>
+    <string name="mod_btn_confirm_logout">Xác nhận đăng xuất</string>
+    <string name="mod_btn_continue_work">Tiếp tục làm việc</string>
+
+    <!-- M20 Filter -->
+    <string name="mod_filter_title">Tìm &amp; lọc báo cáo</string>
+    <string name="mod_filter_subtitle">Chọn phạm vi công việc cần xem</string>
+    <string name="mod_btn_apply_filter">Áp dụng bộ lọc</string>
+    <string name="mod_btn_back_to_list">Quay lại danh sách</string>
 </resources>

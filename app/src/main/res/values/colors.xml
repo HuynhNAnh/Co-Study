@@ -8,4 +8,6 @@
     <color name="co_study_mint">#C4F1DF</color>
     <color name="co_study_outline">#D6E1EA</color>
     <color name="co_study_green">#00664D</color>
+    <color name="co_mint_dark">#00664D</color>
+    <color name="co_mint_light">#C4F1DF</color>
 </resources>
