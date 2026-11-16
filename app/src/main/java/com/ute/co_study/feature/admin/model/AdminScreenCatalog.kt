@@ -20,5 +20,6 @@ object AdminScreenCatalog {
         ), listOf(AdminAction("Thử lại", 0)), back = 0)
         ))
         putAll(AdminAccountScreens.all())
+        putAll(AdminEscalationScreens.all())
     }
 }
