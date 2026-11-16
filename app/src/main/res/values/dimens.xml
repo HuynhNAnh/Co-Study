@@ -9,4 +9,5 @@
     <dimen name="co_study_space_28">28dp</dimen>
     <dimen name="co_study_radius_card">16dp</dimen>
     <dimen name="reset_confirmation_icon_size">64dp</dimen>
+    <dimen name="profile_setup_availability_height">102dp</dimen>
 </resources>

@@ -36,6 +36,10 @@
         <activity
             android:name=".feature.auth.ui.reset.ResetLinkSentActivity"
             android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.profile.ProfileSetupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
