@@ -1,170 +1,80 @@
-# 📚 Co-Study — Ứng dụng kết nối và ghép cặp học tập cho sinh viên
+# Co-Study
 
-<p align="center">
-  <b>Học cùng nhau — Chia sẻ kỹ năng — Cùng nhau phát triển</b>
-</p>
+Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Co-Study là ứng dụng hỗ trợ sinh viên kết nối với những người có cùng mục tiêu học tập, tìm kiếm bạn học phù hợp, trao đổi kỹ năng và tổ chức các hoạt động học tập nhóm. Dự án hướng đến xây dựng một môi trường học tập cộng đồng, giúp sinh viên chủ động nâng cao kiến thức, phát triển kỹ năng và mở rộng mạng lưới kết nối.
-## 🔗 Liên kết dự án
+Kho mã nguồn hiện có khung ứng dụng Android viết bằng Kotlin và XML. Các luồng nghiệp vụ dưới đây được mô phỏng trong prototype Figma.
 
-[Trello - Phân công công việc Co-Study](https://trello.com/b/pCVt8mXD/126ltdd01co-study-%E1%BB%A9ng-d%E1%BB%A5ng-k%E1%BA%BFt-n%E1%BB%91i-va-ghep-c%E1%BA%B7p-h%E1%BB%8Dc-t%E1%BA%ADp-cho-sinh-vien)
+## Chức năng theo vai trò
 
-[Tài liệu tham khảo](https://docs.google.com/document/d/1Ab1jf46Tx87avLxAyYE_pUHTrtohG1Lg/edit?usp=sharing&ouid=105692628120061086882&rtpof=true&sd=true)
+### Người dùng
 
-[Link Figma demo giao diện](https://www.figma.com/design/iTZkd0nWiIRL7BymVElCja/Co-Study?m=auto&t=DIT3j7JqIclm1wUl-6)
+- Đăng ký, đăng nhập, đặt lại mật khẩu và cập nhật hồ sơ cá nhân.
+- Khai báo kỹ năng, sở thích và mục tiêu học tập để tìm bạn học phù hợp.
+- Gửi đề nghị kết nối, trao đổi kỹ năng và trò chuyện với bạn học.
+- Đề xuất, xác nhận, đổi hoặc hủy lịch học. Sau buổi học, người dùng có thể xác nhận hoàn thành và đánh giá bạn học.
+- Xem thông báo và báo cáo hành vi vi phạm.
 
----
+#### Chuỗi học tập (streak)
 
-## 📌 1. Thông tin dự án
+Chuỗi học tập ghi nhận số ngày liên tiếp có buổi học hợp lệ. Người dùng có thể xem chuỗi hiện tại, lịch sử các ngày đã ghi nhận và trạng thái xác nhận của từng buổi. Một ngày bị bỏ lỡ sẽ ngắt chuỗi. Buổi học hợp lệ tiếp theo bắt đầu chuỗi mới.
 
-| Hạng mục | Nội dung |
-|---|---|
-| Tên dự án | Co-Study |
-| Tên đề tài | Ứng dụng kết nối và ghép cặp học tập cho sinh viên |
-| Loại ứng dụng | Ứng dụng di động Android |
-| Học phần | Lập trình trên thiết bị di động |
-| Ngôn ngữ lập trình | Kotlin |
-| Công cụ phát triển | Android Studio |
-| Quản lý mã nguồn | GitHub |
-| Quản lý công việc | Trello |
-| Thiết kế giao diện | Figma |
-| Đối tượng sử dụng | Sinh viên có nhu cầu học tập, trao đổi kiến thức và kỹ năng |
+Theo quy tắc minh họa trong prototype, buổi học cần kéo dài ít nhất **25 phút** và được cả hai bạn học xác nhận trong vòng **48 giờ**. Mỗi ngày theo giờ Việt Nam được tính tối đa một lần vào chuỗi.
 
-## 🎯 2. Mục tiêu dự án
+#### Bộ sưu tập huy hiệu
 
-- Kết nối sinh viên có cùng môn học, sở thích hoặc mục tiêu học tập.
-- Hỗ trợ tìm kiếm và ghép cặp học tập dựa trên nhu cầu và kỹ năng.
-- Tạo điều kiện để sinh viên chia sẻ kiến thức, trao đổi kỹ năng và hỗ trợ lẫn nhau.
-- Xây dựng hồ sơ cá nhân để giới thiệu năng lực, sở thích và mục tiêu học tập.
-- Hỗ trợ quản lý người dùng, kiểm duyệt nội dung và duy trì môi trường học tập tích cực.
+Người dùng có thể xem huy hiệu đã nhận, điều kiện mở khóa và chọn huy hiệu hiển thị trên hồ sơ cá nhân. Prototype minh họa hai cách mở khóa huy hiệu.
 
-## ✨ 3. Các chức năng chính
+| Loại huy hiệu | Điều kiện |
+| --- | --- |
+| Chuỗi học tập | Duy trì chuỗi **3, 7 hoặc 30 ngày liên tiếp** |
+| Học cùng bạn | Hoàn thành **5 buổi học hợp lệ** với cùng một bạn học |
 
-### 👨‍🎓 3.1. Chức năng dành cho người dùng
+### Kiểm duyệt viên
 
-- Đăng ký, đăng nhập và quản lý tài khoản.
-- Xem và cập nhật hồ sơ cá nhân.
-- Khai báo kỹ năng, sở thích và mục tiêu học tập.
-- Tìm kiếm sinh viên phù hợp để ghép cặp học tập.
-- Khám phá và trao đổi kỹ năng với những người dùng khác.
-- Theo dõi thông tin và hoạt động học tập liên quan.
+- Tiếp nhận báo cáo, xem bằng chứng và yêu cầu bổ sung thông tin khi cần.
+- Xử lý báo cáo vi phạm hoặc chuyển vụ việc cần xem xét thêm cho quản trị viên.
+- Kiểm tra phản ánh về kết quả ghi nhận buổi học và theo dõi lịch sử xử lý.
 
-### 🛡️ 3.2. Chức năng dành cho người kiểm duyệt
+### Quản trị viên (Admin)
 
-- Theo dõi nội dung và hoạt động của người dùng.
-- Tiếp nhận và xử lý các nội dung hoặc hành vi bị báo cáo.
-- Kiểm tra nội dung không phù hợp.
-- Hỗ trợ duy trì môi trường học tập an toàn, lành mạnh.
+- Quản lý tài khoản, khóa hoặc mở khóa tài khoản và phân quyền thành viên.
+- Xem xét báo cáo do kiểm duyệt viên chuyển lên.
+- Quản lý danh mục kỹ năng, cấu hình hệ thống và nhật ký quản trị.
+- Quản lý quy tắc ghi nhận chuỗi học tập và điều kiện trao huy hiệu.
 
-### ⚙️ 3.3. Chức năng dành cho quản trị viên (Admin)
+## Chạy dự án Android
 
-- Quản lý tài khoản người dùng.
-- Theo dõi và quản lý hoạt động trên hệ thống.
-- Quản lý các nội dung, dữ liệu và thông tin liên quan.
-- Hỗ trợ phân quyền và kiểm soát hoạt động của hệ thống.
+Cài Android Studio tương thích với Android Gradle Plugin **9.3.3** và cài **Android SDK 37** trong SDK Manager. Cấu hình dự án yêu cầu **Java 25** cho Gradle Daemon. Thiết bị chạy ứng dụng cần **Android 7.0 (API 24)** trở lên.
 
-*Lưu ý: Danh sách trên mô tả phạm vi chức năng dự kiến của dự án; các chức năng sẽ được điều chỉnh theo tiến độ triển khai thực tế.*
+1. Tải mã nguồn về máy.
 
-## 🛠️ 4. Công nghệ và công cụ sử dụng
+   ```bash
+   git clone https://github.com/HuynhNAnh/Co-Study.git
+   ```
 
-| Công nghệ / Công cụ | Mục đích |
-|---|---|
-| Kotlin | Ngôn ngữ lập trình Android |
-| Android Studio | Phát triển, chạy và kiểm thử ứng dụng |
-| XML | Thiết kế giao diện Android nếu sử dụng hệ thống View truyền thống |
-| Gradle | Quản lý cấu hình và quá trình xây dựng ứng dụng |
-| Git & GitHub | Quản lý mã nguồn, phiên bản và cộng tác nhóm |
-| Trello | Phân công, theo dõi và quản lý tiến độ công việc |
-| Figma | Thiết kế giao diện và mô phỏng luồng người dùng |
+2. Mở thư mục `Co-Study` trong Android Studio và chờ Gradle Sync hoàn tất.
+3. Chọn cấu hình `app`, chọn thiết bị Android hoặc trình giả lập, rồi nhấn **Run**.
 
-## 🧭 5. Quy trình hoạt động tổng quát
+## Cấu trúc kho mã nguồn
 
-1. Người dùng truy cập ứng dụng và đăng nhập.
-2. Người dùng hoàn thiện hồ sơ, khai báo kỹ năng và mục tiêu học tập.
-3. Hệ thống hỗ trợ tìm kiếm, khám phá hoặc ghép cặp với sinh viên phù hợp.
-4. Sinh viên kết nối, trao đổi kỹ năng và phối hợp học tập.
-5. Người kiểm duyệt xử lý các nội dung cần xem xét.
-6. Quản trị viên quản lý tài khoản và hoạt động tổng thể của hệ thống.
+| Thư mục | Nội dung |
+| --- | --- |
+| `app/` | Mã nguồn Kotlin và tài nguyên XML của ứng dụng Android |
+| `gradle/` | Gradle Wrapper, danh mục phiên bản thư viện và cấu hình Gradle Daemon |
+| [01_Nguoi_dung](01_Nguoi_dung/) | Ảnh giao diện người dùng và luồng học chung |
+| [02_Kiem_duyet_vien](02_Kiem_duyet_vien/) | Ảnh giao diện và quy trình xử lý báo cáo |
+| [03_Admin](03_Admin/) | Ảnh giao diện quản trị hệ thống |
 
-## 👥 6. Thành viên dự án
+## Thành viên dự án
 
-| Thành viên | Vai trò / Công việc |
-|---|---|
-| Huỳnh Ngọc Anh | Phối hợp quản lý Trello, xây dựng cấu trúc chức năng và nội dung hồ sơ, ghép cặp, trao đổi kỹ năng |
-| Đặng Thái Nguyên | Tham gia xây dựng và hoàn thiện các nội dung của dự án theo phân công nhóm |
-| Các thành viên khác | Bổ sung họ tên, nhiệm vụ và phần việc phụ trách theo phân công thực tế |
+| Thành viên | Công việc |
+| --- | --- |
+| Huỳnh Ngọc Anh | Phối hợp quản lý Trello, xây dựng chức năng hồ sơ, ghép cặp và trao đổi kỹ năng |
+| Đặng Thái Nguyên | Xây dựng và hoàn thiện nội dung dự án theo phân công nhóm |
 
-*Danh sách thành viên và nhiệm vụ cần được cập nhật đầy đủ theo danh sách chính thức của nhóm.*
+## Liên kết dự án
 
-## 🔗 7. Liên kết dự án
-
-- **GitHub Repository:** [Co-Study](https://github.com/HuynhNAnh/Co-Study)
-- **Trello Board:** [Bảng phân công công việc Co-Study](https://trello.com/b/pCVt8mXD/126ltdd01co-study-%E1%BB%A9ng-d%E1%BB%A5ng-k%E1%BA%BFt-n%E1%BB%91i-va-ghep-c%E1%BA%B7p-h%E1%BB%8Dc-t%E1%BA%ADp-cho-sinh-vien)
-- **Figma Demo:** [Xem thiết kế giao diện Co-Study](THAY_BANG_LINK_FIGMA_THUC_TE)
-- **Tài liệu tham khảo:** [Bổ sung liên kết tài liệu của nhóm tại đây](THAY_BANG_LINK_TAI_LIEU)
-
-## 🚀 8. Hướng dẫn chạy dự án
-
-### Yêu cầu
-
-- Android Studio phiên bản tương thích với cấu hình Gradle của dự án.
-- JDK tương thích với phiên bản Android Gradle Plugin đang sử dụng.
-- Android SDK theo cấu hình của dự án.
-- Git để tải mã nguồn.
-
-### Các bước thực hiện
-
-**Bước 1: Sao chép mã nguồn**
-
-```bash
-git clone https://github.com/HuynhNAnh/Co-Study.git
-```
-
-**Bước 2: Mở dự án**
-
-Mở Android Studio, chọn **Open** và trỏ đến thư mục `Co-Study` vừa tải.
-
-**Bước 3: Đồng bộ Gradle**
-
-Chờ Android Studio hoàn tất quá trình Gradle Sync và tải các thư viện cần thiết.
-
-**Bước 4: Chạy ứng dụng**
-
-- Khởi động Android Emulator hoặc kết nối thiết bị Android.
-- Chọn cấu hình chạy ứng dụng phù hợp.
-- Nhấn **Run** để biên dịch và khởi chạy.
-
-## 📂 9. Cấu trúc thư mục
-
-```text
-Co-Study/
-├── app/                  # Mã nguồn và tài nguyên ứng dụng Android
-├── gradle/               # Cấu hình Gradle Wrapper
-├── .gitignore            # Các tệp không đưa lên Git
-├── build.gradle.kts      # Cấu hình Gradle cấp dự án
-├── settings.gradle.kts   # Cấu hình các module
-├── gradle.properties     # Thuộc tính Gradle
-├── gradlew               # Gradle Wrapper cho Linux/macOS
-├── gradlew.bat           # Gradle Wrapper cho Windows
-└── README.md             # Tài liệu giới thiệu dự án
-```
-
-## 📈 10. Định hướng phát triển
-
-- Hoàn thiện giao diện và trải nghiệm người dùng.
-- Phát triển chức năng tìm kiếm và ghép cặp học tập.
-- Mở rộng chức năng trao đổi kỹ năng và kết nối sinh viên.
-- Hoàn thiện phân quyền Admin, người dùng và người kiểm duyệt.
-- Bổ sung kiểm thử, xử lý lỗi và cải thiện hiệu năng.
-- Hoàn thiện tài liệu hướng dẫn sử dụng và tài liệu kỹ thuật.
-
-## 📄 11. Trạng thái dự án
-
-Co-Study đang được phát triển trong khuôn khổ học phần Lập trình trên thiết bị di động. Các chức năng sẽ được hoàn thiện theo kế hoạch và phân công của nhóm.
-
----
-
-<p align="center">
-  <b>Co-Study — Connect, Share & Learn Together.</b>
-</p>
-
+- [Mã nguồn Co-Study trên GitHub](https://github.com/HuynhNAnh/Co-Study)
+- [Thiết kế và prototype Co-Study trên Figma](https://www.figma.com/design/iTZkd0nWiIRL7BymVElCja/Co-Study?m=auto&t=DIT3j7JqIclm1wUl-6)
+- [Bảng phân công công việc trên Trello](https://trello.com/b/pCVt8mXD/126ltdd01co-study-%E1%BB%A9ng-d%E1%BB%A5ng-k%E1%BA%BFt-n%E1%BB%91i-va-ghep-c%E1%BA%B7p-h%E1%BB%8Dc-t%E1%BA%ADp-cho-sinh-vien)
+- [Tài liệu tham khảo của dự án](https://docs.google.com/document/d/1Ab1jf46Tx87avLxAyYE_pUHTrtohG1Lg/edit?usp=sharing&ouid=105692628120061086882&rtpof=true&sd=true)
