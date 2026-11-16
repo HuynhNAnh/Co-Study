@@ -4,7 +4,7 @@ import com.ute.co_study.R
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 import android.os.Bundle
 import com.ute.co_study.feature.learner.ui.study.ConversationActivity
-import com.ute.co_study.feature.learner.ui.study.ScheduleActivity
+import com.ute.co_study.feature.learner.ui.study.StudyActivity
 
 class NotificationsActivity : ProfileActivity(R.layout.activity_learner_notifications) {
     override val refreshOnReturn = true
@@ -17,8 +17,7 @@ class NotificationsActivity : ProfileActivity(R.layout.activity_learner_notifica
         }
         study.sessions().asReversed().forEach { item ->
             row(item.status.label, "${item.subject} · ${item.slot.display}") {
-                val schedule = Bundle().apply { putLong("highlight_session", item.id) }
-                open(ScheduleActivity::class.java, schedule)
+                open(StudyActivity.destination(item), Bundle().apply { putLong(StudyActivity.SESSION_ID, item.id) })
             }
         }
         reports.ownReports().forEach { item ->

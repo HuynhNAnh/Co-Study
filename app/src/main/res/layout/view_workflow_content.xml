@@ -12,8 +12,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/co_study_space_24"
-            android:paddingVertical="@dimen/co_study_space_20" />
+            android:paddingStart="@dimen/co_study_space_24"
+            android:paddingEnd="@dimen/co_study_space_24"
+            android:paddingTop="@dimen/co_study_space_20"
+            android:paddingBottom="@dimen/co_study_space_20" />
     </ScrollView>
 
     <LinearLayout

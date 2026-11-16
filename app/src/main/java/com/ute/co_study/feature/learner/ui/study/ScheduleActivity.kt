@@ -10,8 +10,7 @@ class ScheduleActivity : StudyActivity(R.layout.activity_schedule) {
         val sessions = study.sessions().asReversed()
         val upcoming = sessions.filter { it.status !in setOf(StudyStatus.COMPLETED, StudyStatus.CANCELED) }
         status("${upcoming.size} buổi học hoặc đề xuất đang mở")
-        val highlighted = intent.getLongExtra("highlight_session", -1L)
-        val featured = upcoming.firstOrNull { it.id == highlighted } ?: upcoming.firstOrNull()
+        val featured = upcoming.firstOrNull()
         if (featured != null) {
             val month = featured.slot.date.substring(3)
             val days = upcoming.filter { it.slot.date.endsWith(month) }.map { it.slot.date.take(2) }

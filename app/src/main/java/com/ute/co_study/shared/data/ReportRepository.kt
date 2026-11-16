@@ -18,7 +18,7 @@ internal class ReportRepository(context: Context) {
     private val session = DemoSession(context)
 
     fun queue(): List<CommunityReport> = when (session.role) {
-        DemoRole.MODERATOR -> reports()
+        DemoRole.MODERATOR -> reports().filter(::canModerate)
         DemoRole.ADMIN -> reports().filter { item ->
             item.history.any { it.action == ReportAction.ESCALATE }
         }
@@ -69,7 +69,7 @@ internal class ReportRepository(context: Context) {
                 action == ReportAction.SUPPLY_INFO && status == ReportStatus.NEEDS_INFO &&
                     item.senderEmail.equals(session.email, ignoreCase = true)
             }
-            DemoRole.MODERATOR -> when (action) {
+            DemoRole.MODERATOR -> if (!canModerate(item)) null else when (action) {
                 ReportAction.CLAIM -> ReportStatus.IN_REVIEW.takeIf {
                     status == ReportStatus.NEW || status == ReportStatus.RETURNED
                 }
@@ -85,6 +85,13 @@ internal class ReportRepository(context: Context) {
                 else -> null
             }
         }
+    }
+
+    private fun canModerate(item: CommunityReport): Boolean {
+        val assigned = item.history.firstOrNull {
+            it.action == ReportAction.CLAIM || it.action == ReportAction.ESCALATE || it.action == ReportAction.WARN
+        }?.actor
+        return assigned == null || assigned == session.name
     }
 
     private fun reports(): List<CommunityReport> {

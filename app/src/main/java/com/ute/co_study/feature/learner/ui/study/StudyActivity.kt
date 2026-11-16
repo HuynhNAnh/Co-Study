@@ -53,17 +53,7 @@ abstract class StudyActivity(layout: Int) : LearnerActivity(layout) {
     internal fun openSession(target: Class<out AppCompatActivity>, id: Long) =
         open(target, Bundle().apply { putLong(SESSION_ID, id) })
 
-    internal fun openDetails(item: StudySession) {
-        val target = when (item.status) {
-            StudyStatus.PENDING -> PendingStudyActivity::class.java
-            StudyStatus.CONFIRMED -> StudyDetailsActivity::class.java
-            StudyStatus.RESCHEDULING -> PendingRescheduleActivity::class.java
-            StudyStatus.RESCHEDULED -> RescheduledStudyActivity::class.java
-            StudyStatus.COMPLETED -> if (item.reason.isEmpty()) CompletedStudyActivity::class.java else CompletedRescheduleActivity::class.java
-            StudyStatus.CANCELED -> CanceledStudyActivity::class.java
-        }
-        openSession(target, item.id)
-    }
+    internal fun openDetails(item: StudySession) = openSession(destination(item), item.id)
 
     internal fun conversation(): StudyConversation =
         StudyConversation.entries.find { it.name == intent.getStringExtra(CONVERSATION) }
@@ -114,6 +104,15 @@ abstract class StudyActivity(layout: Int) : LearnerActivity(layout) {
     internal data class SlotFields(val date: EditText, val start: EditText, val end: EditText)
 
     internal companion object {
+        fun destination(item: StudySession): Class<out AppCompatActivity> = when (item.status) {
+            StudyStatus.PENDING -> PendingStudyActivity::class.java
+            StudyStatus.CONFIRMED -> StudyDetailsActivity::class.java
+            StudyStatus.RESCHEDULING -> PendingRescheduleActivity::class.java
+            StudyStatus.RESCHEDULED -> RescheduledStudyActivity::class.java
+            StudyStatus.COMPLETED -> if (item.reason.isEmpty()) CompletedStudyActivity::class.java else CompletedRescheduleActivity::class.java
+            StudyStatus.CANCELED -> CanceledStudyActivity::class.java
+        }
+
         const val SESSION_ID = "study_session_id"
         const val CONVERSATION = "study_conversation"
     }

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.widget.TextViewCompat
 import com.google.android.material.button.MaterialButton
 import com.ute.co_study.R
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
@@ -64,26 +65,35 @@ abstract class WorkflowActivity(
             finish()
             return
         }
-        if (!displayed || refreshOnReturn) refresh()
+        if (!displayed || refreshOnReturn) refresh(preserveInputs = displayed)
         displayed = true
     }
 
     final override fun onSaveInstanceState(outState: Bundle) {
-        val values = Bundle()
-        fields.forEach { (key, field) -> values.putString(key, field.text.toString()) }
-        choices.forEach { (key, choice) -> values.putString(key, choice.text.toString()) }
-        outState.putBundle("workflow_fields", values)
+        outState.putBundle("workflow_fields", currentInputs())
         super.onSaveInstanceState(outState)
     }
 
     protected abstract fun render()
 
-    protected fun refresh() {
+    private fun currentInputs() = Bundle().apply {
+        fields.forEach { (key, field) -> putString(key, field.text.toString()) }
+        choices.forEach { (key, choice) -> putString(key, choice.text.toString()) }
+    }
+
+    protected fun refresh(preserveInputs: Boolean = false) {
+        if (preserveInputs) drafts = currentInputs()
         fields.clear()
         choices.clear()
         body.removeAllViews()
         footer.removeAllViews()
         render()
+        val configuration = resources.configuration
+        if (configuration.screenHeightDp < 500 || configuration.fontScale > 1.4f) {
+            (footer.parent as? ViewGroup)?.removeView(footer)
+            footer.setPadding(0, gap, 0, 0)
+            if (footer.childCount > 0) add(body, footer)
+        }
         drafts.clear()
     }
 
@@ -220,7 +230,7 @@ abstract class WorkflowActivity(
         val editor = EditText(this).apply {
             id = View.generateViewId()
             inputType = if (multiline) type or InputType.TYPE_TEXT_FLAG_MULTI_LINE else type
-            if (!multiline) setSingleLine(true)
+            if (multiline) maxLines = 5 else setSingleLine(true)
             filters = arrayOf(InputFilter.LengthFilter(maxLength))
             this.hint = hint
             setText(drafts.getString(label) ?: value)
@@ -238,10 +248,15 @@ abstract class WorkflowActivity(
     }
 
     protected fun choice(label: String, options: List<String>, selected: String = options.first()): TextView {
-        val current = drafts.getString(label, selected).takeIf(options::contains) ?: options.first()
-        val panel = panel()
-        textView(panel, label, R.style.TextAppearance_CoStudy_Subtitle)
-        val value = textView(panel, current, R.style.TextAppearance_CoStudy_Body, separated = true)
+        val current = (drafts.getString(label) ?: selected).takeIf(options::contains) ?: options.first()
+        val panel = panel().apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        val copy = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+        panel.addView(copy, LinearLayout.LayoutParams(0, wrap, 1f))
+        textView(copy, label, R.style.TextAppearance_CoStudy_Subtitle)
+        val value = textView(copy, current, R.style.TextAppearance_CoStudy_Body, separated = true)
         makeRowClickable(panel) {
             AlertDialog.Builder(this)
                 .setTitle(label)
@@ -309,10 +324,11 @@ abstract class WorkflowActivity(
                 setCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0)
                 val tint = color(if (active) R.color.co_study_green else R.color.co_study_muted)
                 setTextColor(tint)
-                supportCompoundDrawablesTintList = ColorStateList.valueOf(tint)
+                TextViewCompat.setCompoundDrawableTintList(this, ColorStateList.valueOf(tint))
                 if (active) {
                     setBackgroundResource(R.drawable.bg_auth_notice)
                     isSelected = true
+                    isClickable = false
                     ViewCompat.setStateDescription(this, getString(R.string.home_tab_current))
                 } else setOnClickListener { action() }
             }
