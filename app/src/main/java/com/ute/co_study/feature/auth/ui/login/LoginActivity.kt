@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
+import com.ute.co_study.feature.moderation.ui.ModeratorLoginActivity
 import com.ute.co_study.feature.learner.data.repository.ProfileSetupRepository
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 import com.ute.co_study.shared.data.DemoSession
@@ -42,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
         binding.forgotPasswordButton.setOnClickListener {
             val email = binding.emailInput.text.toString()
             startActivity(ResetPasswordActivity.createIntent(this, email))
+        }
+        binding.moderatorLoginButton.setOnClickListener {
+            startActivity(Intent(this, ModeratorLoginActivity::class.java))
         }
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))

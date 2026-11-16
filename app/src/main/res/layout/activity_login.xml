@@ -154,6 +154,12 @@
                     style="@style/Widget.CoStudy.Button.Outlined"
                     android:layout_marginTop="@dimen/co_study_space_8"
                     android:text="@string/login_register_prompt" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/moderator_login_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/screen_moderator_login_subtitle" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
