@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Header"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/co_study_space_12"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:paddingTop="@dimen/co_study_space_16"
+                android:paddingBottom="@dimen/co_study_space_16">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/auth_back"
+                    app:srcCompat="@drawable/ic_back"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:id="@+id/screen_title"
+                        android:text="@string/match_filter_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_8"
+                        android:text="@string/match_filter_subtitle" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field"
+                android:layout_marginTop="@dimen/co_study_space_20">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/skill_input"
+                    android:text="@string/match_filter_skill"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/skill_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:hint="@string/match_filter_any"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/level_button"
+                    android:text="@string/match_filter_level"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@id/level_button"
+                    style="@style/Widget.CoStudy.MatchFilter.Choice" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/mode_button"
+                    android:text="@string/match_filter_mode"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@id/mode_button"
+                    style="@style/Widget.CoStudy.MatchFilter.Choice" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/time_button"
+                    android:text="@string/match_filter_time"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@id/time_button"
+                    style="@style/Widget.CoStudy.MatchFilter.Choice" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.CoStudy.Subtitle"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:background="@drawable/bg_auth_notice"
+                android:gravity="center_vertical"
+                android:minHeight="68dp"
+                android:padding="@dimen/co_study_space_16"
+                android:text="@string/match_filter_tip"
+                android:textColor="@color/co_study_green" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/apply_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/match_filter_apply" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/auth_back" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
