@@ -16,6 +16,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".feature.role.ui.RoleSelectionActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".feature.moderation.ui.login.ModeratorLoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
