@@ -116,4 +116,20 @@
     <string name="match_filter_apply">Áp dụng bộ lọc</string>
     <string name="match_filter_separator">" · "</string>
     <string name="match_filter_none">Chưa chọn tiêu chí</string>
+    <string name="partner_profile_title">Hồ sơ bạn học</string>
+    <string name="partner_profile_subtitle">Tìm hiểu trước khi gửi lời mời</string>
+    <string name="partner_profile_bio">Sinh viên CNTT · Đà Nẵng</string>
+    <string name="partner_profile_trust_value">96/100</string>
+    <string name="partner_profile_trust_label">Điểm uy tín</string>
+    <string name="partner_profile_rating_value">4,9/5</string>
+    <string name="partner_profile_rating_label">Đánh giá</string>
+    <string name="partner_profile_completed_value">18</string>
+    <string name="partner_profile_completed_label">Buổi đã học</string>
+    <string name="partner_profile_share_label">CÓ THỂ CHIA SẺ</string>
+    <string name="partner_profile_share_value">Kotlin / Android · Mức trung cấp</string>
+    <string name="partner_profile_learn_label">MUỐN HỌC TỪ BẠN</string>
+    <string name="partner_profile_learn_value">Thiết kế giao diện · Figma cơ bản</string>
+    <string name="partner_profile_match">Dữ liệu mẫu · Phù hợp 92%: hai bạn có kỹ năng bổ trợ và cùng rảnh tối thứ Năm 19:00 – 20:00.</string>
+    <string name="partner_profile_exchange">Đề nghị trao đổi kỹ năng</string>
+    <string name="partner_profile_report">Báo cáo hồ sơ</string>
 </resources>

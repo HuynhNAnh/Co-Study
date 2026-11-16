@@ -51,6 +51,9 @@
             android:name=".feature.learner.ui.discovery.MatchFiltersActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.learner.ui.profile.PartnerProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -171,4 +171,19 @@
         <item name="android:textColor">@color/co_study_ink</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="Widget.CoStudy.PartnerProfile.Metric" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_co_study_card</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">66dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/co_study_space_8</item>
+    </style>
+
+    <style name="Widget.CoStudy.PartnerProfile.Skill" parent="Widget.CoStudy.Auth.Card">
+        <item name="android:background">@drawable/bg_auth_field</item>
+        <item name="android:minHeight">82dp</item>
+    </style>
 </resources>
