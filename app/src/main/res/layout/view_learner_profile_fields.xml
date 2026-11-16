@@ -12,11 +12,15 @@
             android:id="@+id/skills_to_share_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textCapSentences"
             android:singleLine="true"
             android:textColor="@color/co_study_ink" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/shared_skills"
+        style="@style/Widget.CoStudy.SkillChipGroup" />
 
     <LinearLayout style="@style/Widget.CoStudy.ProfileSetup.Field">
         <TextView
@@ -70,11 +74,15 @@
             android:id="@+id/skills_to_learn_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textCapSentences"
             android:singleLine="true"
             android:textColor="@color/co_study_ink" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/learning_skills"
+        style="@style/Widget.CoStudy.SkillChipGroup" />
 
     <LinearLayout style="@style/Widget.CoStudy.ProfileSetup.Field">
         <TextView

@@ -5,6 +5,7 @@ import com.ute.co_study.shared.model.SkillEvidence
 import com.ute.co_study.shared.model.SkillEvidenceAttachment
 import com.ute.co_study.shared.model.SkillEvidenceInput
 import com.ute.co_study.shared.model.SkillEvidenceStatus
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID
 
@@ -59,7 +60,7 @@ internal class SkillEvidenceRepository(context: Context) {
                 id = id,
                 ownerEmail = email,
                 ownerName = row.optString("owner_name").ifBlank { email },
-                skill = row.optString("skill"),
+                skills = row.readSkillNames("skills", legacyKey = "skill"),
                 input = SkillEvidenceInput(row.optString("description"), attachment),
                 status = status,
                 submittedAt = row.optLong("submitted_at"),
@@ -73,7 +74,7 @@ internal class SkillEvidenceRepository(context: Context) {
             profile: JSONObject,
             email: String,
             learnerName: String,
-            skill: String,
+            skills: List<String>,
             input: SkillEvidenceInput
         ) {
             if (input.isEmpty) {
@@ -83,14 +84,14 @@ internal class SkillEvidenceRepository(context: Context) {
 
             val previous = read(profile, email)
             val name = learnerName.ifBlank { email }
-            val evidence = if (previous != null && previous.skill == skill && previous.input == input) {
-                previous.copy(ownerName = name)
+            val evidence = if (previous != null && previous.skills.toSet() == skills.toSet() && previous.input == input) {
+                previous.copy(ownerName = name, skills = skills)
             } else {
                 SkillEvidence(
                     id = UUID.randomUUID().toString(),
                     ownerEmail = email,
                     ownerName = name,
-                    skill = skill,
+                    skills = skills,
                     input = input,
                     status = SkillEvidenceStatus.PENDING,
                     submittedAt = System.currentTimeMillis()
@@ -106,7 +107,7 @@ internal class SkillEvidenceRepository(context: Context) {
             profile.put(EVIDENCE, JSONObject()
                 .put("id", evidence.id)
                 .put("owner_name", evidence.ownerName)
-                .put("skill", evidence.skill)
+                .put("skills", JSONArray(evidence.skills))
                 .put("description", evidence.input.description)
                 .put("attachment", attachment)
                 .put("status", evidence.status.name)

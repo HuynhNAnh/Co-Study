@@ -19,11 +19,13 @@ internal data class SkillEvidence(
     val id: String,
     val ownerEmail: String,
     val ownerName: String,
-    val skill: String,
+    val skills: List<String>,
     val input: SkillEvidenceInput,
     val status: SkillEvidenceStatus,
     val submittedAt: Long,
     val reviewer: String = "",
     val reviewNote: String = "",
     val reviewedAt: Long = 0L
-)
+) {
+    val skillSummary: String get() = skills.joinToString(", ")
+}

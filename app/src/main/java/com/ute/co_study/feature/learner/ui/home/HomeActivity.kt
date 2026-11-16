@@ -85,8 +85,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun heroDescription(profile: ProfileSetupDraft): String {
-        val share = profile.skillsToShare
-        val learn = profile.skillsToLearn
+        val share = profile.skillsToShare.joinToString(", ")
+        val learn = profile.skillsToLearn.joinToString(", ")
         return when {
             share.isNotEmpty() && learn.isNotEmpty() -> getString(R.string.home_hero_skills, share, learn)
             share.isNotEmpty() -> getString(R.string.home_hero_share, share)

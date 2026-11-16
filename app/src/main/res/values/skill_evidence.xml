@@ -15,10 +15,24 @@
         <item name="android:textColorHint">@color/co_study_muted</item>
         <item name="hintTextColor">@color/co_study_green</item>
         <item name="endIconTint">@color/co_study_green</item>
+        <item name="helperText">@string/profile_skill_add_hint</item>
+        <item name="helperTextTextColor">@color/co_study_muted</item>
+    </style>
+
+    <style name="Widget.CoStudy.SkillChipGroup" parent="Widget.Material3.ChipGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/co_study_space_24</item>
+        <item name="android:layout_marginEnd">@dimen/co_study_space_24</item>
+        <item name="android:layout_marginTop">@dimen/co_study_space_4</item>
+        <item name="android:visibility">gone</item>
+        <item name="chipSpacingVertical">@dimen/co_study_space_4</item>
     </style>
 
     <string name="profile_skills_to_share">Kỹ năng có thể chia sẻ</string>
     <string name="profile_skills_to_learn">Kỹ năng muốn học</string>
+    <string name="profile_skill_add_hint">Chọn gợi ý hoặc nhấn Xong để thêm tên tự nhập.</string>
+    <string name="profile_skill_remove">Bỏ kỹ năng %1$s</string>
     <string name="profile_edit_name">Họ và tên</string>
     <string name="profile_edit_save">Lưu thay đổi</string>
     <string name="profile_edit_saved">Đã lưu hồ sơ</string>
@@ -27,7 +41,7 @@
     <string name="skill_evidence_hint">Mô tả hoạt động hoặc dán liên kết (không bắt buộc)</string>
     <string name="skill_evidence_status">Trạng thái minh chứng: %1$s</string>
     <string name="skill_evidence_not_submitted">Chưa gửi minh chứng</string>
-    <string name="skill_evidence_submit_note">Gõ để tìm kỹ năng trong danh mục hoặc nhập tên riêng. Khi lưu, kỹ năng chia sẻ có minh chứng mới hoặc thay đổi sẽ được gửi kiểm duyệt.</string>
+    <string name="skill_evidence_submit_note">Minh chứng áp dụng cho các kỹ năng chia sẻ đã chọn. Khi bạn thay đổi danh sách hoặc minh chứng rồi lưu, nội dung sẽ được gửi kiểm duyệt lại.</string>
     <string name="skill_evidence_attachment">Tệp minh chứng</string>
     <string name="skill_evidence_choose_attachment">Chọn ảnh hoặc PDF</string>
     <string name="skill_evidence_remove_attachment">Gỡ tệp</string>

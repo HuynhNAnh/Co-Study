@@ -26,7 +26,7 @@ class SkillEvidenceReviewActivity : WorkflowActivity(R.layout.activity_skill_evi
         }
 
         status(item.status.label)
-        card(item.skill, "${item.ownerName} · ${item.ownerEmail}")
+        card(item.skillSummary, "${item.ownerName} · ${item.ownerEmail}")
         info("Ngày gửi", LocalStudyDay.format(item.submittedAt))
         if (item.input.description.isNotBlank()) {
             info("Mô tả hoặc liên kết", item.input.description).setTextIsSelectable(true)

@@ -21,7 +21,7 @@ class SkillEvidenceQueueActivity : WorkflowActivity(R.layout.activity_skill_evid
         listOf("Chờ duyệt" to pending, "Đã xử lý" to reviewed).forEach { (heading, entries) ->
             if (entries.isNotEmpty()) label(heading)
             entries.forEach { item ->
-                row(item.skill, "${item.ownerName} · ${item.status.label}") {
+                row(item.skillSummary, "${item.ownerName} · ${item.status.label}") {
                     open(SkillEvidenceReviewActivity::class.java, Bundle().apply { putString(EXTRA_EVIDENCE, item.id) })
                 }
             }

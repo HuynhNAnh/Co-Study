@@ -11,8 +11,10 @@ class LearnerProfileActivity : ProfileActivity(R.layout.activity_learner_profile
         val draft = profiles.load(session.email)
         identity("Hồ sơ người dùng")
         reputationMetrics()
-        card("Hồ sơ kỹ năng", "Chia sẻ: ${value(draft.skillsToShare)}\nMuốn học: ${value(draft.skillsToLearn)}")
-        if (draft.skillsToShare.isNotBlank()) {
+        val shares = value(draft.skillsToShare.joinToString(", "))
+        val learns = value(draft.skillsToLearn.joinToString(", "))
+        card("Hồ sơ kỹ năng", "Chia sẻ: $shares\nMuốn học: $learns")
+        if (draft.skillsToShare.isNotEmpty()) {
             val proof = profiles.evidence(session.email)
             val detail = proof?.let {
                 listOf(getString(R.string.skill_evidence_status, it.status.label), it.reviewNote)

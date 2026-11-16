@@ -1,21 +1,16 @@
 package com.ute.co_study.feature.learner.ui.profile
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.widget.ArrayAdapter
-import android.widget.Filter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ViewLearnerProfileFieldsBinding
 import com.ute.co_study.feature.learner.model.ProfileSetupDraft
-import com.ute.co_study.feature.learner.model.matchesLearnerSearch
 import com.ute.co_study.shared.model.SkillEvidence
 import com.ute.co_study.shared.model.SkillEvidenceAttachment
 import com.ute.co_study.shared.model.SkillEvidenceInput
@@ -28,6 +23,15 @@ internal class LearnerProfileFields(
     evidence: SkillEvidence?,
     savedInstanceState: Bundle?
 ) {
+    private val sharePicker = SkillPicker(
+        binding.skillsToShareInput, binding.sharedSkills, suggestions,
+        savedInstanceState?.getStringArrayList(SHARED_SKILLS_STATE) ?: profile.skillsToShare
+    )
+    private val learnPicker = SkillPicker(
+        binding.skillsToLearnInput, binding.learningSkills, suggestions,
+        savedInstanceState?.getStringArrayList(LEARNING_SKILLS_STATE) ?: profile.skillsToLearn
+    )
+
     private var attachment = savedInstanceState?.getBundle(ATTACHMENT_STATE)?.let { restoreAttachment(it) }
         ?: profile.evidence.attachment.takeIf { savedInstanceState?.containsKey(ATTACHMENT_STATE) != true }
 
@@ -44,8 +48,6 @@ internal class LearnerProfileFields(
     }
 
     init {
-        setupCombo(binding.skillsToShareInput, suggestions, profile.skillsToShare)
-        setupCombo(binding.skillsToLearnInput, suggestions, profile.skillsToLearn)
         binding.evidenceInput.setText(profile.evidence.description)
         binding.learningGoalInput.setText(profile.learningGoal)
         binding.availabilityInput.setText(profile.availability)
@@ -64,9 +66,11 @@ internal class LearnerProfileFields(
     }
 
     fun draft(): ProfileSetupDraft? {
-        val skill = binding.skillsToShareInput.text.toString().trim()
+        sharePicker.commitTypedSkill()
+        learnPicker.commitTypedSkill()
+        val sharedSkills = sharePicker.selectedSkills()
         val proof = SkillEvidenceInput(binding.evidenceInput.text.toString().trim(), attachment)
-        if (skill.isBlank() && !proof.isEmpty) {
+        if (sharedSkills.isEmpty() && !proof.isEmpty) {
             binding.skillsToShareInput.error = activity.getString(R.string.skill_evidence_requires_skill)
             binding.skillsToShareInput.requestFocus()
             return null
@@ -78,8 +82,8 @@ internal class LearnerProfileFields(
             }
         }
         return ProfileSetupDraft(
-            skillsToShare = skill,
-            skillsToLearn = binding.skillsToLearnInput.text.toString().trim(),
+            skillsToShare = sharedSkills,
+            skillsToLearn = learnPicker.selectedSkills(),
             learningGoal = binding.learningGoalInput.text.toString().trim(),
             availability = binding.availabilityInput.text.toString().trim(),
             evidence = proof
@@ -87,6 +91,8 @@ internal class LearnerProfileFields(
     }
 
     fun saveState(outState: Bundle) {
+        outState.putStringArrayList(SHARED_SKILLS_STATE, ArrayList(sharePicker.selectedSkills()))
+        outState.putStringArrayList(LEARNING_SKILLS_STATE, ArrayList(learnPicker.selectedSkills()))
         outState.putBundle(ATTACHMENT_STATE, Bundle().apply {
             attachment?.let { file ->
                 putString("uri", file.uri)
@@ -132,43 +138,12 @@ internal class LearnerProfileFields(
         false
     }
 
-    private fun setupCombo(input: MaterialAutoCompleteTextView, suggestions: List<String>, value: String) {
-        input.threshold = 1
-        input.setAdapter(SkillSuggestions(input.context, suggestions))
-        input.setText(value, false)
-    }
-
     private fun message(text: Int) = Toast.makeText(activity, text, Toast.LENGTH_LONG).show()
-
-    private class SkillSuggestions(context: Context, private val skills: List<String>) :
-        ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line) {
-        private var matches = skills
-
-        override fun getCount(): Int = matches.size
-
-        override fun getItem(position: Int): String = matches[position]
-
-        override fun getFilter(): Filter = skillFilter
-
-        private val skillFilter = object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val query = constraint?.toString().orEmpty()
-                val results = skills.filter { it.matchesLearnerSearch(query) }
-                return FilterResults().apply {
-                    values = results
-                    count = results.size
-                }
-            }
-
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                matches = (results?.values as? List<*>)?.filterIsInstance<String>().orEmpty()
-                notifyDataSetChanged()
-            }
-        }
-    }
 
     private companion object {
         const val ATTACHMENT_STATE = "learner_skill_evidence_attachment"
+        const val SHARED_SKILLS_STATE = "learner_shared_skills"
+        const val LEARNING_SKILLS_STATE = "learner_learning_skills"
 
         fun restoreAttachment(bundle: Bundle): SkillEvidenceAttachment? {
             val uri = bundle.getString("uri") ?: return null
