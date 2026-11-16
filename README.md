@@ -57,13 +57,98 @@ Cài Android Studio tương thích với Android Gradle Plugin **9.3.3** và cà
 
 ## Cấu trúc kho mã nguồn
 
-| Thư mục | Nội dung |
+### Cấu trúc hiện tại
+
+```text
+Co-Study/
+├── README.md
+├── .gitignore
+├── .idea/                         # Cấu hình Android Studio của dự án
+├── build.gradle.kts               # Cấu hình Gradle cấp dự án
+├── settings.gradle.kts            # Khai báo module :app
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+├── gradle/
+│   ├── libs.versions.toml          # Phiên bản thư viện và plugin
+│   ├── gradle-daemon-jvm.properties
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── figma/                         # Ảnh xuất từ prototype
+│   ├── 01_Nguoi_dung/
+│   ├── 02_Kiem_duyet_vien/
+│   └── 03_Admin/
+└── app/
+    ├── .gitignore
+    ├── build.gradle.kts
+    └── src/
+        ├── main/
+        │   ├── AndroidManifest.xml
+        │   ├── java/com/ute/co_study/
+        │   │   └── MainActivity.kt
+        │   ├── res/
+        │   │   ├── layout/         # Giao diện XML
+        │   │   ├── drawable/       # Hình và nền dùng trong ứng dụng
+        │   │   ├── mipmap-*/       # Biểu tượng launcher theo mật độ màn hình
+        │   │   ├── values/         # Chuỗi, màu sắc và giao diện
+        │   │   ├── values-night/   # Giao diện tối
+        │   │   └── xml/            # Quy tắc sao lưu và trích xuất dữ liệu
+        │   └── keepRules/          # Quy tắc giữ mã khi tối ưu hóa
+        ├── test/java/com/ute/co_study/         # Kiểm thử JVM
+        └── androidTest/java/com/ute/co_study/  # Kiểm thử trên thiết bị
+```
+
+Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiếp trong ứng dụng đặt dưới `app/src/main/res/`.
+
+| Thư mục ảnh | Nội dung |
 | --- | --- |
-| `app/` | Mã nguồn Kotlin và tài nguyên XML của ứng dụng Android |
-| `gradle/` | Gradle Wrapper, danh mục phiên bản thư viện và cấu hình Gradle Daemon |
-| [01_Nguoi_dung](01_Nguoi_dung/) | Ảnh giao diện người dùng và luồng học chung |
-| [02_Kiem_duyet_vien](02_Kiem_duyet_vien/) | Ảnh giao diện và quy trình xử lý báo cáo |
-| [03_Admin](03_Admin/) | Ảnh giao diện quản trị hệ thống |
+| [01_Nguoi_dung](figma/01_Nguoi_dung/) | 36 ảnh giao diện người dùng, trò chuyện và lịch học |
+| [02_Kiem_duyet_vien](figma/02_Kiem_duyet_vien/) | 21 ảnh giao diện kiểm duyệt và quy trình xử lý báo cáo |
+| [03_Admin](figma/03_Admin/) | 25 ảnh giao diện quản trị hệ thống |
+
+### Cây package Android dự kiến
+
+Giữ một module Gradle `:app` và đặt `MainActivity.kt` tại package gốc `com.ute.co_study`. Tạo các package dưới đây khi triển khai chức năng tương ứng.
+
+```text
+com.ute.co_study/
+├── MainActivity.kt
+├── navigation/                    # Điều hướng và luồng theo vai trò
+├── feature/
+│   ├── auth/                      # Đăng nhập, đăng ký, đặt lại mật khẩu
+│   ├── learner/
+│   │   ├── home/                  # Trang chủ người học
+│   │   ├── profile/               # Hồ sơ, kỹ năng và mục tiêu học tập
+│   │   ├── matching/              # Tìm bạn học và gửi đề nghị kết nối
+│   │   ├── chat/                  # Trò chuyện
+│   │   ├── session/               # Lịch, xác nhận buổi học và đánh giá
+│   │   ├── notification/          # Thông báo
+│   │   ├── report/                # Gửi báo cáo vi phạm
+│   │   ├── streak/                # Chuỗi học tập và lịch sử ghi nhận
+│   │   ├── badge/                 # Huy hiệu và hiển thị trên hồ sơ
+│   │   └── settings/              # Cài đặt tài khoản
+│   ├── moderation/
+│   │   ├── dashboard/             # Tổng quan kiểm duyệt
+│   │   ├── report/                # Bằng chứng, xử lý và chuyển cấp
+│   │   └── history/               # Lịch sử xử lý
+│   └── admin/
+│       ├── dashboard/             # Tổng quan hệ thống
+│       ├── account/               # Quản lý tài khoản và phân quyền
+│       ├── report/                # Báo cáo chuyển cấp
+│       ├── skill/                 # Danh mục kỹ năng
+│       ├── policy/                # Quy tắc chuỗi học tập và huy hiệu
+│       ├── settings/              # Cấu hình hệ thống
+│       └── audit/                 # Nhật ký quản trị
+├── domain/
+│   ├── model/                     # Mô hình nghiệp vụ dùng chung
+│   ├── repository/                # Giao diện truy cập dữ liệu
+│   └── usecase/                   # Quy tắc nghiệp vụ cần kiểm thử độc lập
+└── data/
+    └── repository/                # Triển khai giao diện truy cập dữ liệu
+```
+
+Đặt màn hình và ViewModel trong package của chức năng tương ứng. Đặt tiền tố vai trò hoặc chức năng cho layout mới, ví dụ `fragment_learner_profile.xml` và `fragment_admin_accounts.xml`. Trong `src/test/` và `src/androidTest/`, đặt tệp kiểm thử theo package chứa mã được kiểm thử.
 
 ## Thành viên dự án
 
