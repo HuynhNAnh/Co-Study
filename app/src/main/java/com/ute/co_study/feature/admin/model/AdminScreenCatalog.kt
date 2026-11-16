@@ -22,5 +22,6 @@ object AdminScreenCatalog {
         putAll(AdminAccountScreens.all())
         putAll(AdminEscalationScreens.all())
         putAll(AdminSkillScreens.all())
+        putAll(AdminSystemScreens.all())
     }
 }
