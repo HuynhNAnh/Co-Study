@@ -43,4 +43,8 @@
     <plurals name="mod_report_count">
         <item quantity="other">%d báo cáo</item>
     </plurals>
+    <string name="mod_admin_request_title">Yêu cầu bổ sung của Admin</string>
+    <string name="mod_escalation_evidence_optional">Bằng chứng bổ sung (không bắt buộc)</string>
+    <string name="mod_escalation_evidence_required">Bằng chứng (bắt buộc)</string>
+    <string name="mod_escalation_evidence_hint">Thêm trích đoạn, liên kết hoặc căn cứ kiểm chứng</string>
 </resources>

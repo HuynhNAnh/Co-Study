@@ -50,4 +50,6 @@
     <string name="screen_admin_profile_subtitle">Thông tin quyền truy cập</string>
     <string name="screen_admin_sign_out_title">Đăng xuất</string>
     <string name="screen_admin_sign_out_subtitle">Kết thúc phiên quản trị</string>
+    <string name="screen_admin_report_resolve_title">Trả kết quả báo cáo</string>
+    <string name="screen_admin_report_resolve_subtitle">Gửi kết luận sau khi xem xét</string>
 </resources>

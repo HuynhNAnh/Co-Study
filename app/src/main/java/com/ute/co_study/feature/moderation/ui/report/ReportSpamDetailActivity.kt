@@ -2,6 +2,7 @@ package com.ute.co_study.feature.moderation.ui.report
 
 import com.ute.co_study.databinding.ActivityReportSpamDetailBinding
 import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.feature.moderation.ui.showAdminRequest
 import com.ute.co_study.feature.moderation.ui.subjectInitials
 import com.ute.co_study.shared.model.ReportStatus
 
@@ -17,6 +18,7 @@ class ReportSpamDetailActivity : ModerationActivity<ActivityReportSpamDetailBind
         }
 
         describe(item)
+        binding.adminRequest.showAdminRequest(item)
         binding.screenTitle.text = item.title
         binding.subjectInitials.text = item.subjectInitials()
         binding.reportSubject.text = item.subject

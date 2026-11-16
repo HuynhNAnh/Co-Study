@@ -48,6 +48,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
+            <include
+                android:id="@+id/admin_request"
+                layout="@layout/view_moderation_admin_request" />
+
             <!-- Card 1: LÝ DO CHUYỂN · BẮT BUỘC -->
 
             <LinearLayout
@@ -86,6 +90,24 @@
                     android:textSize="15sp"
                     android:textStyle="normal"
                     android:id="@+id/escalation_evidence" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
+
+                <TextView
+                    android:id="@+id/supporting_evidence_label"
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:labelFor="@id/supporting_evidence_input" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/supporting_evidence_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:gravity="top|start"
+                    android:hint="@string/mod_escalation_evidence_hint"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="1000"
+                    android:maxLines="6" />
             </LinearLayout>
             <!-- Card 3: ĐỀ NGHỊ XEM XÉT -->
 

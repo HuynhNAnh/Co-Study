@@ -49,6 +49,10 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
 
+            <include
+                android:id="@+id/admin_request"
+                layout="@layout/view_moderation_admin_request" />
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_co_study_card">
@@ -69,7 +73,7 @@
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="TỆP VÀ NỘI DUNG ĐÍNH KÈM" />
+                    android:text="BẰNG CHỨNG ĐÃ LƯU" />
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
@@ -102,12 +106,18 @@
             android:id="@+id/dismiss_button"
             style="@style/Widget.CoStudy.Button.Outlined"
             android:layout_marginTop="@dimen/co_study_space_8"
-            android:text="Bác bỏ do thiếu căn cứ" />
+            android:text="Bác bỏ báo cáo" />
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.CoStudy.Button.Outlined"
             android:id="@+id/choose_action_button"
             android:layout_marginTop="@dimen/co_study_space_8"
             android:text="@string/mod_btn_choose_action" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/escalate_admin_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_btn_escalate_admin" />
     </LinearLayout>
 </LinearLayout>

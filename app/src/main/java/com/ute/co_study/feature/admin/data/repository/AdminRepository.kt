@@ -48,7 +48,7 @@ internal class AdminRepository(context: Context) {
         val report = reports.queue().firstOrNull {
             it.id == reportId && it.status == ReportStatus.ESCALATED && it.subject == current.name
         } ?: return false
-        return reports.apply(report.id, ReportAction.LOCK_ACCOUNT, detail, operation) != null
+        return reports.apply(report.id, ReportAction.LOCK_ACCOUNT, detail, writeAlongside = operation) != null
     }
 
     fun unlock(id: String, reason: String): Boolean {
@@ -113,6 +113,11 @@ internal class AdminRepository(context: Context) {
     fun returnReport(id: String, reason: String): Boolean =
         reports.apply(id, ReportAction.RETURN, reason) { editor ->
             writeEvent(editor, "Trả báo cáo để bổ sung", "$id\n$reason")
+        } != null
+
+    fun resolveReport(id: String, result: String): Boolean =
+        reports.apply(id, ReportAction.RESOLVE_ESCALATION, result) { editor ->
+            writeEvent(editor, "Trả kết quả báo cáo", "$id\n$result")
         } != null
 
     fun journal(): List<AdminEvent> {

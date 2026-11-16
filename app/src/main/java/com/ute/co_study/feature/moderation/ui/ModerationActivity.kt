@@ -98,9 +98,10 @@ abstract class ModerationActivity<B : ViewBinding>(
         item: CommunityReport,
         action: ReportAction,
         reason: String,
-        destination: Class<out AppCompatActivity>
+        destination: Class<out AppCompatActivity>,
+        supportingEvidence: String = ""
     ) {
-        val updated = reports.apply(item.id, action, reason)
+        val updated = reports.apply(item.id, action, reason, supportingEvidence = supportingEvidence)
         if (updated == null) {
             message(R.string.mod_report_update_failed)
             return

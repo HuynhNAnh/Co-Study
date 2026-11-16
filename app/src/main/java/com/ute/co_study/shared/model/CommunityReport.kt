@@ -18,7 +18,8 @@ internal enum class ReportAction(val label: String) {
     WARN("Ẩn nội dung và gửi cảnh báo"),
     ESCALATE("Chuyển Admin xem xét"),
     RETURN("Chuyển kiểm duyệt bổ sung"),
-    LOCK_ACCOUNT("Khóa tài khoản liên quan")
+    LOCK_ACCOUNT("Khóa tài khoản liên quan"),
+    RESOLVE_ESCALATION("Admin trả kết quả")
 }
 
 internal data class ReportEvent(
@@ -42,6 +43,13 @@ internal data class CommunityReport(
 ) {
     val lastEvent get() = history.lastOrNull()
     val hasEvidence get() = evidence.isNotBlank()
+    val pendingAdminRequest: ReportEvent?
+        get() {
+            if (status != ReportStatus.RETURNED && status != ReportStatus.IN_REVIEW && status != ReportStatus.NEEDS_INFO) return null
+            return history.lastOrNull { it.action == ReportAction.RETURN || it.action == ReportAction.ESCALATE }
+                ?.takeIf { it.action == ReportAction.RETURN }
+        }
+
     val assignedModerator get() = history.firstOrNull {
         it.action == ReportAction.CLAIM || it.action == ReportAction.ESCALATE || it.action == ReportAction.WARN
     }?.actor

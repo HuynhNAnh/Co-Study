@@ -49,6 +49,10 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
 
+            <include
+                android:id="@+id/admin_request"
+                layout="@layout/view_moderation_admin_request" />
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Field">
 

@@ -2,6 +2,7 @@ package com.ute.co_study.feature.moderation.ui.report
 
 import com.ute.co_study.databinding.ActivityReportDetailBinding
 import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.feature.moderation.ui.showAdminRequest
 import com.ute.co_study.R
 import androidx.core.view.isVisible
 import com.ute.co_study.feature.moderation.ui.subjectInitials
@@ -14,6 +15,7 @@ class ReportDetailActivity : ModerationActivity<ActivityReportDetailBinding>(Act
     override fun refresh() {
         val item = currentReport() ?: return
         describe(item)
+        binding.adminRequest.showAdminRequest(item)
         binding.reportSender.text = listOf(item.sender, item.createdAt).filter(String::isNotBlank).joinToString(" · ")
         binding.subjectInitials.text = item.subjectInitials()
         binding.reportSubject.text = item.subject

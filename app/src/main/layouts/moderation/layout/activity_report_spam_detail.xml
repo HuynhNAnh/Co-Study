@@ -48,6 +48,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
+            <include
+                android:id="@+id/admin_request"
+                layout="@layout/view_moderation_admin_request" />
+
             <!-- Card 1: Reporter target avatar + info -->
 
             <LinearLayout

@@ -19,6 +19,7 @@ class AdminReportDetailsActivity : AdminActivity(R.layout.activity_admin_report_
             openMember(AdminAccountDetailsActivity::class.java, account, item.id)
         }
         if (item.status == ReportStatus.ESCALATED) {
+            button("Trả kết quả") { openReport(AdminReportResolveActivity::class.java, item) }
             if (account != null && !account.locked) {
                 button("Xem xét khóa tài khoản", Tone.DANGER) { openMember(AdminLockActivity::class.java, account, item.id) }
             }

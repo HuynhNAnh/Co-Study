@@ -26,16 +26,17 @@ internal class ReportRepository(context: Context) {
     }
 
     fun ownReports(): List<CommunityReport> =
-        if (session.role != DemoRole.LEARNER) emptyList()
+        if (session.role != DemoRole.LEARNER || session.email.isBlank()) emptyList()
         else reports().filter { it.senderEmail.equals(session.email, ignoreCase = true) }
 
-    fun submit(title: String, subject: String, detail: String): CommunityReport? {
-        if (session.role != DemoRole.LEARNER || title.isBlank() || detail.isBlank()) return null
+    fun submit(title: String, subject: String, detail: String, evidence: String = ""): CommunityReport? {
+        if (session.role != DemoRole.LEARNER || session.email.isBlank()) return null
+        if (title.isBlank() || subject.isBlank() || detail.isBlank()) return null
         val previous = reports()
         val nextNumber = (previous.maxOfOrNull { it.id.substringAfterLast('-').toInt() } ?: 0) + 1
         val id = "CS-${format("yyyyMM")}-${nextNumber.toString().padStart(3, '0')}"
         val item = CommunityReport(id, title, session.name.ifBlank { session.email }, session.email, subject,
-            detail, "", ReportStatus.NEW, createdAt = format("dd/MM/yyyy · HH:mm"))
+            detail, evidence.trim(), ReportStatus.NEW, createdAt = format("dd/MM/yyyy · HH:mm"))
         if (!save(listOf(item) + previous)) return null
         return item
     }
@@ -44,25 +45,36 @@ internal class ReportRepository(context: Context) {
         id: String,
         action: ReportAction,
         reason: String,
+        supportingEvidence: String = "",
         writeAlongside: ((SharedPreferences.Editor) -> Unit)? = null
     ): CommunityReport? {
         val previous = reports()
         val actor = session.role ?: return null
         val item = previous.firstOrNull { it.id == id } ?: return null
         if (reason.isBlank() && action != ReportAction.CLAIM) return null
-        val nextStatus = nextStatus(item, actor, action) ?: return null
+        if (supportingEvidence.isNotBlank() && action != ReportAction.ESCALATE) return null
+        val evidence = when (action) {
+            ReportAction.SUPPLY_INFO -> reason.trim()
+            ReportAction.ESCALATE -> supportingEvidence.trim()
+            else -> ""
+        }
+        val nextStatus = nextStatus(item, actor, action, item.hasEvidence || evidence.isNotEmpty()) ?: return null
         val event = ReportEvent(action, session.name.ifBlank { session.email }, reason, format("dd/MM/yyyy · HH:mm"))
         val changed = item.copy(
             status = nextStatus,
             history = item.history + event,
-            evidence = if (action == ReportAction.SUPPLY_INFO) listOf(item.evidence, reason)
-                .filter(String::isNotBlank).joinToString("\n\n") else item.evidence
+            evidence = listOf(item.evidence, evidence).filter(String::isNotBlank).joinToString("\n\n")
         )
         if (!save(previous.map { if (it.id == id) changed else it }, writeAlongside)) return null
         return changed
     }
 
-    private fun nextStatus(item: CommunityReport, role: DemoRole, action: ReportAction): ReportStatus? {
+    private fun nextStatus(
+        item: CommunityReport,
+        role: DemoRole,
+        action: ReportAction,
+        hasEvidence: Boolean
+    ): ReportStatus? {
         val status = item.status
         return when (role) {
             DemoRole.LEARNER -> ReportStatus.IN_REVIEW.takeIf {
@@ -76,12 +88,13 @@ internal class ReportRepository(context: Context) {
                 ReportAction.REQUEST_INFO -> ReportStatus.NEEDS_INFO.takeIf { status == ReportStatus.IN_REVIEW }
                 ReportAction.DISMISS -> ReportStatus.DISMISSED.takeIf { status == ReportStatus.IN_REVIEW }
                 ReportAction.WARN -> ReportStatus.RESOLVED.takeIf { status == ReportStatus.IN_REVIEW && item.hasEvidence }
-                ReportAction.ESCALATE -> ReportStatus.ESCALATED.takeIf { status == ReportStatus.IN_REVIEW && item.hasEvidence }
+                ReportAction.ESCALATE -> ReportStatus.ESCALATED.takeIf { status == ReportStatus.IN_REVIEW && hasEvidence }
                 else -> null
             }
             DemoRole.ADMIN -> when (action) {
                 ReportAction.RETURN -> ReportStatus.RETURNED.takeIf { status == ReportStatus.ESCALATED }
-                ReportAction.LOCK_ACCOUNT -> ReportStatus.RESOLVED.takeIf { status == ReportStatus.ESCALATED }
+                ReportAction.LOCK_ACCOUNT, ReportAction.RESOLVE_ESCALATION ->
+                    ReportStatus.RESOLVED.takeIf { status == ReportStatus.ESCALATED }
                 else -> null
             }
         }
