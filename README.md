@@ -2,7 +2,7 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Hai biểu mẫu có thể chuyển qua lại và kiểm tra dữ liệu nhập trên thiết bị. Xác thực, tạo tài khoản trên máy chủ và đặt lại mật khẩu chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
+Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Nút **Quên mật khẩu?** tại U01 mở biểu mẫu nhập email (U03) và dẫn đến màn xác nhận (U04). Ứng dụng kiểm tra dữ liệu nhập trên thiết bị. U04 mô phỏng kết quả yêu cầu. Xác thực, tạo tài khoản và gửi email khôi phục qua máy chủ chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
 
 ## Chức năng theo vai trò
 
@@ -128,10 +128,14 @@ com.ute.co_study/
     │   ├── ui/
     │   │   ├── welcome/WelcomeActivity.kt
     │   │   ├── login/LoginActivity.kt
-    │   │   └── register/RegisterActivity.kt
+    │   │   ├── register/RegisterActivity.kt
+    │   │   └── reset/
+    │   │       ├── ResetPasswordActivity.kt
+    │   │       └── ResetLinkSentActivity.kt
     │   └── viewmodel/
     │       ├── login/
-    │       └── register/
+    │       ├── register/
+    │       └── reset/
     ├── learner/                   # Người dùng
     │   ├── ui/
     │   ├── viewmodel/

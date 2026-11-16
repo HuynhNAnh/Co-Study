@@ -1,5 +1,7 @@
 package com.ute.co_study.feature.auth.ui.reset
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +23,9 @@ class ResetPasswordActivity : AppCompatActivity() {
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.resetIntroTitle, true)
+        if (savedInstanceState == null) {
+            binding.emailInput.setText(intent.getStringExtra(EXTRA_INITIAL_EMAIL).orEmpty())
+        }
 
         val confirmation = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -65,5 +70,12 @@ class ResetPasswordActivity : AppCompatActivity() {
             return
         }
         onValidEmail(email)
+    }
+
+    companion object {
+        private const val EXTRA_INITIAL_EMAIL = "initial_email"
+
+        internal fun createIntent(context: Context, email: String): Intent =
+            Intent(context, ResetPasswordActivity::class.java).putExtra(EXTRA_INITIAL_EMAIL, email.trim())
     }
 }

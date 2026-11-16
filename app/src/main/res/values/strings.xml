@@ -27,7 +27,6 @@
     <string name="auth_email_required">Vui lòng nhập email.</string>
     <string name="auth_email_invalid">Email không đúng định dạng.</string>
     <string name="auth_password_required">Vui lòng nhập mật khẩu.</string>
-    <string name="login_reset_unavailable">Tính năng đặt lại mật khẩu đang được phát triển.</string>
     <string name="register_subtitle">Bắt đầu hành trình học cùng nhau</string>
     <string name="register_name">HỌ VÀ TÊN</string>
     <string name="register_confirmation">NHẬP LẠI MẬT KHẨU</string>

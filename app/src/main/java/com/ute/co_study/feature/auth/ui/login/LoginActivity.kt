@@ -12,6 +12,7 @@ import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityLoginBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.auth.ui.register.RegisterActivity
+import com.ute.co_study.feature.auth.ui.reset.ResetPasswordActivity
 import com.ute.co_study.feature.auth.viewmodel.login.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -36,7 +37,8 @@ class LoginActivity : AppCompatActivity() {
         binding.emailInput.doAfterTextChanged { binding.emailInput.error = null }
         binding.passwordInput.doAfterTextChanged { binding.passwordInput.error = null }
         binding.forgotPasswordButton.setOnClickListener {
-            Toast.makeText(this, R.string.login_reset_unavailable, Toast.LENGTH_SHORT).show()
+            val email = binding.emailInput.text.toString()
+            startActivity(ResetPasswordActivity.createIntent(this, email))
         }
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
