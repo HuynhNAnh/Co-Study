@@ -10,6 +10,7 @@ import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityHomeBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.model.ProfileSetupDraft
+import com.ute.co_study.feature.learner.ui.discovery.DiscoveryActivity
 import com.ute.co_study.feature.learner.ui.markCurrentLearnerTab
 import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
 import com.ute.co_study.feature.learner.viewmodel.home.HomeViewModel
@@ -42,14 +43,20 @@ class HomeActivity : AppCompatActivity() {
 
         val navigation = binding.learnerNavigation
         navigation.homeTab.markCurrentLearnerTab()
+        binding.discoverButton.setOnClickListener { openDiscovery() }
+        navigation.matchTab.setOnClickListener { openDiscovery() }
         showLearnerFeatureUnavailable(
             binding.notificationsButton,
-            binding.discoverButton,
-            navigation.matchTab,
             navigation.messagesTab,
             navigation.scheduleTab,
             navigation.profileTab
         )
+    }
+
+    private fun openDiscovery() {
+        val discovery = Intent(this, DiscoveryActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(discovery)
     }
 
     private fun heroDescription(profile: ProfileSetupDraft): String {

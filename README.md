@@ -2,7 +2,7 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Nút **Quên mật khẩu?** tại U01 mở biểu mẫu nhập email (U03) và dẫn đến màn xác nhận (U04). Ứng dụng kiểm tra dữ liệu nhập trên thiết bị. Khi biểu mẫu U02 hợp lệ, ứng dụng mở màn Thiết lập hồ sơ (U05). Nút **Hoàn tất và khám phá** tại U05 lưu hồ sơ trên thiết bị theo email nhập ở U02, rồi mở Trang chủ người dùng (U06). Lời chào và phần giới thiệu ở U06 dùng tên và kỹ năng vừa nhập. Gợi ý ghép cặp, lịch học và số thông báo dùng dữ liệu mẫu. U04 mô phỏng kết quả yêu cầu. Xác thực, tạo tài khoản và gửi email khôi phục qua máy chủ chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
+Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Nút **Quên mật khẩu?** tại U01 mở biểu mẫu nhập email (U03) và dẫn đến màn xác nhận (U04). Ứng dụng kiểm tra dữ liệu nhập trên thiết bị. Khi biểu mẫu U02 hợp lệ, ứng dụng mở màn Thiết lập hồ sơ (U05). Nút **Hoàn tất và khám phá** tại U05 lưu hồ sơ trên thiết bị theo email nhập ở U02, rồi mở Trang chủ người dùng (U06). Lời chào và phần giới thiệu ở U06 dùng tên và kỹ năng vừa nhập. Gợi ý ghép cặp, lịch học và số thông báo dùng dữ liệu mẫu. Nút **Khám phá bạn học** và tab **Ghép cặp** ở U06 mở màn Khám phá bạn học (U07). U07 hỗ trợ tìm tên và kỹ năng trong dữ liệu mẫu. U04 mô phỏng kết quả yêu cầu. Xác thực, tạo tài khoản và gửi email khôi phục qua máy chủ chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
 
 ## Chức năng theo vai trò
 
@@ -138,9 +138,11 @@ com.ute.co_study/
     │       └── reset/
     ├── learner/                   # Người dùng
     │   ├── ui/
+    │   │   ├── discovery/DiscoveryActivity.kt
     │   │   ├── home/HomeActivity.kt
     │   │   └── profile/ProfileSetupActivity.kt
     │   ├── viewmodel/
+    │   │   ├── discovery/DiscoveryViewModel.kt
     │   │   ├── home/HomeViewModel.kt
     │   │   └── profile/ProfileSetupViewModel.kt
     │   ├── model/
