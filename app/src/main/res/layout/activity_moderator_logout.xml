@@ -49,8 +49,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Card 1: Mint Notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
@@ -69,8 +69,8 @@
                     android:textColor="@color/co_study_ink"
                     android:textSize="14sp" />
             </LinearLayout>
-
             <!-- Card 2: Current Account -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -82,15 +82,16 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="KDV-01 · moderator@costudy.example"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/current_operator" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirm_logout_button"

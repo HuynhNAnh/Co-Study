@@ -87,12 +87,8 @@ internal class ReportRepository(context: Context) {
         }
     }
 
-    private fun canModerate(item: CommunityReport): Boolean {
-        val assigned = item.history.firstOrNull {
-            it.action == ReportAction.CLAIM || it.action == ReportAction.ESCALATE || it.action == ReportAction.WARN
-        }?.actor
-        return assigned == null || assigned == session.name
-    }
+    private fun canModerate(item: CommunityReport): Boolean =
+        item.assignedModerator == null || item.assignedModerator == session.name
 
     private fun reports(): List<CommunityReport> {
         val raw = store.getString("reports", null) ?: return samples

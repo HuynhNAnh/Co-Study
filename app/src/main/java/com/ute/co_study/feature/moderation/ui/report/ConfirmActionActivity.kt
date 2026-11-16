@@ -1,30 +1,23 @@
 package com.ute.co_study.feature.moderation.ui.report
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityConfirmActionBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.R
+import com.ute.co_study.shared.model.ReportStatus
+import com.ute.co_study.shared.model.ReportAction
 
-class ConfirmActionActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityConfirmActionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
-        binding.backButton.setOnClickListener { finish() }
+class ConfirmActionActivity : ModerationActivity<ActivityConfirmActionBinding>(ActivityConfirmActionBinding::inflate) {
+    override fun bind() {
+        val item = currentReport(ReportStatus.IN_REVIEW) ?: return
+        val reason = intent.getStringExtra(ActionOptionsActivity.REASON) ?: return finish()
+        val notice = intent.getStringExtra(ActionOptionsActivity.NOTICE) ?: return finish()
+        val explanation = "$reason\n\n${getString(R.string.mod_action_notice, notice)}"
+        describe(item)
+        binding.affectedContent.text = "${item.subject} · ${item.title}"
+        binding.actionGrounds.text = explanation
         binding.backOptionsButton.setOnClickListener { finish() }
-
         binding.applyActionButton.setOnClickListener {
-            val intent = Intent(this, ActionCompletedActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
-            }
-            startActivity(intent)
-            finish()
+            updateReport(item, ReportAction.WARN, explanation, ActionCompletedActivity::class.java)
         }
     }
 }

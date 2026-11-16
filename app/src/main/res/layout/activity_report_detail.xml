@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="CS-202610-001 · Mới" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -50,7 +49,8 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -59,11 +59,11 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Đặng Thái Nguyên · 06/10/2026 09:35"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/report_sender" />
             </LinearLayout>
-
             <!-- Card đối tượng Minh Anh -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_co_study_card"
@@ -75,10 +75,10 @@
                     android:layout_height="48dp"
                     android:background="@drawable/bg_co_study_mint_circle"
                     android:gravity="center"
-                    android:text="MA"
                     android:textColor="@color/co_study_green"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/subject_initials" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -90,7 +90,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
                         android:textSize="18sp"
-                        android:text="Minh Anh" />
+                        android:id="@+id/report_subject" />
 
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
@@ -99,7 +99,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -108,12 +109,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Thông tin kỹ năng trên hồ sơ cần được kiểm tra lại. Mong bộ phận kiểm duyệt xem xét." />
+                    android:id="@+id/report_content" />
             </LinearLayout>
 
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_notice">
+                android:background="@drawable/bg_auth_notice"
+                android:id="@+id/no_evidence_notice">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
@@ -123,7 +125,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/accept_button"

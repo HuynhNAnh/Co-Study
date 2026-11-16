@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mod_login_local_description">Tài khoản minh họa đã điền sẵn. Báo cáo và quyết định được lưu trên thiết bị.</string>
+    <string name="mod_login_account_error">Dùng email %1$s hoặc tài khoản đã được cấp quyền kiểm duyệt.</string>
+    <string name="mod_login_password_error">Mật khẩu demo là %1$s</string>
+    <string name="mod_report_status">%1$s · %2$s</string>
+    <string name="mod_report_people">Người gửi: %1$s\nĐối tượng: %2$s</string>
+    <string name="mod_report_changed">Báo cáo đã chuyển trạng thái hoặc ngoài phạm vi được giao.</string>
+    <string name="mod_report_update_failed">Chưa thể lưu thao tác. Hãy kiểm tra lại trạng thái báo cáo.</string>
+    <string name="mod_no_evidence">Chưa có tài liệu hoặc nội dung đính kèm.</string>
+    <string name="mod_empty_active_reports">Hiện không có báo cáo cần tiếp nhận hoặc xem xét.</string>
+    <string name="mod_empty_filtered_reports">Không tìm thấy báo cáo phù hợp với bộ lọc.</string>
+    <string name="mod_empty_history">Chưa có quyết định xử lý đã lưu.</string>
+    <string name="mod_empty_notifications">Chưa có cập nhật về báo cáo.</string>
+    <string name="mod_new_report_notice">Có báo cáo mới</string>
+    <string name="mod_operator_status">%1$s · Đang hoạt động</string>
+    <string name="mod_reply_hours">Trong %1$d giờ</string>
+    <string name="mod_reply_deadline">Hạn phản hồi: %1$s</string>
+    <string name="mod_reply_deadline_hint">Nhập hạn đề nghị phản hồi</string>
+    <string name="mod_request_details_hint">Nêu thông tin hoặc bằng chứng cần bổ sung</string>
+    <string name="mod_request_sent_to">Yêu cầu đã được lưu cho %1$s. Bạn có thể theo dõi phản hồi trong Thông báo.</string>
+    <string name="mod_sent_request_detail">NỘI DUNG ĐÃ GỬI</string>
+    <string name="mod_dismiss_reason_hint">Nêu căn cứ bác bỏ báo cáo</string>
+    <string name="mod_dismiss_explanation">Báo cáo sẽ đóng. Người gửi xem được lý do trong Thông báo.</string>
+    <string name="mod_dismiss_result">Người gửi xem được lý do đóng báo cáo trong Thông báo.</string>
+    <string name="mod_action_measure">Ẩn nội dung vi phạm và gửi cảnh báo</string>
+    <string name="mod_action_reason_hint">Nhập căn cứ xử lý</string>
+    <string name="mod_author_notice_hint">Nhập nội dung cảnh báo cho người đăng</string>
+    <string name="mod_action_explanation">Biện pháp áp dụng cho nội dung được báo cáo. Quyết định khóa tài khoản thuộc phạm vi của Admin.</string>
+    <string name="mod_action_notice">Thông báo: %1$s</string>
+    <string name="mod_action_result">Biện pháp đã được lưu vào lịch sử báo cáo trên thiết bị.</string>
+    <string name="mod_escalation_reason_hint">Nêu lý do cần Admin xem xét</string>
+    <string name="mod_escalation_reason_label">LÝ DO ĐÃ CHUYỂN</string>
+    <string name="mod_report_query">MÃ HOẶC TÊN BÁO CÁO</string>
+    <string name="mod_report_query_hint">Tìm theo mã hoặc tên</string>
+    <string name="mod_filter_evidence">BẰNG CHỨNG</string>
+    <string name="mod_filter_all">Tất cả</string>
+    <string name="mod_filter_with_evidence">Có bằng chứng</string>
+    <string name="mod_filter_without_evidence">Thiếu bằng chứng</string>
+    <string name="mod_filter_assigned_to_me">Báo cáo tôi tiếp nhận</string>
+    <string name="mod_filter_notice">Chọn phạm vi và áp dụng để cập nhật hàng đợi.</string>
+    <string name="mod_filter_reset">Đặt lại bộ lọc</string>
+    <plurals name="mod_report_count">
+        <item quantity="other">%d báo cáo</item>
+    </plurals>
+</resources>

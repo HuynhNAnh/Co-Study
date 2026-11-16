@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="CS-202610-001 · Cần thêm bằng chứng" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -50,7 +49,8 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -59,33 +59,45 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Đặng Thái Nguyên · Người gửi báo cáo"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/report_recipient" />
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="NỘI DUNG YÊU CẦU · BẮT BUỘC" />
+                    android:text="NỘI DUNG YÊU CẦU · BẮT BUỘC"
+                    android:labelFor="@id/request_details_input" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/request_details_input"
                     style="@style/Widget.CoStudy.Auth.Input"
-                    android:text="Vui lòng cung cấp nội dung hoặc ảnh chụp liên quan cho thấy thông tin kỹ năng trên hồ sơ không chính xác."
-                    android:minLines="3" />
+                    android:minLines="3"
+                    android:hint="@string/mod_request_details_hint"
+                    android:maxLength="1000"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="6"
+                    android:gravity="top|start" />
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="HẠN ĐỀ NGHỊ PHẢN HỒI" />
+                    android:text="HẠN ĐỀ NGHỊ PHẢN HỒI"
+                    android:labelFor="@id/reply_deadline" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
+                <androidx.appcompat.widget.AppCompatEditText
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="08/10/2026 · 17:00" />
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:id="@+id/reply_deadline"
+                    android:hint="@string/mod_reply_deadline_hint"
+                    android:maxLength="80"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,7 +112,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/send_request_button"

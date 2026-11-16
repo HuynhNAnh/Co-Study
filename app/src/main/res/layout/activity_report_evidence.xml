@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="CS-202610-001 · Đang xử lý" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -62,10 +61,11 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_8"
-                    android:text="Minh Anh\nCó thể chia sẻ: Kotlin / Android\nTrình độ tự khai: trung cấp" />
+                    android:id="@+id/report_content" />
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -74,12 +74,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Chưa có tệp hoặc đoạn hội thoại đính kèm." />
+                    android:id="@+id/report_evidence" />
             </LinearLayout>
 
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_notice">
+                android:background="@drawable/bg_auth_notice"
+                android:id="@+id/evidence_notice">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
@@ -89,7 +90,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/request_more_info_button"
@@ -101,5 +103,11 @@
             style="@style/Widget.CoStudy.Button.Outlined"
             android:layout_marginTop="@dimen/co_study_space_8"
             android:text="Bác bỏ do thiếu căn cứ" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:id="@+id/choose_action_button"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_btn_choose_action" />
     </LinearLayout>
 </LinearLayout>

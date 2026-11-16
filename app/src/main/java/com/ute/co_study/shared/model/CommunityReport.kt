@@ -42,4 +42,7 @@ internal data class CommunityReport(
 ) {
     val lastEvent get() = history.lastOrNull()
     val hasEvidence get() = evidence.isNotBlank()
+    val assignedModerator get() = history.firstOrNull {
+        it.action == ReportAction.CLAIM || it.action == ReportAction.ESCALATE || it.action == ReportAction.WARN
+    }?.actor
 }

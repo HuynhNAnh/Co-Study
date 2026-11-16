@@ -1,36 +1,27 @@
 package com.ute.co_study.feature.moderation.ui.report
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityActionCompletedBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
 import com.ute.co_study.feature.moderation.ui.overview.ModerationOverviewActivity
+import com.ute.co_study.shared.model.ReportStatus
 
-class ActionCompletedActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityActionCompletedBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
+class ActionCompletedActivity : ModerationActivity<ActivityActionCompletedBinding>(ActivityActionCompletedBinding::inflate) {
+    override fun bind() {
         binding.backToListButton.setOnClickListener {
-            val intent = Intent(this, ReportListActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
-            startActivity(intent)
+            returnTo(ReportListActivity::class.java)
             finish()
         }
-
         binding.backToOverviewButton.setOnClickListener {
-            val intent = Intent(this, ModerationOverviewActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
-            startActivity(intent)
+            returnTo(ModerationOverviewActivity::class.java)
             finish()
         }
+    }
+
+    override fun refresh() {
+        val item = currentReport(ReportStatus.RESOLVED) ?: return
+        describe(item)
+        val event = item.lastEvent ?: return
+        binding.actionActor.text = event.actor
+        binding.actionLog.text = "${event.at}\n${event.reason}"
     }
 }

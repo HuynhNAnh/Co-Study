@@ -25,7 +25,7 @@
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
             android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_sample_entry"
+            android:text="@string/mod_login_subtitle"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Banner Card -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_co_study_primary_card">
@@ -56,12 +56,12 @@
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_8"
                     android:lineSpacingExtra="3dp"
-                    android:text="Xem xét công bằng. Xử lý có căn cứ.\nMỗi quyết định đều được lưu lại."
+                    android:text="@string/mod_login_banner_desc"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
-
             <!-- Field 1: EMAIL TÀI KHOẢN ĐƯỢC CẤP -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -80,8 +80,8 @@
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp" />
             </LinearLayout>
-
             <!-- Field 2: MẬT KHẨU -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -102,8 +102,8 @@
                     android:textColor="@color/co_study_ink"
                     android:textSize="16sp" />
             </LinearLayout>
-
             <!-- Card 3: Notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
@@ -111,18 +111,19 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:lineSpacingExtra="2dp"
-                    android:text="@string/mod_sample_description"
+                    android:text="@string/mod_login_local_description"
                     android:textColor="@color/co_mint_dark"
                     android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             style="@style/Widget.CoStudy.Button.Primary"
-            android:text="@string/mod_sample_start" />
+            android:text="@string/mod_login_btn" />
     </LinearLayout>
 </LinearLayout>

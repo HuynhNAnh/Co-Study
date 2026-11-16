@@ -23,8 +23,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_escalated_subtitle" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -38,8 +37,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Check Icon badge -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,26 +69,26 @@
                     android:text="Lý do chuyển và bằng chứng đã được đính kèm. Bạn sẽ nhận thông báo khi Admin có quyết định."
                     android:textSize="14sp" />
             </LinearLayout>
-
             <!-- Card 1: TÌNH TRẠNG TÀI KHOẢN -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="TÌNH TRẠNG TÀI KHOẢN" />
+                    android:text="@string/mod_escalation_reason_label" />
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Chưa áp dụng khóa tài khoản"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/result_detail" />
             </LinearLayout>
-
             <!-- Card 2: Mint notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
@@ -103,7 +102,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_to_list_button"

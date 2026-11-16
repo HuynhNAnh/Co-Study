@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Search & filter card -->
+
             <LinearLayout
                 android:id="@+id/search_filter_card"
                 style="@style/Widget.CoStudy.Welcome.Feature"
@@ -51,7 +51,8 @@
                     android:src="@drawable/ic_search"
                     app:tint="@color/co_study_ink" />
 
-                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+                <LinearLayout
+                    style="@style/Widget.CoStudy.Welcome.FeatureText">
 
                     <TextView
                         style="@style/TextAppearance.CoStudy.Label"
@@ -70,82 +71,24 @@
                     android:src="@drawable/ic_forward"
                     app:tint="@color/co_study_muted" />
             </LinearLayout>
-
             <!-- Báo cáo 1 -->
+
             <LinearLayout
-                android:id="@+id/report_item_001"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true">
+                android:id="@+id/report_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="CS-202610-001 · Mới"
-                    android:textColor="@color/co_study_green"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Title"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:textSize="18sp"
-                    android:text="Thông tin hồ sơ không phù hợp" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Người gửi: Đặng Thái Nguyên\nĐối tượng: hồ sơ Minh Anh" />
-            </LinearLayout>
-
+            <TextView
+                style="@style/TextAppearance.CoStudy.Body"
+                android:id="@+id/empty_reports"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:text="@string/mod_empty_filtered_reports"
+                android:visibility="gone" />
             <!-- Báo cáo 2 -->
-            <LinearLayout
-                android:id="@+id/report_item_002"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="CS-202610-002 · Đang xử lý"
-                    android:textColor="@color/co_study_green"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Title"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:textSize="18sp"
-                    android:text="Spam trong giới thiệu hồ sơ" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Người gửi: Thu Hà\nĐược giao cho bạn" />
-            </LinearLayout>
-
             <!-- Báo cáo 3 -->
-            <LinearLayout
-                android:id="@+id/report_item_003"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card">
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="CS-202610-003 · Chờ Admin"
-                    android:textColor="@color/co_study_green"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Title"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:textSize="18sp"
-                    android:text="Tái phạm nhiều lần" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Đã chuyển Admin · Chờ quyết định\nTheo dõi trong Thông báo" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

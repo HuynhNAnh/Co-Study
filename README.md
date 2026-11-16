@@ -8,7 +8,7 @@ Co-Study là dự án Android thuộc học phần **Lập trình trên thiết 
 
 - **Người dùng** mở **Đăng ký**, hoàn tất hồ sơ, rồi dùng các tab Ghép cặp, Tin nhắn, Lịch học và Cá nhân. Sau khi đăng xuất, nhập email đã dùng để mở lại hồ sơ cục bộ.
 - **Kiểm duyệt viên** và **Admin** mở màn **Đăng nhập**, chọn nút demo tương ứng, rồi dùng thông tin đã điền sẵn. Đăng xuất ở màn tài khoản để quay lại trang chào mừng và chuyển vai trò.
-- Từ màn đăng nhập kiểm duyệt, nút **Xem luồng kiểm duyệt minh họa** mở các giao diện của nhánh `Lanh` với báo cáo mẫu. Nút **Mở hàng đợi kiểm duyệt trên thiết bị** chuyển sang luồng dùng chung báo cáo với Người dùng và Admin.
+- **Kiểm duyệt** dùng một luồng giao diện cho tổng quan, hàng đợi, xử lý và lịch sử. Báo cáo và quyết định được lưu trong cùng kho dữ liệu cục bộ với Người dùng và Admin.
 - Sau khi hoàn thành một buổi học, chọn **Mô phỏng bạn học xác nhận tham gia** để xem kết quả ghi nhận. Chuỗi dùng ngày người học đánh dấu hoàn thành theo giờ Việt Nam. Cấu hình được chụp lại khi hoàn thành buổi học để lịch sử và huy hiệu đã đạt vẫn có thể tra cứu.
 
 ## Chức năng theo vai trò

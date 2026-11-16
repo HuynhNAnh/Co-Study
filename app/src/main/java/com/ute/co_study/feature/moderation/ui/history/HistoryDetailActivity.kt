@@ -1,21 +1,25 @@
 package com.ute.co_study.feature.moderation.ui.history
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityHistoryDetailBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.R
+import androidx.core.view.isVisible
 
-class HistoryDetailActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityHistoryDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
-        binding.backButton.setOnClickListener { finish() }
+class HistoryDetailActivity : ModerationActivity<ActivityHistoryDetailBinding>(ActivityHistoryDetailBinding::inflate) {
+    override fun bind() {
         binding.backToHistoryButton.setOnClickListener { finish() }
+    }
+
+    override fun refresh() {
+        val item = currentReport() ?: return
+        describe(item)
+        binding.reportContent.text = "${item.subject} · ${item.title}\n${item.detail}"
+        binding.reportConclusion.text = item.lastEvent?.action?.label ?: item.status.label
+        binding.reportEvidence.text = item.evidence.ifBlank { getString(R.string.mod_no_evidence) }
+        binding.reportTrail.text = item.history.asReversed().joinToString("\n\n") { event ->
+            listOf(event.action.label, "${event.actor} · ${event.at}", event.reason)
+                .filter(String::isNotBlank).joinToString("\n")
+        }
+        binding.trailCard.isVisible = item.history.isNotEmpty()
     }
 }

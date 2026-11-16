@@ -23,8 +23,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="CS-202610-001 · Thiếu căn cứ" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -38,8 +37,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Check circle -->
+
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -64,9 +63,10 @@
                 android:layout_marginTop="@dimen/co_study_space_8"
                 android:gravity="center"
                 android:textColor="@color/co_study_muted"
-                android:text="Người gửi được thông báo lý do đóng báo cáo.\nKhông áp dụng xử lý đối với hồ sơ Minh Anh." />
+                android:text="@string/mod_dismiss_result" />
 
-            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -75,8 +75,8 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Chưa đủ căn cứ xác định vi phạm"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/result_detail" />
             </LinearLayout>
 
             <LinearLayout
@@ -91,7 +91,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_to_list_button"

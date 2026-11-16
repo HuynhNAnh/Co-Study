@@ -49,99 +49,111 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Card 1: MÃ BÁO CÁO -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="MÃ BÁO CÁO" />
+                    android:text="@string/mod_report_query"
+                    android:labelFor="@id/query_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
+                <androidx.appcompat.widget.AppCompatEditText
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Tất cả mã báo cáo"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:id="@+id/query_input"
+                    android:hint="@string/mod_report_query_hint"
+                    android:maxLength="120"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true" />
             </LinearLayout>
-
             <!-- Card 2: LOẠI NỘI DUNG -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="LOẠI NỘI DUNG" />
+                    android:text="@string/mod_filter_evidence"
+                    android:labelFor="@id/evidence_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Tất cả loại nội dung"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/evidence_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/workflow_touch_target"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginTop="@dimen/co_study_space_4" />
             </LinearLayout>
-
             <!-- Card 3: TRẠNG THÁI -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="TRẠNG THÁI" />
+                    android:text="TRẠNG THÁI"
+                    android:labelFor="@id/status_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Mới · Đang xử lý · Chờ Admin"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/status_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/workflow_touch_target"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginTop="@dimen/co_study_space_4" />
             </LinearLayout>
-
             <!-- Card 4: NGƯỜI PHỤ TRÁCH -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="NGƯỜI PHỤ TRÁCH" />
+                    android:text="NGƯỜI PHỤ TRÁCH"
+                    android:labelFor="@id/assignee_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Tôi và báo cáo chưa được tiếp nhận"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/assignee_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/workflow_touch_target"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginTop="@dimen/co_study_space_4" />
             </LinearLayout>
-
             <!-- Card 5: Mint notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
-                    android:text="Hàng đợi đang hiển thị 3 báo cáo phù hợp với phạm vi này."
+                    android:text="@string/mod_filter_notice"
                     android:textColor="@color/co_mint_dark"
                     android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/apply_filter_button"
             style="@style/Widget.CoStudy.Button.Primary"
             android:text="@string/mod_btn_apply_filter" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:id="@+id/reset_filter_button"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_filter_reset" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_list_button"

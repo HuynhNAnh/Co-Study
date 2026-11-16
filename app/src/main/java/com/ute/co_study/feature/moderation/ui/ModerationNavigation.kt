@@ -2,9 +2,7 @@ package com.ute.co_study.feature.moderation.ui
 
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.TextViewCompat
@@ -15,47 +13,28 @@ import com.ute.co_study.feature.moderation.ui.overview.ModerationOverviewActivit
 import com.ute.co_study.feature.moderation.ui.profile.ModeratorProfileActivity
 import com.ute.co_study.feature.moderation.ui.report.ReportListActivity
 
-internal fun AppCompatButton.markCurrentModTab() {
-    val activeColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.co_study_green))
-    setBackgroundResource(R.drawable.bg_auth_notice)
-    setTextColor(activeColor)
-    TextViewCompat.setCompoundDrawableTintList(this, activeColor)
-    isSelected = true
-    isClickable = false
-    ViewCompat.setStateDescription(this, context.getString(R.string.home_tab_current))
-}
-
 internal fun setupModerationNavigation(activity: AppCompatActivity, binding: ViewModerationNavigationBinding) {
-    binding.overviewTab.setOnClickListener {
-        if (activity !is ModerationOverviewActivity) {
-            val intent = Intent(activity, ModerationOverviewActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            activity.startActivity(intent)
-            activity.finish()
-        }
-    }
-    binding.reportsTab.setOnClickListener {
-        if (activity !is ReportListActivity) {
-            val intent = Intent(activity, ReportListActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            activity.startActivity(intent)
-            activity.finish()
-        }
-    }
-    binding.historyTab.setOnClickListener {
-        if (activity !is ModerationHistoryActivity) {
-            val intent = Intent(activity, ModerationHistoryActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            activity.startActivity(intent)
-            activity.finish()
-        }
-    }
-    binding.accountTab.setOnClickListener {
-        if (activity !is ModeratorProfileActivity) {
-            val intent = Intent(activity, ModeratorProfileActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            activity.startActivity(intent)
-            activity.finish()
+    val tabs = listOf(
+        binding.overviewTab to ModerationOverviewActivity::class.java,
+        binding.reportsTab to ReportListActivity::class.java,
+        binding.historyTab to ModerationHistoryActivity::class.java,
+        binding.accountTab to ModeratorProfileActivity::class.java
+    )
+    tabs.forEach { (button, destination) ->
+        if (destination.isInstance(activity)) {
+            val color = ColorStateList.valueOf(ContextCompat.getColor(activity, R.color.co_study_green))
+            button.setBackgroundResource(R.drawable.bg_auth_notice)
+            button.setTextColor(color)
+            TextViewCompat.setCompoundDrawableTintList(button, color)
+            button.isSelected = true
+            button.isClickable = false
+            ViewCompat.setStateDescription(button, activity.getString(R.string.home_tab_current))
+        } else {
+            button.setOnClickListener {
+                activity.startActivity(Intent(activity, destination)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+                if (activity !is ModerationOverviewActivity) activity.finish()
+            }
         }
     }
 }

@@ -1,56 +1,35 @@
 package com.ute.co_study.feature.moderation.ui.overview
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityModerationOverviewBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
-import com.ute.co_study.feature.moderation.ui.ModerationDashboardActivity
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.R
+import androidx.core.view.isVisible
 import com.ute.co_study.feature.moderation.ui.history.ModerationNotificationsActivity
-import com.ute.co_study.feature.moderation.ui.markCurrentModTab
-import com.ute.co_study.feature.moderation.ui.report.ReportDetailActivity
 import com.ute.co_study.feature.moderation.ui.report.ReportListActivity
-import com.ute.co_study.feature.moderation.ui.report.ReportSpamDetailActivity
 import com.ute.co_study.feature.moderation.ui.setupModerationNavigation
-import com.ute.co_study.shared.data.DemoRole
-import com.ute.co_study.shared.data.DemoSession
+import com.ute.co_study.feature.moderation.ui.showReportCards
+import com.ute.co_study.shared.model.ReportStatus
 
-class ModerationOverviewActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (DemoSession(this).role != DemoRole.MODERATOR) {
-            finish()
-            return
-        }
-        val binding = ActivityModerationOverviewBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
-        binding.moderationNavigation.overviewTab.markCurrentModTab()
+class ModerationOverviewActivity : ModerationActivity<ActivityModerationOverviewBinding>(ActivityModerationOverviewBinding::inflate) {
+    override fun bind() {
         setupModerationNavigation(this, binding.moderationNavigation)
+        binding.notificationsBanner.setOnClickListener { open(ModerationNotificationsActivity::class.java) }
+        binding.seeAllButton.setOnClickListener { returnTo(ReportListActivity::class.java) }
+    }
 
-        binding.report001Card.setOnClickListener {
-            startActivity(Intent(this, ReportDetailActivity::class.java))
-        }
+    override fun refresh() {
+        val items = reports.queue()
+        val active = items.filter { it.status in activeStatuses }
+        binding.newCount.text = items.count { it.status == ReportStatus.NEW }.toString()
+        binding.processingCount.text = items.count { it.status == ReportStatus.IN_REVIEW }.toString()
+        binding.escalatedCount.text = items.count { it.status == ReportStatus.ESCALATED }.toString()
+        binding.emptyReports.isVisible = active.isEmpty()
+        binding.reportCards.showReportCards(active.take(3), { it.title }, {
+            getString(R.string.mod_report_people, it.sender, it.subject)
+        }, ::showReport)
+    }
 
-        binding.report002Card.setOnClickListener {
-            startActivity(Intent(this, ReportSpamDetailActivity::class.java))
-        }
-
-        binding.notificationsBanner.setOnClickListener {
-            startActivity(Intent(this, ModerationNotificationsActivity::class.java))
-        }
-
-        binding.workspaceButton.setOnClickListener {
-            startActivity(Intent(this, ModerationDashboardActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-        }
-
-        binding.seeAllButton.setOnClickListener {
-            startActivity(Intent(this, ReportListActivity::class.java))
-        }
+    private companion object {
+        val activeStatuses = setOf(ReportStatus.NEW, ReportStatus.IN_REVIEW, ReportStatus.RETURNED)
     }
 }

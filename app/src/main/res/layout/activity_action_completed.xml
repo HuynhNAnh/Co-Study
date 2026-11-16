@@ -23,8 +23,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_action_done_subtitle" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -38,8 +37,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Check Icon badge -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,11 +66,11 @@
                     android:layout_marginTop="@dimen/co_study_space_8"
                     android:gravity="center"
                     android:paddingHorizontal="@dimen/co_study_space_24"
-                    android:text="Nội dung ND-002 đã được ẩn. Cảnh báo và kết quả xử lý đã được gửi đến các bên liên quan."
+                    android:text="@string/mod_action_result"
                     android:textSize="14sp" />
             </LinearLayout>
-
             <!-- Card 1: NGƯỜI XỬ LÝ -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -83,13 +82,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Kiểm duyệt viên · KDV-01"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/action_actor" />
             </LinearLayout>
-
             <!-- Card 2: NHẬT KÝ -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -101,15 +100,16 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="06/10/2026 · 10:15\nẨn nội dung và cảnh báo người đăng"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/action_log" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_to_list_button"

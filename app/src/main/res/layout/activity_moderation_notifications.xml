@@ -50,97 +50,22 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
 
-            <!-- Card 1: Có báo cáo mới -->
             <LinearLayout
-                android:id="@+id/notification_item_1"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:id="@+id/notification_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_bell"
-                    app:tint="@color/co_study_ink" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/co_study_space_12"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.CoStudy.Title"
-                        android:text="Có báo cáo mới"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        style="@style/TextAppearance.CoStudy.Subtitle"
-                        android:layout_marginTop="2dp"
-                        android:lineSpacingExtra="2dp"
-                        android:text="CS-202610-001 · Hồ sơ Minh Anh\nVừa nhận · Cần tiếp nhận"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_forward"
-                    app:tint="@color/co_study_muted" />
-            </LinearLayout>
-
-            <!-- Card 2: Admin đang xem xét -->
-            <LinearLayout
-                android:id="@+id/notification_item_2"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_person"
-                    app:tint="@color/co_study_ink" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/co_study_space_12"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.CoStudy.Title"
-                        android:text="Admin đang xem xét"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        style="@style/TextAppearance.CoStudy.Subtitle"
-                        android:layout_marginTop="2dp"
-                        android:lineSpacingExtra="2dp"
-                        android:text="CS-202610-003 · Đã tiếp nhận hồ sơ\nTheo dõi tại hàng đợi báo cáo"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_forward"
-                    app:tint="@color/co_study_muted" />
-            </LinearLayout>
-
+            <TextView
+                style="@style/TextAppearance.CoStudy.Body"
+                android:id="@+id/empty_reports"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:text="@string/mod_empty_notifications"
+                android:visibility="gone" />
             <!-- Card 3: Mint notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
@@ -154,7 +79,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_to_overview_button"

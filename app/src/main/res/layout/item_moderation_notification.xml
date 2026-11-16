@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    style="@style/Widget.CoStudy.Auth.Card"
+    android:background="@drawable/bg_co_study_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_bell"
+        app:tint="@color/co_study_ink"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/co_study_space_12"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextAppearance.CoStudy.Title"
+            android:textSize="17sp"
+            android:id="@+id/notification_title" />
+
+        <TextView
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="2dp"
+            android:lineSpacingExtra="2dp"
+            android:textSize="13sp"
+            android:id="@+id/notification_summary" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_forward"
+        app:tint="@color/co_study_muted"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+</LinearLayout>

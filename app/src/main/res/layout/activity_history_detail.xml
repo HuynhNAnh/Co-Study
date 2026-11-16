@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_history_detail_subtitle" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -49,8 +48,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Card 1: NỘI DUNG BỊ XỬ LÝ -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -62,13 +61,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="ND-018 · Phần giới thiệu hồ sơ"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/report_content" />
             </LinearLayout>
-
             <!-- Card 2: KẾT LUẬN VÀ BIỆN PHÁP -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -80,13 +79,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Quảng cáo lặp lại · Đã ẩn nội dung và gửi cảnh báo"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/report_conclusion" />
             </LinearLayout>
-
             <!-- Card 3: CĂN CỨ ĐÃ LƯU -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -98,16 +97,17 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Bản chụp nội dung tại thời điểm báo cáo có nhiều đoạn quảng cáo trùng lặp."
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/report_evidence" />
             </LinearLayout>
-
             <!-- Card 4: DẤU VẾT XỬ LÝ -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_field">
+                android:background="@drawable/bg_auth_field"
+                android:id="@+id/trail_card">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
@@ -116,13 +116,13 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="KDV-01 · 30/09/2026 · 14:20\nĐã thông báo kết quả cho các bên"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    android:id="@+id/report_trail" />
             </LinearLayout>
-
             <!-- Card 5: Mint notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
@@ -136,7 +136,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/back_to_history_button"

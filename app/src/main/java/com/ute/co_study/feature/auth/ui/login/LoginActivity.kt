@@ -12,7 +12,7 @@ import com.ute.co_study.R
 import com.ute.co_study.feature.admin.ui.AdminLoginActivity
 import com.ute.co_study.shared.data.DemoMemberDirectory
 import com.ute.co_study.shared.data.DemoRole
-import com.ute.co_study.feature.moderation.ui.ModeratorLoginActivity
+import com.ute.co_study.feature.moderation.ui.login.ModeratorLoginActivity
 import com.ute.co_study.feature.learner.data.repository.ProfileSetupRepository
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 import com.ute.co_study.shared.data.DemoSession

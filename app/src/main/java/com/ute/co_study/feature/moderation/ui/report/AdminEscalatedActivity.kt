@@ -1,36 +1,22 @@
 package com.ute.co_study.feature.moderation.ui.report
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityAdminEscalatedBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
 import com.ute.co_study.feature.moderation.ui.history.ModerationNotificationsActivity
+import com.ute.co_study.shared.model.ReportStatus
 
-class AdminEscalatedActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityAdminEscalatedBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
+class AdminEscalatedActivity : ModerationActivity<ActivityAdminEscalatedBinding>(ActivityAdminEscalatedBinding::inflate) {
+    override fun bind() {
         binding.backToListButton.setOnClickListener {
-            val intent = Intent(this, ReportListActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
-            startActivity(intent)
+            returnTo(ReportListActivity::class.java)
             finish()
         }
+        binding.viewNotificationsButton.setOnClickListener { open(ModerationNotificationsActivity::class.java) }
+    }
 
-        binding.viewNotificationsButton.setOnClickListener {
-            val intent = Intent(this, ModerationNotificationsActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
-            startActivity(intent)
-            finish()
-        }
+    override fun refresh() {
+        val item = currentReport(ReportStatus.ESCALATED) ?: return
+        describe(item)
+        binding.resultDetail.text = item.lastEvent?.reason.orEmpty()
     }
 }

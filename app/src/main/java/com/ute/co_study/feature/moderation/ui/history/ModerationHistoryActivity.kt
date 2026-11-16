@@ -1,28 +1,23 @@
 package com.ute.co_study.feature.moderation.ui.history
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityModerationHistoryBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
-import com.ute.co_study.feature.moderation.ui.markCurrentModTab
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import androidx.core.view.isVisible
 import com.ute.co_study.feature.moderation.ui.setupModerationNavigation
+import com.ute.co_study.feature.moderation.ui.showReportCards
+import com.ute.co_study.shared.model.ReportAction
 
-class ModerationHistoryActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityModerationHistoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
-        binding.moderationNavigation.historyTab.markCurrentModTab()
+class ModerationHistoryActivity : ModerationActivity<ActivityModerationHistoryBinding>(ActivityModerationHistoryBinding::inflate) {
+    override fun bind() {
         setupModerationNavigation(this, binding.moderationNavigation)
+    }
 
-        binding.historyItem018.setOnClickListener {
-            startActivity(Intent(this, HistoryDetailActivity::class.java))
-        }
+    override fun refresh() {
+        val items = reports.queue().filter { report -> report.history.any { it.action != ReportAction.CLAIM } }
+        binding.emptyReports.isVisible = items.isEmpty()
+        binding.reportCards.showReportCards(items, { it.lastEvent?.action?.label ?: it.title }, { item ->
+            val event = item.lastEvent
+            if (event == null) item.subject else "${item.subject}\n${event.at} · ${event.actor}"
+        }) { openReport(HistoryDetailActivity::class.java, it) }
     }
 }

@@ -284,11 +284,4 @@
     <string name="mod_filter_subtitle">Chọn phạm vi công việc cần xem</string>
     <string name="mod_btn_apply_filter">Áp dụng bộ lọc</string>
     <string name="mod_btn_back_to_list">Quay lại danh sách</string>
-    <string name="mod_sample_entry">Xem luồng kiểm duyệt minh họa</string>
-    <string name="mod_sample_title">Kiểm duyệt · Dữ liệu minh họa</string>
-    <string name="mod_sample_start">Mở bản minh họa</string>
-    <string name="mod_sample_description">Tài khoản demo đã điền sẵn. Thao tác trong bản minh họa dùng báo cáo mẫu.</string>
-    <string name="mod_sample_workspace">Mở hàng đợi kiểm duyệt trên thiết bị</string>
-    <string name="mod_sample_email_error">Dùng email demo %1$s</string>
-    <string name="mod_sample_password_error">Mật khẩu demo là %1$s</string>
 </resources>

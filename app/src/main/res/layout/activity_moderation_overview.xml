@@ -24,7 +24,7 @@
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
             android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_sample_title" />
+            android:text="@string/workflow_demo" />
     </LinearLayout>
 
     <ScrollView
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Thống kê 3 ô -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,12 +48,15 @@
                 android:layout_marginTop="@dimen/co_study_space_16"
                 android:orientation="horizontal">
 
-                <LinearLayout style="@style/Widget.CoStudy.PartnerProfile.Metric">
+                <LinearLayout
+                    style="@style/Widget.CoStudy.PartnerProfile.Metric">
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
-                        android:text="1"
                         android:textColor="@color/co_study_green"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:id="@+id/new_count" />
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
                         android:text="Mới tiếp nhận"
@@ -64,12 +67,15 @@
                     android:layout_width="@dimen/co_study_space_8"
                     android:layout_height="1dp" />
 
-                <LinearLayout style="@style/Widget.CoStudy.PartnerProfile.Metric">
+                <LinearLayout
+                    style="@style/Widget.CoStudy.PartnerProfile.Metric">
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
-                        android:text="1"
                         android:textColor="@color/co_study_green"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:id="@+id/processing_count" />
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
                         android:text="Đang xử lý"
@@ -80,20 +86,23 @@
                     android:layout_width="@dimen/co_study_space_8"
                     android:layout_height="1dp" />
 
-                <LinearLayout style="@style/Widget.CoStudy.PartnerProfile.Metric">
+                <LinearLayout
+                    style="@style/Widget.CoStudy.PartnerProfile.Metric">
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
-                        android:text="1"
                         android:textColor="@color/co_study_green"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:id="@+id/escalated_count" />
+
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
                         android:text="Chờ Admin"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
-
             <!-- Banner thông báo căn phải -->
+
             <TextView
                 android:id="@+id/notifications_banner"
                 style="@style/TextAppearance.CoStudy.Body"
@@ -103,61 +112,24 @@
                 android:gravity="end"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Thông báo · 2 cập nhật mới"
+                android:text="@string/mod_notif_title"
                 android:textColor="@color/co_study_green"
                 android:textStyle="bold" />
 
-            <!-- Card Báo cáo 001 -->
             <LinearLayout
-                android:id="@+id/report_001_card"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true">
+                android:id="@+id/report_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="CS-202610-001 · Mới"
-                    android:textColor="@color/co_study_green"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Title"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:textSize="18sp"
-                    android:text="Thông tin hồ sơ" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Nguyên báo cáo hồ sơ Minh Anh.\n06/10/2026 · 09:35" />
-            </LinearLayout>
-
-            <!-- Card Báo cáo 002 -->
-            <LinearLayout
-                android:id="@+id/report_002_card"
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_card"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="CS-202610-002 · Đang xử lý"
-                    android:textColor="@color/co_study_green"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Title"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:textSize="18sp"
-                    android:text="Nội dung quảng cáo lặp lại" />
-
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Đã có nội dung đính kèm cần xem xét.\nĐược giao cho bạn" />
-            </LinearLayout>
+            <TextView
+                style="@style/TextAppearance.CoStudy.Body"
+                android:id="@+id/empty_reports"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:text="@string/mod_empty_active_reports"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/see_all_button"
@@ -166,14 +138,6 @@
                 android:layout_marginEnd="@dimen/co_study_space_24"
                 android:layout_marginTop="@dimen/co_study_space_20"
                 android:text="Xem tất cả báo cáo" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/workspace_button"
-                style="@style/Widget.CoStudy.Button.Outlined"
-                android:layout_marginStart="@dimen/co_study_space_24"
-                android:layout_marginEnd="@dimen/co_study_space_24"
-                android:layout_marginTop="@dimen/co_study_space_8"
-                android:text="@string/mod_sample_workspace" />
         </LinearLayout>
     </ScrollView>
 

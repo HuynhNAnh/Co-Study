@@ -1,29 +1,30 @@
 package com.ute.co_study.feature.moderation.ui.report
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityReportSpamDetailBinding
-import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.moderation.ui.ModerationActivity
+import com.ute.co_study.feature.moderation.ui.subjectInitials
+import com.ute.co_study.shared.model.ReportStatus
 
-class ReportSpamDetailActivity : AppCompatActivity() {
+class ReportSpamDetailActivity : ModerationActivity<ActivityReportSpamDetailBinding>(ActivityReportSpamDetailBinding::inflate) {
+    override fun bind() = Unit
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityReportSpamDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        applyAuthInsets(binding.root, binding.statusBarSpace)
-        ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
-
-        binding.backButton.setOnClickListener { finish() }
-
-        binding.chooseActionButton.setOnClickListener {
-            startActivity(Intent(this, ActionOptionsActivity::class.java))
+    override fun refresh() {
+        val item = currentReport(ReportStatus.IN_REVIEW) ?: return
+        if (!item.hasEvidence) {
+            openReport(ReportEvidenceActivity::class.java, item)
+            finish()
+            return
         }
 
-        binding.escalateAdminButton.setOnClickListener {
-            startActivity(Intent(this, EscalateAdminActivity::class.java))
-        }
+        describe(item)
+        binding.screenTitle.text = item.title
+        binding.subjectInitials.text = item.subjectInitials()
+        binding.reportSubject.text = item.subject
+        binding.reportSender.text = listOf(item.sender, item.createdAt).filter(String::isNotBlank).joinToString(" · ")
+        binding.reportEvidence.text = item.evidence
+        binding.reportContent.text = item.detail
+        binding.chooseActionButton.setOnClickListener { openReport(ActionOptionsActivity::class.java, item) }
+        binding.escalateAdminButton.setOnClickListener { openReport(EscalateAdminActivity::class.java, item) }
+        binding.viewEvidenceButton.setOnClickListener { openReport(ReportEvidenceActivity::class.java, item) }
     }
 }

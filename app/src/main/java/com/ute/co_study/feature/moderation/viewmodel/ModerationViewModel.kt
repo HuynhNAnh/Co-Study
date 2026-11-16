@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import com.ute.co_study.shared.data.ReportRepository
 import com.ute.co_study.shared.model.CommunityReport
 import com.ute.co_study.shared.model.ReportStatus
-import com.ute.co_study.shared.model.ReportAction
 
 internal class ModerationViewModel(application: Application) : AndroidViewModel(application) {
     val reports = ReportRepository(application)
@@ -30,6 +29,6 @@ internal class ModerationViewModel(application: Application) : AndroidViewModel(
                 "Thiếu bằng chứng" -> !item.hasEvidence
                 else -> true
             }) &&
-            (!onlyAssigned || item.history.lastOrNull { it.action == ReportAction.CLAIM }?.actor == operator)
+            (!onlyAssigned || item.assignedModerator == operator)
     }
 }

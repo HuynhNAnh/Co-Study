@@ -34,8 +34,7 @@
         <TextView
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="@string/mod_action_options_subtitle" />
+            android:layout_marginTop="@dimen/co_study_space_4" />
     </LinearLayout>
 
     <ScrollView
@@ -49,8 +48,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/co_study_space_16">
-
             <!-- Card 1: BIỆN PHÁP ĐỀ XUẤT -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
@@ -62,63 +61,70 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Cảnh báo người đăng và ẩn phần giới thiệu vi phạm"
+                    android:text="@string/mod_action_measure"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp"
                     android:textStyle="normal" />
             </LinearLayout>
-
             <!-- Card 2: LÝ DO · BẮT BUỘC -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="LÝ DO · BẮT BUỘC" />
+                    android:text="LÝ DO · BẮT BUỘC"
+                    android:labelFor="@id/action_reason_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
+                <androidx.appcompat.widget.AppCompatEditText
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Phần giới thiệu chứa nội dung quảng cáo lặp lại, không phù hợp mục đích trao đổi kỹ năng và ghép cặp học tập."
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:id="@+id/action_reason_input"
+                    android:hint="@string/mod_action_reason_hint"
+                    android:maxLength="1000"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="6"
+                    android:gravity="top|start" />
             </LinearLayout>
-
             <!-- Card 3: THÔNG BÁO CHO NGƯỜI ĐĂNG -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_field">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Label"
-                    android:text="THÔNG BÁO CHO NGƯỜI ĐĂNG" />
+                    android:text="THÔNG BÁO CHO NGƯỜI ĐĂNG"
+                    android:labelFor="@id/author_notice_input" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
+                <androidx.appcompat.widget.AppCompatEditText
                     android:layout_marginTop="@dimen/co_study_space_4"
-                    android:text="Vui lòng xóa nội dung quảng cáo lặp lại và cập nhật giới thiệu phù hợp với hoạt động học tập."
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:id="@+id/author_notice_input"
+                    android:hint="@string/mod_author_notice_hint"
+                    android:maxLength="1000"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="6"
+                    android:gravity="top|start" />
             </LinearLayout>
-
             <!-- Card 4: Mint notice -->
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
                 android:background="@drawable/bg_auth_notice">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
-                    android:text="Biện pháp chỉ áp dụng cho nội dung ND-002. Việc khóa tài khoản cần chuyển Admin xem xét."
+                    android:text="@string/mod_action_explanation"
                     android:textColor="@color/co_mint_dark"
                     android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Actions">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/review_action_button"
