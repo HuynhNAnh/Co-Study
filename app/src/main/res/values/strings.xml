@@ -14,4 +14,18 @@
     <string name="auth_register">Tạo tài khoản</string>
     <string name="auth_registration_unavailable">Tính năng tạo tài khoản đang được phát triển.</string>
     <string name="auth_login_unavailable">Tính năng đăng nhập đang được phát triển.</string>
+    <string name="login_title">Chào mừng trở lại</string>
+    <string name="login_subtitle">Đăng nhập để tiếp tục cùng Co-Study</string>
+    <string name="login_back">Quay lại</string>
+    <string name="login_intro_title">Hôm nay bạn muốn học gì?</string>
+    <string name="login_intro_description">Một kết nối mới có thể bắt đầu từ đây.</string>
+    <string name="login_email">EMAIL</string>
+    <string name="login_password">MẬT KHẨU</string>
+    <string name="login_forgot_password">Quên mật khẩu?</string>
+    <string name="login_privacy_note">Thông tin đăng nhập chỉ được dùng để truy cập tài khoản của bạn.</string>
+    <string name="login_register_prompt">Chưa có tài khoản? Đăng ký</string>
+    <string name="login_email_required">Vui lòng nhập email.</string>
+    <string name="login_email_invalid">Email không đúng định dạng.</string>
+    <string name="login_password_required">Vui lòng nhập mật khẩu.</string>
+    <string name="login_reset_unavailable">Tính năng đặt lại mật khẩu đang được phát triển.</string>
 </resources>

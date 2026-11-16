@@ -100,4 +100,33 @@
         <item name="strokeColor">@color/co_study_outline</item>
         <item name="strokeWidth">1dp</item>
     </style>
+    <style name="Widget.CoStudy.Login.Card" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/co_study_space_24</item>
+        <item name="android:layout_marginEnd">@dimen/co_study_space_24</item>
+        <item name="android:layout_marginTop">@dimen/co_study_space_16</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">@dimen/co_study_space_16</item>
+        <item name="android:paddingEnd">@dimen/co_study_space_16</item>
+        <item name="android:paddingTop">@dimen/co_study_space_16</item>
+        <item name="android:paddingBottom">@dimen/co_study_space_16</item>
+    </style>
+
+    <style name="Widget.CoStudy.Login.Field" parent="Widget.CoStudy.Login.Card">
+        <item name="android:background">@drawable/bg_auth_field</item>
+        <item name="android:minHeight">82dp</item>
+        <item name="android:paddingBottom">@dimen/co_study_space_4</item>
+    </style>
+
+    <style name="Widget.CoStudy.Login.Input" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/co_study_ink</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
