@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_streak_title">Chuỗi học tập</string>
+    <string name="screen_streak_subtitle">Duy trì thói quen học cùng bạn</string>
+    <string name="screen_streak_history_title">Lịch sử chuỗi học tập</string>
+    <string name="screen_streak_history_subtitle">Theo dõi từng buổi đã hoàn thành</string>
+    <string name="screen_study_recognition_title">Ghi nhận buổi học</string>
+    <string name="screen_study_recognition_subtitle">Xem thời lượng và xác nhận tham gia</string>
+    <string name="screen_badges_title">Bộ sưu tập huy hiệu</string>
+    <string name="screen_badges_subtitle">Cột mốc trong hành trình học cùng nhau</string>
+    <string name="screen_badge_details_title">Chi tiết huy hiệu</string>
+    <string name="screen_badge_details_subtitle">Điều kiện và trạng thái mở khóa</string>
+</resources>

@@ -1,6 +1,10 @@
 package com.ute.co_study.feature.learner.data.repository
 
 import android.content.Context
+import com.ute.co_study.feature.learner.model.LearningBadge
+import com.ute.co_study.feature.learner.model.LearningProgress
+import com.ute.co_study.shared.data.CommunityRulesRepository
+import com.ute.co_study.shared.model.StudyRecognitionPolicy
 import com.ute.co_study.feature.learner.model.StudyConversation
 import com.ute.co_study.feature.learner.model.StudyMessage
 import com.ute.co_study.feature.learner.model.StudySession
@@ -12,6 +16,7 @@ import java.util.Locale
 
 internal class LearnerStudyRepository(context: Context, email: String) {
     private val store = context.getSharedPreferences("learner_study", Context.MODE_PRIVATE)
+    private val rules = CommunityRulesRepository(context)
     private val account = email.trim().lowercase(Locale.ROOT)
 
     fun messages(conversation: StudyConversation): List<StudyMessage> {
@@ -58,14 +63,32 @@ internal class LearnerStudyRepository(context: Context, email: String) {
         }
 
     fun complete(id: Long): StudySession? = change(id, confirmed) {
-        it.copy(status = StudyStatus.COMPLETED, completedAt = System.currentTimeMillis())
+        it.copy(status = StudyStatus.COMPLETED, completedAt = System.currentTimeMillis(), policy = StudyRecognitionPolicy.from(rules.load()))
     }
 
     fun confirmAttendance(id: Long): StudySession? {
-        val item = find(id)?.takeIf { it.partnerConfirmedAt == 0L } ?: return null
+        val item = find(id) ?: return null
         val now = System.currentTimeMillis()
-        if (now - item.completedAt !in 0..48L * 60 * 60 * 1000) return null
+        if (!item.canConfirm(now)) return null
         return change(id, setOf(StudyStatus.COMPLETED)) { it.copy(partnerConfirmedAt = now) }
+    }
+
+    fun policy(): StudyRecognitionPolicy = StudyRecognitionPolicy.from(rules.load())
+
+    fun progress(): LearningProgress = LearningProgress(
+        sessions().filter { it.status == StudyStatus.COMPLETED }.sortedByDescending { it.completedAt },
+        policy(), System.currentTimeMillis()
+    )
+
+    fun featuredBadge(): LearningBadge? {
+        val key = store.getString("$account:featured_badge", null) ?: return null
+        return progress().badges.firstOrNull { it.key == key && it.earned }
+    }
+
+    fun featureBadge(key: String?) {
+        if (key == null || progress().badges.any { it.key == key && it.earned }) {
+            store.edit().putString("$account:featured_badge", key).apply()
+        }
     }
 
     fun review(id: Long, stars: Int, review: String): StudySession? {
@@ -89,7 +112,8 @@ internal class LearnerStudyRepository(context: Context, email: String) {
                 .put("subject", item.subject).put("slot", item.slot.toJson()).put("mode", item.mode)
                 .put("status", item.status.name).put("new_slot", item.newSlot?.toJson())
                 .put("reason", item.reason).put("stars", item.stars).put("review", item.review)
-                .put("completed_at", item.completedAt).put("partner_confirmed_at", item.partnerConfirmedAt))
+                .put("completed_at", item.completedAt).put("partner_confirmed_at", item.partnerConfirmedAt)
+                .put("policy", item.policy.toJson()))
         }
         store.edit().putString("$account:sessions", rows.toString()).apply()
     }
@@ -99,8 +123,17 @@ internal class LearnerStudyRepository(context: Context, email: String) {
         slot = getJSONObject("slot").toSlot(), mode = getString("mode"),
         status = StudyStatus.valueOf(getString("status")), newSlot = optJSONObject("new_slot")?.toSlot(),
         reason = optString("reason"), stars = optInt("stars"), review = optString("review"),
-        completedAt = optLong("completed_at"), partnerConfirmedAt = optLong("partner_confirmed_at")
+        completedAt = optLong("completed_at"), partnerConfirmedAt = optLong("partner_confirmed_at"),
+        policy = optJSONObject("policy")?.toPolicy() ?: StudyRecognitionPolicy()
     )
+
+    private fun StudyRecognitionPolicy.toJson() = JSONObject().put("minutes", minimumMinutes)
+        .put("hours", confirmationHours).put("streak", JSONArray(streakThresholds)).put("partner", partnerThreshold)
+
+    private fun JSONObject.toPolicy(): StudyRecognitionPolicy {
+        val streak = getJSONArray("streak")
+        return StudyRecognitionPolicy(getInt("minutes"), getInt("hours"), List(streak.length()) { streak.getInt(it) }, getInt("partner"))
+    }
 
     private fun StudySlot.toJson() = JSONObject().put("date", date).put("start", start).put("end", end)
     private fun JSONObject.toSlot() = StudySlot(getString("date"), getString("start"), getString("end"))

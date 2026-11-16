@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.ute.co_study.R
+import com.ute.co_study.feature.learner.ui.progress.StudyRecognitionActivity
 import com.ute.co_study.feature.learner.model.StudyConversation
 import com.ute.co_study.feature.learner.model.StudySession
 import com.ute.co_study.feature.learner.model.StudySlot
@@ -32,12 +32,15 @@ abstract class StudyActivity(layout: Int) : LearnerActivity(layout) {
     }
 
     internal fun completedActions(item: StudySession) {
-        if (item.partnerConfirmedAt == 0L && System.currentTimeMillis() - item.completedAt <= 48L * 60 * 60 * 1000) {
+        if (item.canConfirm(System.currentTimeMillis())) {
             button("Mô phỏng bạn học xác nhận tham gia", Tone.PLAIN, body) {
                 if (study.confirmAttendance(item.id) != null) refresh()
             }
         } else if (item.partnerConfirmedAt != 0L) {
             note("Hai bạn đã xác nhận tham gia.")
+        }
+        row("Ghi nhận buổi học", item.recognitionStatus(System.currentTimeMillis())) {
+            openSession(StudyRecognitionActivity::class.java, item.id)
         }
         if (item.stars == 0) {
             button("Đánh giá bạn học") { openSession(ReviewPartnerActivity::class.java, item.id) }

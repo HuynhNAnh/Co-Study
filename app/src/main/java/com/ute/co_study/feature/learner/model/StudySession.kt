@@ -1,5 +1,6 @@
 package com.ute.co_study.feature.learner.model
 
+import com.ute.co_study.shared.model.StudyRecognitionPolicy
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -25,8 +26,24 @@ internal data class StudySession(
     val stars: Int = 0,
     val review: String = "",
     val completedAt: Long = 0L,
-    val partnerConfirmedAt: Long = 0L
-)
+    val partnerConfirmedAt: Long = 0L,
+    val policy: StudyRecognitionPolicy = StudyRecognitionPolicy()
+) {
+    val recognized: Boolean
+        get() = status == StudyStatus.COMPLETED && completedAt > 0 &&
+            slot.minutes >= policy.minimumMinutes &&
+            partnerConfirmedAt - completedAt in 0L..policy.confirmationMillis
+
+    fun canConfirm(now: Long): Boolean = status == StudyStatus.COMPLETED && completedAt > 0 &&
+        partnerConfirmedAt == 0L && now - completedAt in 0L..policy.confirmationMillis
+
+    fun recognitionStatus(now: Long): String = when {
+        slot.minutes < policy.minimumMinutes -> "Chưa đủ ${policy.minimumMinutes} phút học"
+        recognized -> "Đã ghi nhận"
+        canConfirm(now) -> "Chờ bạn học xác nhận"
+        else -> "Đã hết hạn xác nhận"
+    }
+}
 
 internal data class StudySlot(val date: String, val start: String, val end: String) {
     val display: String get() = "$date · $start – $end"

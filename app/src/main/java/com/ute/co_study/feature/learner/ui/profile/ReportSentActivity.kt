@@ -25,6 +25,6 @@ class ReportSentActivity : ProfileActivity(R.layout.activity_report_sent) {
             }
         }
         button("Về trang chủ") { returnTo(HomeActivity::class.java) }
-        button("Quay lại hồ sơ bạn học", Tone.PLAIN) { returnTo(PartnerProfileActivity::class.java) }
+        button("Quay lại", Tone.PLAIN) { finish() }
     }
 }
