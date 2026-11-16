@@ -1,10 +1,12 @@
 package com.ute.co_study.feature.learner.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityPartnerProfileBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.learner.ui.exchange.ExchangeRequestActivity
 import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
 
 class PartnerProfileActivity : AppCompatActivity() {
@@ -17,6 +19,11 @@ class PartnerProfileActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.partnerName, true)
 
         binding.backButton.setOnClickListener { finish() }
-        showLearnerFeatureUnavailable(binding.exchangeButton, binding.reportButton)
+        binding.exchangeButton.setOnClickListener {
+            val request = Intent(this, ExchangeRequestActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(request)
+        }
+        showLearnerFeatureUnavailable(binding.reportButton)
     }
 }
