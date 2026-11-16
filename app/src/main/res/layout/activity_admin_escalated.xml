@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:text="@string/mod_escalated_title" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="@string/mod_escalated_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Check Icon badge -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/co_study_space_24"
+                android:paddingBottom="@dimen/co_study_space_16">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/bg_auth_icon_badge"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_check"
+                    app:tint="@color/co_mint_dark" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_16"
+                    android:text="Đã gửi hồ sơ xem xét"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/co_study_space_24"
+                    android:text="Lý do chuyển và bằng chứng đã được đính kèm. Bạn sẽ nhận thông báo khi Admin có quyết định."
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Card 1: TÌNH TRẠNG TÀI KHOẢN -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="TÌNH TRẠNG TÀI KHOẢN" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Chưa áp dụng khóa tài khoản"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 2: Mint notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:text="Báo cáo được giữ lại cùng toàn bộ lịch sử để tiếp tục theo dõi."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_to_list_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="@string/mod_btn_back_to_report_list" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/view_notifications_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_btn_view_notifications" />
+    </LinearLayout>
+</LinearLayout>
