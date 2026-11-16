@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="-12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/auth_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/co_study_ink" />
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_history_detail_title" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="@string/mod_history_detail_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Card 1: NỘI DUNG BỊ XỬ LÝ -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="NỘI DUNG BỊ XỬ LÝ" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="ND-018 · Phần giới thiệu hồ sơ"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 2: KẾT LUẬN VÀ BIỆN PHÁP -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="KẾT LUẬN VÀ BIỆN PHÁP" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Quảng cáo lặp lại · Đã ẩn nội dung và gửi cảnh báo"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 3: CĂN CỨ ĐÃ LƯU -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="CĂN CỨ ĐÃ LƯU" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Bản chụp nội dung tại thời điểm báo cáo có nhiều đoạn quảng cáo trùng lặp."
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 4: DẤU VẾT XỬ LÝ -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="DẤU VẾT XỬ LÝ" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="KDV-01 · 30/09/2026 · 14:20\nĐã thông báo kết quả cho các bên"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 5: Mint notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:text="Bản ghi chỉ để tra cứu. Các quyết định mới cần được ghi nhận thành một lần xử lý riêng."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_to_history_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:text="@string/mod_btn_back_to_history" />
+    </LinearLayout>
+</LinearLayout>

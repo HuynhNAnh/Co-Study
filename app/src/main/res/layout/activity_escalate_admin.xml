@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="-12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/auth_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/co_study_ink" />
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_escalate_title" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="@string/mod_escalate_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Card 1: LÝ DO CHUYỂN · BẮT BUỘC -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="LÝ DO CHUYỂN · BẮT BUỘC" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Cần kiểm tra lịch sử tái phạm và xem xét biện pháp ở cấp tài khoản, vượt quyền xử lý nội dung."
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 2: HỒ SƠ CHUYỂN KÈM -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="HỒ SƠ CHUYỂN KÈM" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Báo cáo CS-202610-002\nNội dung ND-002 và bằng chứng quảng cáo lặp lại"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 3: ĐỀ NGHỊ XEM XÉT -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="ĐỀ NGHỊ XEM XÉT" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Đánh giá lịch sử vi phạm và quyết định biện pháp phù hợp."
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Card 4: Mint notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:text="Chuyển Admin không đồng nghĩa với khóa tài khoản. Chờ quyết định trước khi áp dụng biện pháp ở cấp tài khoản."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_escalate_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="@string/mod_btn_confirm_escalate" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_report_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/mod_btn_back_to_report" />
+    </LinearLayout>
+</LinearLayout>

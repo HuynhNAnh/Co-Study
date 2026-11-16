@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="-12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/auth_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/co_study_ink" />
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="Yêu cầu bổ sung" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="CS-202610-001 · Cần thêm bằng chứng" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="NGƯỜI NHẬN" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Đặng Thái Nguyên · Người gửi báo cáo"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="NỘI DUNG YÊU CẦU · BẮT BUỘC" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/request_details_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:text="Vui lòng cung cấp nội dung hoặc ảnh chụp liên quan cho thấy thông tin kỹ năng trên hồ sơ không chính xác."
+                    android:minLines="3" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="HẠN ĐỀ NGHỊ PHẢN HỒI" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="08/10/2026 · 17:00" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:textSize="13sp"
+                    android:text="Báo cáo chuyển sang Chờ bổ sung. Chưa áp dụng biện pháp xử lý đối với hồ sơ bị báo cáo." />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/send_request_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="Gửi yêu cầu bổ sung" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_evidence_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="Quay lại bằng chứng" />
+    </LinearLayout>
+</LinearLayout>

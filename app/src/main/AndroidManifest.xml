@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoStudy">
         <activity
-            android:name=".feature.auth.ui.welcome.WelcomeActivity"
+            android:name=".feature.moderation.ui.login.ModeratorLoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.auth.ui.welcome.WelcomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.auth.ui.login.LoginActivity"
             android:exported="false"
@@ -64,6 +68,70 @@
         <activity
             android:name=".feature.learner.ui.exchange.ExchangeConnectedActivity"
             android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.overview.ModerationOverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportEvidenceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.RequestMoreInfoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.moderation.ui.report.InfoRequestedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.DismissReportActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportDismissedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportSpamDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ActionOptionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ConfirmActionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ActionCompletedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.EscalateAdminActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.moderation.ui.report.AdminEscalatedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.history.ModerationHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.history.HistoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.history.ModerationNotificationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.profile.ModeratorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.profile.ModeratorLogoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.report.ReportFilterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

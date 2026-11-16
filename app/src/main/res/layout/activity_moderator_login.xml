@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:text="Co-Study"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="Đăng nhập · Khu vực kiểm duyệt"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Banner Card -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_primary_card">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="Cộng đồng học tập tích cực"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:lineSpacingExtra="3dp"
+                    android:text="Xem xét công bằng. Xử lý có căn cứ.\nMỗi quyết định đều được lưu lại."
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Field 1: EMAIL TÀI KHOẢN ĐƯỢC CẤP -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="EMAIL TÀI KHOẢN ĐƯỢC CẤP" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/mod_code_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:hint="moderator@costudy.example"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="moderator@costudy.example"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Field 2: MẬT KHẨU -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="MẬT KHẨU" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/password_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:hint="••••••••••"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:text="••••••••••"
+                    android:textColor="@color/co_study_ink"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Card 3: Notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:lineSpacingExtra="2dp"
+                    android:text="Chỉ tài khoản được cấp quyền Kiểm duyệt viên mới có thể truy cập khu vực này."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="Đăng nhập kiểm duyệt" />
+    </LinearLayout>
+</LinearLayout>

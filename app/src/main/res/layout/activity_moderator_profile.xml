@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:text="@string/mod_profile_title" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="@string/mod_profile_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Card 1: Avatar + Name + Email -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_auth_icon_badge"
+                    android:gravity="center"
+                    android:text="KD"
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_12"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:text="Kiểm duyệt viên"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="2dp"
+                        android:text="moderator@costudy.example"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Card 2: Quyền được cấp -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="Quyền được cấp"
+                    android:textSize="17sp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:lineSpacingExtra="4dp"
+                    android:text="Xem báo cáo và bằng chứng liên quan.\nYêu cầu bổ sung, bác bỏ có lý do.\nCảnh báo và ẩn nội dung vi phạm.\nChuyển Admin, tra cứu lịch sử."
+                    android:textColor="@color/co_study_muted"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Card 3: Mint notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:text="Khóa tài khoản, phân quyền và cấu hình hệ thống do Admin thực hiện."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Logout Button (below cards, above nav bar) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/co_study_space_16"
+                android:paddingTop="@dimen/co_study_space_8">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/logout_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:text="@string/mod_btn_logout" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/moderation_navigation"
+        layout="@layout/view_moderation_navigation" />
+</LinearLayout>

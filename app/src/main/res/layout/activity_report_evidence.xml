@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="-12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/auth_back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/co_study_ink" />
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="Xem bằng chứng" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="CS-202610-001 · Đang xử lý" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:textSize="18sp"
+                    android:text="Nội dung hồ sơ được phản ánh" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="Minh Anh\nCó thể chia sẻ: Kotlin / Android\nTrình độ tự khai: trung cấp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="TỆP VÀ NỘI DUNG ĐÍNH KÈM" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Chưa có tệp hoặc đoạn hội thoại đính kèm." />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:textSize="13sp"
+                    android:text="Chưa đủ căn cứ xác định thông tin sai lệch. Bạn có thể yêu cầu bổ sung hoặc đóng báo cáo với lý do rõ ràng." />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/request_more_info_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="Yêu cầu bổ sung thông tin" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dismiss_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="Bác bỏ do thiếu căn cứ" />
+    </LinearLayout>
+</LinearLayout>
