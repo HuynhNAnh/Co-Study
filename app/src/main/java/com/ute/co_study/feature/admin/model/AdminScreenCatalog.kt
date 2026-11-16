@@ -19,5 +19,6 @@ object AdminScreenCatalog {
             AdminBlock("TRUY CẬP CHƯA THÀNH CÔNG", "Thông tin đăng nhập chưa chính xác hoặc tài khoản không có quyền Admin. Kiểm tra lại thông tin rồi thử lại.", 1)
         ), listOf(AdminAction("Thử lại", 0)), back = 0)
         ))
+        putAll(AdminAccountScreens.all())
     }
 }
