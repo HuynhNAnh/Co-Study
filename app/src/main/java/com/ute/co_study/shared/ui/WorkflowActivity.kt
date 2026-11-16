@@ -317,9 +317,8 @@ abstract class WorkflowActivity(
         val strip = LinearLayout(this).apply { setBackgroundResource(R.drawable.bg_co_study_card) }
         footer.addView(strip, LinearLayout.LayoutParams(match, wrap))
         tabs.forEachIndexed { index, (title, icon, action) ->
-            val tab = AppCompatButton(ContextThemeWrapper(this, R.style.Widget_CoStudy_Learner_Tab)).apply {
+            val tab = (layoutInflater.inflate(R.layout.view_navigation_tab, strip, false) as AppCompatButton).apply {
                 text = title
-                isAllCaps = false
                 val active = index == current
                 setCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0)
                 val tint = color(if (active) R.color.co_study_green else R.color.co_study_muted)
@@ -332,7 +331,7 @@ abstract class WorkflowActivity(
                     ViewCompat.setStateDescription(this, getString(R.string.home_tab_current))
                 } else setOnClickListener { action() }
             }
-            strip.addView(tab, LinearLayout.LayoutParams(0, wrap, 1f))
+            strip.addView(tab)
         }
     }
 
