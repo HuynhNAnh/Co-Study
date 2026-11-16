@@ -1,5 +1,6 @@
 package com.ute.co_study.feature.auth.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityLoginBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.auth.ui.register.RegisterActivity
 import com.ute.co_study.feature.auth.viewmodel.login.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -37,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.login_reset_unavailable, Toast.LENGTH_SHORT).show()
         }
         binding.registerButton.setOnClickListener {
-            Toast.makeText(this, R.string.auth_registration_unavailable, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 

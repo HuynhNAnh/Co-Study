@@ -1,5 +1,6 @@
 package com.ute.co_study.feature.auth.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityRegisterBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.auth.ui.login.LoginActivity
 import com.ute.co_study.feature.auth.viewmodel.register.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -25,6 +27,12 @@ class RegisterActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
 
         binding.backButton.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.loginButton.setOnClickListener {
+            val login = Intent(this, LoginActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(login)
+            finish()
+        }
         binding.registerButton.setOnClickListener { submit(binding) }
         binding.confirmationInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId != EditorInfo.IME_ACTION_DONE) {

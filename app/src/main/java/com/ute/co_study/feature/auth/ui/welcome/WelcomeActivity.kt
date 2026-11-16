@@ -2,13 +2,12 @@ package com.ute.co_study.feature.auth.ui.welcome
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityWelcomeBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.auth.ui.login.LoginActivity
+import com.ute.co_study.feature.auth.ui.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
         binding.registerButton.setOnClickListener {
-            Toast.makeText(this, R.string.auth_registration_unavailable, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

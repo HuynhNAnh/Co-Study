@@ -2,7 +2,7 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Ứng dụng mở màn chào mừng Co-Study (U00). Nút **Đăng nhập** dẫn đến biểu mẫu email và mật khẩu (U01), có kiểm tra dữ liệu nhập. Việc xác thực với máy chủ, tạo tài khoản và đặt lại mật khẩu chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
+Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Hai biểu mẫu có thể chuyển qua lại và kiểm tra dữ liệu nhập trên thiết bị. Xác thực, tạo tài khoản trên máy chủ và đặt lại mật khẩu chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
 
 ## Chức năng theo vai trò
 
@@ -96,12 +96,7 @@ Co-Study/
         ├── main/
         │   ├── AndroidManifest.xml
         │   ├── java/com/ute/co_study/
-        │   │   └── feature/
-    ├── auth/                      # Chào mừng và đăng nhập
-    │   ├── ui/
-    │   │   ├── welcome/WelcomeActivity.kt
-    │   │   └── login/LoginActivity.kt
-    │   └── viewmodel/login/        # Package MVVM theo vai trò
+        │   │   └── feature/        # Package MVVM theo vai trò
         │   ├── res/
         │   │   ├── layout/         # Giao diện XML
         │   │   ├── drawable/       # Hình và nền dùng trong ứng dụng
@@ -129,11 +124,14 @@ Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiế
 ~~~text
 com.ute.co_study/
 └── feature/
-    ├── auth/                      # Chào mừng và đăng nhập
+    ├── auth/                      # Chào mừng và xác thực
     │   ├── ui/
     │   │   ├── welcome/WelcomeActivity.kt
-    │   │   └── login/LoginActivity.kt
-    │   └── viewmodel/login/
+    │   │   ├── login/LoginActivity.kt
+    │   │   └── register/RegisterActivity.kt
+    │   └── viewmodel/
+    │       ├── login/
+    │       └── register/
     ├── learner/                   # Người dùng
     │   ├── ui/
     │   ├── viewmodel/
@@ -160,7 +158,7 @@ com.ute.co_study/
 
 Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và `viewmodel/`. Ví dụ hồ sơ người dùng đặt ở `learner/ui/profile/` và `learner/viewmodel/profile/`. Dùng `moderation/ui/report/` cho xử lý báo cáo và `admin/ui/account/` cho quản lý tài khoản.
 
-Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Ứng dụng khởi động vào `WelcomeActivity` với layout `activity_welcome.xml`, rồi mở `LoginActivity` với layout `activity_login.xml` khi người dùng chọn đăng nhập. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
+Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Ứng dụng khởi động vào `WelcomeActivity` với layout `activity_welcome.xml`, rồi mở `LoginActivity` với layout `activity_login.xml` khi người dùng chọn đăng nhập hoặc `RegisterActivity` với layout `activity_register.xml` khi người dùng chọn tạo tài khoản. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
 
 Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
 
