@@ -3,18 +3,17 @@ package com.ute.co_study.feature.auth.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doAfterTextChanged
-import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityRegisterBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.auth.ui.login.LoginActivity
 import com.ute.co_study.feature.auth.viewmodel.register.RegisterViewModel
+import com.ute.co_study.feature.learner.ui.profile.ProfileSetupActivity
 
 class RegisterActivity : AppCompatActivity() {
     private val viewModel: RegisterViewModel by viewModels()
@@ -51,9 +50,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun submit(binding: ActivityRegisterBinding) {
+        val email = binding.emailInput.text.toString()
         val state = viewModel.validate(
             binding.nameInput.text.toString(),
-            binding.emailInput.text.toString(),
+            email,
             binding.passwordInput.text.toString(),
             binding.confirmationInput.text.toString()
         )
@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
         if (firstInvalidField != null) {
             firstInvalidField.requestFocus()
         } else {
-            Toast.makeText(this, R.string.auth_registration_unavailable, Toast.LENGTH_LONG).show()
+            startActivity(ProfileSetupActivity.createIntent(this, email))
         }
     }
 
