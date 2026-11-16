@@ -10,4 +10,13 @@
     <color name="co_study_green">#00664D</color>
     <color name="co_mint_dark">#00664D</color>
     <color name="co_mint_light">#C4F1DF</color>
+    <color name="costudy_background">#F4F7F8</color>
+    <color name="costudy_surface">#FFFFFFFF</color>
+    <color name="costudy_text">#142D40</color>
+    <color name="costudy_secondary">#627582</color>
+    <color name="costudy_positive">#11634B</color>
+    <color name="costudy_accent">#C7F3DD</color>
+    <color name="costudy_border">#DAE4E8</color>
+    <color name="costudy_danger">#BE2335</color>
+    <color name="costudy_danger_surface">#FFFFF0F2</color>
 </resources>
