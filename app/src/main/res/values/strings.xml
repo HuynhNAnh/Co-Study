@@ -154,4 +154,11 @@
     <string name="exchange_pending_tip">Trong luồng mẫu, bạn sẽ nhận thông báo khi Minh Anh phản hồi. Trong lúc chờ, bạn có thể tiếp tục khám phá.</string>
     <string name="exchange_pending_home">Về trang chủ</string>
     <string name="exchange_pending_discover">Tiếp tục khám phá</string>
+    <string name="exchange_connected_title">Đã kết nối!</string>
+    <string name="exchange_connected_subtitle">Bắt đầu học cùng người bạn mới · Mô phỏng</string>
+    <string name="exchange_connected_confirmation">Bạn và Minh Anh đã kết nối</string>
+    <string name="exchange_connected_description">Hãy chào nhau, thống nhất mục tiêu và chọn thời gian học phù hợp.</string>
+    <string name="exchange_connected_summary">Trao đổi hai chiều</string>
+    <string name="exchange_connected_partner_skill">Minh Anh chia sẻ: Kotlin / Android</string>
+    <string name="exchange_connected_message">Nhắn tin cho Minh Anh</string>
 </resources>

@@ -61,6 +61,9 @@
         <activity
             android:name=".feature.learner.ui.exchange.ExchangePendingActivity"
             android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.exchange.ExchangeConnectedActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
