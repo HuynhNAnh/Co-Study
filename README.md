@@ -104,13 +104,8 @@ Co-Study/
         │   ├── AndroidManifest.xml
         │   ├── java/com/ute/co_study/
         │   │   └── feature/        # Package MVVM theo vai trò
-        │   ├── layouts/
-        │   │   ├── auth/layout/
-        │   │   ├── learner/layout/
-        │   │   ├── moderation/layout/
-        │   │   ├── admin/layout/
-        │   │   └── shared/layout/
         │   ├── res/
+        │   │   ├── layout/         # Giao diện XML
         │   │   ├── drawable/       # Hình và nền dùng trong ứng dụng
         │   │   ├── mipmap-*/       # Biểu tượng launcher theo mật độ màn hình
         │   │   ├── values/         # Chuỗi, màu sắc và giao diện
@@ -123,7 +118,7 @@ Co-Study/
 
 Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiếp trong ứng dụng đặt dưới `app/src/main/res/`.
 
-Layout XML nằm trong `app/src/main/layouts/<nhóm>/layout/`. Đặt màn hình xác thực trong `auth`, màn học tập trong `learner`, màn kiểm duyệt trong `moderation` và màn quản trị trong `admin`. `shared` chứa layout tái sử dụng giữa các vai trò. `app/build.gradle.kts` khai báo từng nhóm làm thư mục tài nguyên của source set `main`. Tên tệp layout cần duy nhất trong module để Android tạo tài nguyên và View Binding.
+Các tệp layout XML nằm trong `app/src/main/res/layout/`. Đặt tên theo màn hình và thêm tên vai trò khi cần phân biệt các màn hình cùng tên.
 
 | Thư mục ảnh | Nội dung |
 | --- | --- |
@@ -204,7 +199,7 @@ Dùng từ tiếng Anh ngắn, mô tả chức năng hoặc nội dung của t�
 | --- | --- | --- |
 | Kotlin (`.kt`) | `PascalCase`. Nếu tệp có một lớp hoặc interface chính, lấy tên đó làm tên tệp. Thêm hậu tố thể hiện trách nhiệm khi cần. | `ProfileActivity.kt`, `ProfileViewModel.kt`, `ProfileUiState.kt`, `ReportRepository.kt`, `StudySession.kt` |
 | Kiểm thử Kotlin (`.kt`) | Thêm `Test` vào tên lớp được kiểm thử. Dùng cùng package với mã được kiểm thử và đặt tệp trong `src/test/` hoặc `src/androidTest/`. | `ProfileViewModelTest.kt`, `ProfileActivityTest.kt` |
-| Layout Android (`layouts/<nhóm>/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_` cho màn hình, `dialog_` cho hộp thoại và `item_` cho mục trong danh sách. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_study_partner_list.xml`, `activity_admin_profile.xml`, `item_study_session.xml` |
+| Layout Android (`res/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_` cho màn hình, `dialog_` cho hộp thoại và `item_` cho mục trong danh sách. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_study_partner_list.xml`, `activity_admin_profile.xml`, `item_study_session.xml` |
 | Tài nguyên Android khác (`res/`) | `snake_case`. Dùng `ic_` cho biểu tượng, `bg_` cho nền và `img_` cho ảnh minh họa. | `ic_calendar.xml`, `bg_profile_card.xml`, `img_study_group.webp` |
 | Tài liệu và ảnh xuất từ Figma | Dùng chữ thường và dấu gạch nối. Với ảnh Figma, giữ mã màn hình ở đầu nếu mã đó được dùng để đối chiếu luồng. | `setup-guide.md`, `u01-login.png`, `chat-03-propose-session.png`, `m02-reports.png` |
 

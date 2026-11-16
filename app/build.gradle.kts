@@ -29,19 +29,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    sourceSets.getByName("main") {
-        res.setSrcDirs(
-            listOf(
-                "src/main/res",
-                "src/main/layouts/auth",
-                "src/main/layouts/learner",
-                "src/main/layouts/moderation",
-                "src/main/layouts/admin",
-                "src/main/layouts/shared"
-            )
-        )
-    }
-
     buildFeatures {
         viewBinding = true
     }
