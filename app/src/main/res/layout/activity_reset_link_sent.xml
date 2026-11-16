@@ -64,7 +64,7 @@
                 android:layout_height="@dimen/reset_confirmation_icon_size"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/co_study_space_20"
-                android:background="@drawable/bg_reset_confirmation"
+                android:background="@drawable/bg_co_study_mint_circle"
                 android:importantForAccessibility="no"
                 android:scaleType="center"
                 app:srcCompat="@drawable/ic_study_check"

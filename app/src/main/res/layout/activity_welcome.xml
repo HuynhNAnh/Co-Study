@@ -43,7 +43,7 @@
                 android:layout_marginStart="@dimen/co_study_space_24"
                 android:layout_marginEnd="@dimen/co_study_space_24"
                 android:layout_marginTop="@dimen/co_study_space_20"
-                android:background="@drawable/bg_welcome_hero"
+                android:background="@drawable/bg_co_study_primary_card"
                 android:orientation="vertical"
                 android:padding="@dimen/co_study_space_24">
 
