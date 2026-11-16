@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:text="Danh sách báo cáo" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="Hàng đợi cần xử lý" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Search & filter card -->
+            <LinearLayout
+                android:id="@+id/search_filter_card"
+                style="@style/Widget.CoStudy.Welcome.Feature"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureIcon"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Label"
+                        android:text="Tìm kiếm &amp; bộ lọc"
+                        android:textColor="@color/co_study_ink"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="Mã báo cáo · Loại · Trạng thái" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureArrow"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/co_study_muted" />
+            </LinearLayout>
+
+            <!-- Báo cáo 1 -->
+            <LinearLayout
+                android:id="@+id/report_item_001"
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="CS-202610-001 · Mới"
+                    android:textColor="@color/co_study_green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:textSize="18sp"
+                    android:text="Thông tin hồ sơ không phù hợp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Người gửi: Đặng Thái Nguyên\nĐối tượng: hồ sơ Minh Anh" />
+            </LinearLayout>
+
+            <!-- Báo cáo 2 -->
+            <LinearLayout
+                android:id="@+id/report_item_002"
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="CS-202610-002 · Đang xử lý"
+                    android:textColor="@color/co_study_green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:textSize="18sp"
+                    android:text="Spam trong giới thiệu hồ sơ" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Người gửi: Thu Hà\nĐược giao cho bạn" />
+            </LinearLayout>
+
+            <!-- Báo cáo 3 -->
+            <LinearLayout
+                android:id="@+id/report_item_003"
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:text="CS-202610-003 · Chờ Admin"
+                    android:textColor="@color/co_study_green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:textSize="18sp"
+                    android:text="Tái phạm nhiều lần" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="Đã chuyển Admin · Chờ quyết định\nTheo dõi trong Thông báo" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/moderation_navigation"
+        layout="@layout/view_moderation_navigation" />
+</LinearLayout>
