@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/co_study_space_16"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Header">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:id="@+id/screen_title"
+                    android:text="@string/app_name" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/welcome_tagline" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_20"
+                android:background="@drawable/bg_co_study_primary_card"
+                android:orientation="vertical"
+                android:padding="@dimen/co_study_space_24">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_study_partners"
+                    app:tint="@color/co_study_mint" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_16"
+                    android:id="@+id/hero_title"
+                    android:text="@string/welcome_hero_title"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_16"
+                    android:text="@string/welcome_hero_description"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Welcome.Feature">
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_study_partners"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Label"
+                        android:text="@string/welcome_match_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="@string/welcome_match_description" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureArrow"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/co_study_muted" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Welcome.Feature">
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_study_calendar"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Label"
+                        android:text="@string/welcome_session_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="@string/welcome_session_description" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureArrow"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/co_study_muted" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Welcome.Feature">
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_study_check"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Label"
+                        android:text="@string/welcome_trust_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="@string/welcome_trust_description" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureArrow"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/co_study_muted" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_button"
+            style="@style/Widget.CoStudy.Button.Primary"
+            android:text="@string/auth_login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register_button"
+            style="@style/Widget.CoStudy.Button.Outlined"
+            android:layout_marginTop="@dimen/co_study_space_8"
+            android:text="@string/auth_register" />
+    </LinearLayout>
+</LinearLayout>

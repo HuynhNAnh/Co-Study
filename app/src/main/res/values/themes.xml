@@ -5,5 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.CoStudy" parent="Base.Theme.CoStudy" />
+    <style name="Theme.CoStudy" parent="Base.Theme.CoStudy">
+        <item name="android:windowBackground">@color/co_study_surface</item>
+    </style>
 </resources>

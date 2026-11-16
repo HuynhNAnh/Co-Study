@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="match_filter_levels">
+        <item>@string/match_filter_any</item>
+        <item>Từ cơ bản đến trung cấp</item>
+        <item>Cơ bản</item>
+        <item>Trung cấp</item>
+        <item>Nâng cao</item>
+    </string-array>
+
+    <string-array name="match_filter_modes">
+        <item>@string/match_filter_any</item>
+        <item>Trực tuyến</item>
+        <item>Trực tiếp</item>
+    </string-array>
+
+    <string-array name="match_filter_days">
+        <item>Thứ Hai</item>
+        <item>Thứ Ba</item>
+        <item>Thứ Tư</item>
+        <item>Thứ Năm</item>
+        <item>Thứ Sáu</item>
+        <item>Thứ Bảy</item>
+        <item>Chủ Nhật</item>
+    </string-array>
+</resources>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoStudy">
         <activity
-            android:name=".MainActivity"
+            android:name=".feature.auth.ui.welcome.WelcomeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -21,6 +21,49 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.auth.ui.login.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.auth.ui.register.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.auth.ui.reset.ResetPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.auth.ui.reset.ResetLinkSentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.profile.ProfileSetupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.learner.ui.home.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.discovery.DiscoveryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.learner.ui.discovery.MatchFiltersActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.learner.ui.profile.PartnerProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.exchange.ExchangeRequestActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.learner.ui.exchange.ExchangePendingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.exchange.ExchangeConnectedActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

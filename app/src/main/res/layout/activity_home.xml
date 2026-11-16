@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/co_study_space_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Header">
+                <TextView
+                    android:id="@+id/screen_title"
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/home_greeting" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/home_subtitle" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:layout_marginTop="@dimen/co_study_space_20"
+                android:background="@drawable/bg_co_study_primary_card"
+                android:minHeight="104dp">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/home_hero_title"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/hero_description"
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/home_demo_label" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/notifications_button"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="@dimen/co_study_space_8"
+                    android:text="@string/home_notifications"
+                    android:textColor="@color/co_study_green" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/suggestions_title"
+                style="@style/TextAppearance.CoStudy.Title"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_12"
+                android:text="@string/home_suggestions"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:minHeight="142dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_co_study_mint_circle"
+                        android:gravity="center"
+                        android:importantForAccessibility="no"
+                        android:text="@string/home_suggested_initials"
+                        android:textColor="@color/co_study_green"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/co_study_space_12"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.CoStudy.Title"
+                            android:text="@string/home_suggested_name"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.CoStudy.Subtitle"
+                            android:layout_marginTop="@dimen/co_study_space_4"
+                            android:text="@string/home_suggested_skills" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:layout_marginTop="@dimen/co_study_space_16"
+                    android:text="@string/home_suggested_match"
+                    android:textColor="@color/co_study_green" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/home_suggested_availability" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice"
+                android:minHeight="104dp">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/home_session_title"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/home_session_details"
+                    android:textColor="@color/co_study_muted" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/discover_button"
+                style="@style/Widget.CoStudy.Button.Primary"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:text="@string/home_discover" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/learner_navigation"
+        layout="@layout/view_learner_navigation" />
+</LinearLayout>

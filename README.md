@@ -2,7 +2,7 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Kho mã nguồn hiện có màn **Khám phá bạn học** viết bằng Kotlin và XML, sử dụng dữ liệu mẫu. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma. Xác thực, phân quyền, xử lý báo cáo và nhật ký quản trị là các phần cần triển khai khi kết nối với hệ thống xử lý dữ liệu.
+Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Nút **Quên mật khẩu?** tại U01 mở biểu mẫu nhập email (U03) và dẫn đến màn xác nhận (U04). Ứng dụng kiểm tra dữ liệu nhập trên thiết bị. Khi biểu mẫu U02 hợp lệ, ứng dụng mở màn Thiết lập hồ sơ (U05). Nút **Hoàn tất và khám phá** tại U05 lưu hồ sơ trên thiết bị theo email nhập ở U02, rồi mở Trang chủ người dùng (U06). Lời chào và phần giới thiệu ở U06 dùng tên và kỹ năng vừa nhập. Gợi ý ghép cặp, lịch học và số thông báo dùng dữ liệu mẫu. Nút **Khám phá bạn học** và tab **Ghép cặp** ở U06 mở màn Khám phá bạn học (U07). U07 hỗ trợ tìm tên và kỹ năng trong dữ liệu mẫu. Mục **Bộ lọc đang áp dụng** mở U08 để chọn kỹ năng, trình độ, hình thức học và khung giờ rảnh. Khi áp dụng, U07 cập nhật tiêu chí và kết quả cùng với từ khóa đang nhập. Chạm thẻ Minh Anh ở U07 để xem hồ sơ mẫu (U09). Nút **Đề nghị trao đổi kỹ năng** tại U09 mở biểu mẫu U10 để nhập kỹ năng chia sẻ, kỹ năng cần hỗ trợ và lời nhắn. Nút **Gửi đề nghị kết nối** ở U10 mở U11 và hiển thị nội dung vừa nhập. U11 mô phỏng trạng thái chờ phản hồi. Nút **Mô phỏng Minh Anh đồng ý** mở màn Kết nối thành công (U12), hiển thị kỹ năng chia sẻ đã nhập ở U10. Ứng dụng chưa gửi đề nghị qua máy chủ. U04 mô phỏng kết quả yêu cầu. Xác thực, tạo tài khoản và gửi email khôi phục qua máy chủ chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
 
 ## Chức năng theo vai trò
 
@@ -124,10 +124,35 @@ Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiế
 ~~~text
 com.ute.co_study/
 └── feature/
+    ├── auth/                      # Chào mừng và xác thực
+    │   ├── ui/
+    │   │   ├── welcome/WelcomeActivity.kt
+    │   │   ├── login/LoginActivity.kt
+    │   │   ├── register/RegisterActivity.kt
+    │   │   └── reset/
+    │   │       ├── ResetPasswordActivity.kt
+    │   │       └── ResetLinkSentActivity.kt
+    │   └── viewmodel/
+    │       ├── login/
+    │       ├── register/
+    │       └── reset/
     ├── learner/                   # Người dùng
     │   ├── ui/
-    │   │   └── discovery/StudyPartnerListActivity.kt
+    │   │   ├── discovery/
+    │   │   │   ├── DiscoveryActivity.kt
+    │   │   │   └── MatchFiltersActivity.kt
+    │   │   ├── exchange/
+    │   │   │   ├── ExchangeRequestActivity.kt
+    │   │   │   ├── ExchangePendingActivity.kt
+    │   │   │   └── ExchangeConnectedActivity.kt
+    │   │   ├── home/HomeActivity.kt
+    │   │   └── profile/
+    │   │       ├── PartnerProfileActivity.kt
+    │   │       └── ProfileSetupActivity.kt
     │   ├── viewmodel/
+    │   │   ├── discovery/DiscoveryViewModel.kt
+    │   │   ├── home/HomeViewModel.kt
+    │   │   └── profile/ProfileSetupViewModel.kt
     │   ├── model/
     │   └── data/repository/
     ├── moderation/                # Kiểm duyệt viên
@@ -151,7 +176,7 @@ com.ute.co_study/
 
 Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và `viewmodel/`. Ví dụ hồ sơ người dùng đặt ở `learner/ui/profile/` và `learner/viewmodel/profile/`. Dùng `moderation/ui/report/` cho xử lý báo cáo và `admin/ui/account/` cho quản lý tài khoản.
 
-Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Hiện ứng dụng khởi động trực tiếp vào `StudyPartnerListActivity` với layout `activity_study_partner_list.xml`. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
+Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Ứng dụng khởi động vào `WelcomeActivity` với layout `activity_welcome.xml`, rồi mở `LoginActivity` với layout `activity_login.xml` khi người dùng chọn đăng nhập hoặc `RegisterActivity` với layout `activity_register.xml` khi người dùng chọn tạo tài khoản. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
 
 Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
 

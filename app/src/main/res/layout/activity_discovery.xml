@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/co_study_space_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Header">
+                <TextView
+                    android:id="@+id/screen_title"
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/home_discover" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/discovery_subtitle" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field"
+                android:layout_marginTop="@dimen/co_study_space_20">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/search_input"
+                    android:text="@string/discovery_search_label"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/search_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:hint="@string/discovery_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColorHint="@color/co_study_muted" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/filter_button"
+                style="@style/Widget.CoStudy.Welcome.Feature"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout style="@style/Widget.CoStudy.Welcome.FeatureText">
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Label"
+                        android:text="@string/discovery_filter_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:id="@+id/filter_summary" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Widget.CoStudy.Welcome.FeatureArrow"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/co_study_muted" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/partner_card"
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:minHeight="160dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_co_study_mint_circle"
+                        android:gravity="center"
+                        android:importantForAccessibility="no"
+                        android:text="@string/home_suggested_initials"
+                        android:textColor="@color/co_study_green"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/co_study_space_12"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.CoStudy.Title"
+                            android:text="@string/home_suggested_name"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.CoStudy.Subtitle"
+                            android:layout_marginTop="@dimen/co_study_space_4"
+                            android:text="@string/discovery_partner_skills" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Label"
+                    android:layout_marginTop="@dimen/co_study_space_16"
+                    android:text="@string/discovery_partner_match"
+                    android:textColor="@color/co_study_green" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/discovery_partner_details" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/empty_results"
+                style="@style/TextAppearance.CoStudy.Body"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:accessibilityLiveRegion="polite"
+                android:background="@drawable/bg_co_study_card"
+                android:padding="@dimen/co_study_space_16"
+                android:text="@string/discovery_empty"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/TextAppearance.CoStudy.Subtitle"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:background="@drawable/bg_auth_notice"
+                android:gravity="center_vertical"
+                android:minHeight="68dp"
+                android:padding="@dimen/co_study_space_16"
+                android:text="@string/discovery_demo_note"
+                android:textColor="@color/co_study_green" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/learner_navigation"
+        layout="@layout/view_learner_navigation" />
+</LinearLayout>

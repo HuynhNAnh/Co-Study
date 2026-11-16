@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Header">
+                <TextView
+                    android:id="@+id/screen_title"
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/exchange_connected_title" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/exchange_connected_subtitle" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/reset_confirmation_icon_size"
+                android:layout_height="@dimen/reset_confirmation_icon_size"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/co_study_space_20"
+                android:background="@drawable/bg_co_study_mint_circle"
+                android:importantForAccessibility="no"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_study_check"
+                app:tint="@color/co_study_green" />
+
+            <TextView
+                android:id="@+id/connection_title"
+                style="@style/TextAppearance.CoStudy.Title"
+                android:layout_marginTop="@dimen/co_study_space_12"
+                android:gravity="center"
+                android:paddingStart="@dimen/co_study_space_24"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:text="@string/exchange_connected_confirmation"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/TextAppearance.CoStudy.Body"
+                android:layout_marginTop="@dimen/co_study_space_12"
+                android:gravity="center"
+                android:paddingStart="@dimen/co_study_space_24"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:text="@string/exchange_connected_description"
+                android:textColor="@color/co_study_muted" />
+
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:gravity="center_vertical"
+                android:minHeight="80dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_co_study_mint_circle"
+                    android:gravity="center"
+                    android:importantForAccessibility="no"
+                    android:text="@string/home_suggested_initials"
+                    android:textColor="@color/co_study_green"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_12"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/partner_name"
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:text="@string/home_suggested_name"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="@string/exchange_request_partner" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice"
+                android:minHeight="104dp">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/exchange_connected_summary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/shared_skill"
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:textColor="@color/co_study_muted" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:text="@string/exchange_connected_partner_skill"
+                    android:textColor="@color/co_study_muted" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/message_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/exchange_connected_message" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/exchange_pending_home" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
