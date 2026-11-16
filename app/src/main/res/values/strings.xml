@@ -143,4 +143,15 @@
     <string name="exchange_request_message_hint">Chào Minh Anh! Mình có thể giúp bạn làm quen với Figma và muốn học Kotlin cùng bạn.</string>
     <string name="exchange_request_tip">Dữ liệu mẫu · Sau khi Minh Anh chấp nhận, hai bạn có thể nhắn tin và thống nhất lịch học.</string>
     <string name="exchange_request_send">Gửi đề nghị kết nối</string>
+    <string name="exchange_pending_title">Chờ bạn học đồng ý</string>
+    <string name="exchange_pending_subtitle">Đề nghị đã được gửi (mô phỏng)</string>
+    <string name="exchange_pending_summary">Đề nghị trao đổi của bạn</string>
+    <string name="exchange_pending_shared_skill">Bạn chia sẻ: %1$s</string>
+    <string name="exchange_pending_learning_skill">Bạn muốn học: %1$s</string>
+    <string name="exchange_pending_no_skill">Chưa nhập</string>
+    <string name="exchange_pending_message_label">LỜI NHẮN ĐÃ GỬI</string>
+    <string name="exchange_pending_no_message">Không có lời nhắn.</string>
+    <string name="exchange_pending_tip">Trong luồng mẫu, bạn sẽ nhận thông báo khi Minh Anh phản hồi. Trong lúc chờ, bạn có thể tiếp tục khám phá.</string>
+    <string name="exchange_pending_home">Về trang chủ</string>
+    <string name="exchange_pending_discover">Tiếp tục khám phá</string>
 </resources>

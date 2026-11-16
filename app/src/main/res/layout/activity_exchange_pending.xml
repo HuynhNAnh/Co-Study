@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Header"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/co_study_space_12"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:paddingTop="@dimen/co_study_space_16"
+                android:paddingBottom="@dimen/co_study_space_16">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/auth_back"
+                    app:srcCompat="@drawable/ic_back"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:id="@+id/screen_title"
+                        android:text="@string/exchange_pending_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_8"
+                        android:text="@string/exchange_pending_subtitle" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:layout_marginTop="@dimen/co_study_space_20"
+                android:background="@drawable/bg_co_study_card"
+                android:gravity="center_vertical"
+                android:minHeight="80dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_co_study_mint_circle"
+                    android:gravity="center"
+                    android:importantForAccessibility="no"
+                    android:text="@string/home_suggested_initials"
+                    android:textColor="@color/co_study_green"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_12"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/partner_name"
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:text="@string/home_suggested_name"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_4"
+                        android:text="@string/exchange_request_partner" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice"
+                android:minHeight="104dp">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:text="@string/exchange_pending_summary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/shared_skill"
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:textColor="@color/co_study_muted" />
+
+                <TextView
+                    android:id="@+id/learning_skill"
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:textColor="@color/co_study_muted" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_field"
+                android:minHeight="102dp">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:text="@string/exchange_pending_message_label"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/request_message"
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:layout_marginTop="@dimen/co_study_space_16" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.CoStudy.Subtitle"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:background="@drawable/bg_auth_notice"
+                android:gravity="center_vertical"
+                android:minHeight="68dp"
+                android:padding="@dimen/co_study_space_16"
+                android:text="@string/exchange_pending_tip"
+                android:textColor="@color/co_study_green" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/exchange_pending_home" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/discover_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/exchange_pending_discover" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
