@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Header"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/co_study_space_12"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:paddingTop="@dimen/co_study_space_16"
+                android:paddingBottom="@dimen/co_study_space_16">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/auth_back"
+                    app:srcCompat="@drawable/ic_back"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:id="@+id/screen_title"
+                        android:text="@string/auth_register" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_8"
+                        android:text="@string/register_subtitle" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Field"
+                android:layout_marginTop="@dimen/co_study_space_20">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/name_input"
+                    android:text="@string/register_name"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/name_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:autofillHints="name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords"
+                    android:nextFocusForward="@id/email_input"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/email_input"
+                    android:text="@string/auth_email"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/email_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:nextFocusForward="@id/password_input"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/password_input"
+                    android:text="@string/auth_password"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/password_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:autofillHints="newPassword"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:nextFocusForward="@id/confirmation_input"
+                    android:saveEnabled="false"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/confirmation_input"
+                    android:text="@string/register_confirmation"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@id/confirmation_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:autofillHints="newPassword"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:saveEnabled="false"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.CoStudy.Subtitle"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_16"
+                android:text="@string/register_description" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/register_submit" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/register_login_prompt" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

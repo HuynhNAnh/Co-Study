@@ -37,7 +37,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/login_back"
+                    android:contentDescription="@string/auth_back"
                     app:srcCompat="@drawable/ic_back"
                     app:tint="@color/co_study_ink" />
 
@@ -61,7 +61,7 @@
             </LinearLayout>
 
             <LinearLayout
-                style="@style/Widget.CoStudy.Login.Card"
+                style="@style/Widget.CoStudy.Auth.Card"
                 android:layout_marginTop="@dimen/co_study_space_20"
                 android:background="@drawable/bg_auth_notice"
                 android:minHeight="84dp">
@@ -78,16 +78,16 @@
                     android:textColor="@color/co_study_muted" />
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Login.Field">
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
                 <TextView
                     style="@style/TextAppearance.CoStudy.Subtitle"
                     android:labelFor="@+id/email_input"
-                    android:text="@string/login_email"
+                    android:text="@string/auth_email"
                     android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@id/email_input"
-                    style="@style/Widget.CoStudy.Login.Input"
+                    style="@style/Widget.CoStudy.Auth.Input"
                     android:autofillHints="emailAddress"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
@@ -95,16 +95,16 @@
                     android:singleLine="true" />
             </LinearLayout>
 
-            <LinearLayout style="@style/Widget.CoStudy.Login.Field">
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
                 <TextView
                     style="@style/TextAppearance.CoStudy.Subtitle"
                     android:labelFor="@+id/password_input"
-                    android:text="@string/login_password"
+                    android:text="@string/auth_password"
                     android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@id/password_input"
-                    style="@style/Widget.CoStudy.Login.Input"
+                    style="@style/Widget.CoStudy.Auth.Input"
                     android:autofillHints="password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
