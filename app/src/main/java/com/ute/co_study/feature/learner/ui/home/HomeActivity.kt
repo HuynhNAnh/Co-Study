@@ -3,6 +3,9 @@ package com.ute.co_study.feature.learner.ui.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import com.ute.co_study.shared.data.DemoMemberDirectory
+import com.ute.co_study.feature.auth.ui.welcome.WelcomeActivity
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,6 +33,15 @@ class HomeActivity : AppCompatActivity() {
         val session = DemoSession(this)
         val incomingEmail = intent.getStringExtra(EXTRA_EMAIL)
         if (!incomingEmail.isNullOrBlank()) {
+            val managed = DemoMemberDirectory(this).findByEmail(incomingEmail)
+            if (managed?.locked == true || managed?.role == DemoRole.MODERATOR) {
+                session.end()
+                Toast.makeText(this, R.string.auth_managed_unavailable, Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, WelcomeActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                finish()
+                return
+            }
             session.start(DemoRole.LEARNER, incomingEmail, intent.getStringExtra(EXTRA_NAME).orEmpty())
             intent.removeExtra(EXTRA_EMAIL)
             intent.removeExtra(EXTRA_NAME)

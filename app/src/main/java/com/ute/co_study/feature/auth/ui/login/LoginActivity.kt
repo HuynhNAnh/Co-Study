@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
+import com.ute.co_study.feature.admin.ui.AdminLoginActivity
+import com.ute.co_study.shared.data.DemoMemberDirectory
+import com.ute.co_study.shared.data.DemoRole
 import com.ute.co_study.feature.moderation.ui.ModeratorLoginActivity
 import com.ute.co_study.feature.learner.data.repository.ProfileSetupRepository
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
@@ -44,6 +47,9 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailInput.text.toString()
             startActivity(ResetPasswordActivity.createIntent(this, email))
         }
+        binding.adminLoginButton.setOnClickListener {
+            startActivity(Intent(this, AdminLoginActivity::class.java))
+        }
         binding.moderatorLoginButton.setOnClickListener {
             startActivity(Intent(this, ModeratorLoginActivity::class.java))
         }
@@ -54,12 +60,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun openLocalProfile(email: String) {
         val session = DemoSession(this)
-        val savedEmail = session.learnerEmail(email) ?: email.takeIf { ProfileSetupRepository(this).hasDraft(it) }
+        val managed = DemoMemberDirectory(this).findByEmail(email)
+        if (managed?.locked == true || managed?.role == DemoRole.MODERATOR) {
+            Toast.makeText(this, R.string.auth_managed_unavailable, Toast.LENGTH_LONG).show()
+            return
+        }
+        val savedEmail = managed?.email ?: session.learnerEmail(email)
+            ?: email.takeIf { ProfileSetupRepository(this).hasDraft(it) }
         if (savedEmail == null) {
             Toast.makeText(this, R.string.auth_login_unavailable, Toast.LENGTH_LONG).show()
             return
         }
-        val name = session.learnerName(savedEmail).ifBlank { savedEmail.substringBefore('@') }
+        val name = managed?.name ?: session.learnerName(savedEmail).ifBlank { savedEmail.substringBefore('@') }
         startActivity(HomeActivity.createIntent(this, savedEmail, name)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
     }

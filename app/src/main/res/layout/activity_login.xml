@@ -159,7 +159,13 @@
                     android:id="@+id/moderator_login_button"
                     style="@style/Widget.CoStudy.Button.Outlined"
                     android:layout_marginTop="@dimen/co_study_space_8"
-                    android:text="@string/screen_moderator_login_subtitle" />
+                    android:text="@string/auth_moderator_demo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/admin_login_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/auth_admin_demo" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -17,8 +17,10 @@ abstract class StaffLoginActivity(
         val password = input("Mật khẩu demo", DEMO_PASSWORD, type = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
         note("Tài khoản minh họa đã điền sẵn. Phiên này dùng dữ liệu trên thiết bị.")
         button(if (role == DemoRole.ADMIN) "Đăng nhập quản trị" else "Đăng nhập kiểm duyệt") {
-            if (!email.text.toString().trim().equals(demoEmail, ignoreCase = true)) {
-                email.error = "Dùng tài khoản mẫu $demoEmail"
+            val address = email.text.toString().trim()
+            val operator = resolveOperator(address)
+            if (operator == null) {
+                email.error = "Dùng tài khoản $demoEmail hoặc tài khoản đã được cấp quyền"
                 email.requestFocus()
                 return@button
             }
@@ -27,10 +29,13 @@ abstract class StaffLoginActivity(
                 password.requestFocus()
                 return@button
             }
-            session.start(role, demoEmail, operatorId)
+            session.start(role, address, operator)
             replaceTask(destination)
         }
     }
+
+    protected open fun resolveOperator(email: String): String? =
+        operatorId.takeIf { email.equals(demoEmail, ignoreCase = true) }
 
     private companion object {
         const val DEMO_PASSWORD = "costudy-demo"

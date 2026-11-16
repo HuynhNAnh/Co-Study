@@ -1,6 +1,7 @@
 package com.ute.co_study.shared.data
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.ute.co_study.shared.model.CommunityReport
 import com.ute.co_study.shared.model.ReportAction
 import com.ute.co_study.shared.model.ReportEvent
@@ -13,7 +14,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 internal class ReportRepository(context: Context) {
-    private val store = context.getSharedPreferences("community_reports", Context.MODE_PRIVATE)
+    private val store = communityPreferences(context)
     private val session = DemoSession(context)
 
     fun queue(): List<CommunityReport> = when (session.role) {
@@ -35,11 +36,16 @@ internal class ReportRepository(context: Context) {
         val id = "CS-${format("yyyyMM")}-${nextNumber.toString().padStart(3, '0')}"
         val item = CommunityReport(id, title, session.name.ifBlank { session.email }, session.email, subject,
             detail, "", ReportStatus.NEW, createdAt = format("dd/MM/yyyy · HH:mm"))
-        save(listOf(item) + previous)
+        if (!save(listOf(item) + previous)) return null
         return item
     }
 
-    fun apply(id: String, action: ReportAction, reason: String): CommunityReport? {
+    fun apply(
+        id: String,
+        action: ReportAction,
+        reason: String,
+        writeAlongside: ((SharedPreferences.Editor) -> Unit)? = null
+    ): CommunityReport? {
         val previous = reports()
         val actor = session.role ?: return null
         val item = previous.firstOrNull { it.id == id } ?: return null
@@ -52,7 +58,7 @@ internal class ReportRepository(context: Context) {
             evidence = if (action == ReportAction.SUPPLY_INFO) listOf(item.evidence, reason)
                 .filter(String::isNotBlank).joinToString("\n\n") else item.evidence
         )
-        save(previous.map { if (it.id == id) changed else it })
+        if (!save(previous.map { if (it.id == id) changed else it }, writeAlongside)) return null
         return changed
     }
 
@@ -103,7 +109,10 @@ internal class ReportRepository(context: Context) {
         }
     }
 
-    private fun save(reports: List<CommunityReport>) {
+    private fun save(
+        reports: List<CommunityReport>,
+        writeAlongside: ((SharedPreferences.Editor) -> Unit)? = null
+    ): Boolean {
         val array = JSONArray()
         reports.forEach { item ->
             val events = JSONArray()
@@ -116,7 +125,9 @@ internal class ReportRepository(context: Context) {
                 .put("evidence", item.evidence).put("status", item.status.name).put("events", events)
                 .put("created_at", item.createdAt))
         }
-        store.edit().putString("reports", array.toString()).apply()
+        val editor = store.edit().putString("reports", array.toString())
+        writeAlongside?.invoke(editor)
+        return editor.commit()
     }
 
     private fun format(pattern: String) = SimpleDateFormat(pattern, Locale.US).apply {
