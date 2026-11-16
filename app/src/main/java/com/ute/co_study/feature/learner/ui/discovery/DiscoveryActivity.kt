@@ -10,6 +10,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import com.ute.co_study.feature.learner.ui.home.HomeActivity
+import com.ute.co_study.feature.learner.ui.study.MessagesActivity
+import com.ute.co_study.feature.learner.ui.study.ScheduleActivity
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityDiscoveryBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
@@ -58,18 +61,19 @@ class DiscoveryActivity : AppCompatActivity() {
 
         val navigation = binding.learnerNavigation
         navigation.matchTab.markCurrentLearnerTab()
-        navigation.homeTab.setOnClickListener { finish() }
+        navigation.homeTab.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        }
         binding.partnerCard.setOnClickListener {
             WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
             val profile = Intent(this, PartnerProfileActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(profile)
         }
-        showLearnerFeatureUnavailable(
-            navigation.messagesTab,
-            navigation.scheduleTab,
-            navigation.profileTab
-        )
+        navigation.messagesTab.setOnClickListener { startActivity(Intent(this, MessagesActivity::class.java)) }
+        navigation.scheduleTab.setOnClickListener { startActivity(Intent(this, ScheduleActivity::class.java)) }
+        showLearnerFeatureUnavailable(navigation.profileTab)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

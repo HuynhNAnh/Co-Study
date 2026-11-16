@@ -33,8 +33,11 @@ abstract class WorkflowActivity(
     internal val session by lazy { DemoSession(this) }
     protected lateinit var body: LinearLayout
         private set
-    private lateinit var footer: LinearLayout
+    protected lateinit var actions: LinearLayout
+        private set
+    private val footer get() = actions
     private val fields = linkedMapOf<String, EditText>()
+    private val choices = linkedMapOf<String, TextView>()
     private var drafts = Bundle()
     private var displayed = false
     protected open val refreshOnReturn = false
@@ -52,7 +55,7 @@ abstract class WorkflowActivity(
         ViewCompat.setAccessibilityHeading(findViewById(R.id.workflow_title), true)
         findViewById<View>(R.id.workflow_back)?.setOnClickListener { finish() }
         body = findViewById(R.id.workflow_body)
-        footer = findViewById(R.id.workflow_footer)
+        actions = findViewById(R.id.workflow_footer)
     }
 
     final override fun onResume() {
@@ -68,6 +71,7 @@ abstract class WorkflowActivity(
     final override fun onSaveInstanceState(outState: Bundle) {
         val values = Bundle()
         fields.forEach { (key, field) -> values.putString(key, field.text.toString()) }
+        choices.forEach { (key, choice) -> values.putString(key, choice.text.toString()) }
         outState.putBundle("workflow_fields", values)
         super.onSaveInstanceState(outState)
     }
@@ -76,6 +80,7 @@ abstract class WorkflowActivity(
 
     protected fun refresh() {
         fields.clear()
+        choices.clear()
         body.removeAllViews()
         footer.removeAllViews()
         render()
@@ -117,8 +122,8 @@ abstract class WorkflowActivity(
 
     protected fun note(text: CharSequence, tone: Tone = Tone.MINT) = card("", text, tone)
 
-    protected fun person(initials: String, name: String, detail: String, action: (() -> Unit)? = null) {
-        val panel = panel()
+    protected fun person(initials: String, name: String, detail: String, parent: LinearLayout = body, action: (() -> Unit)? = null): View {
+        val panel = panel(parent = parent)
         panel.orientation = LinearLayout.HORIZONTAL
         panel.gravity = Gravity.CENTER_VERTICAL
         val avatar = TextView(this).apply {
@@ -136,6 +141,7 @@ abstract class WorkflowActivity(
         textView(copy, name, R.style.TextAppearance_CoStudy_Heading)
         textView(copy, detail, R.style.TextAppearance_CoStudy_Subtitle, separated = true)
         if (action != null) makeRowClickable(panel, action)
+        return panel
     }
 
     protected fun row(title: CharSequence, detail: CharSequence = "", action: () -> Unit) {
@@ -246,6 +252,7 @@ abstract class WorkflowActivity(
                 .setNegativeButton(android.R.string.cancel, null)
                 .show()
         }
+        choices[label] = value
         return value
     }
 
@@ -311,6 +318,21 @@ abstract class WorkflowActivity(
             }
             strip.addView(tab, LinearLayout.LayoutParams(0, wrap, 1f))
         }
+    }
+
+    protected fun bubble(copy: String, outgoing: Boolean) {
+        val tone = if (outgoing) Tone.MINT else Tone.PLAIN
+        val bubble = panel(tone)
+        val params = bubble.layoutParams as LinearLayout.LayoutParams
+        val inset = dp(R.dimen.co_study_space_24)
+        if (outgoing) params.marginStart = inset else params.marginEnd = inset
+        bubble.layoutParams = params
+        textView(bubble, copy, R.style.TextAppearance_CoStudy_Body, tone)
+    }
+
+    protected fun revealLatest() {
+        val scroll = body.parent as android.widget.ScrollView
+        scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }
     }
 
     protected fun message(text: CharSequence) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()

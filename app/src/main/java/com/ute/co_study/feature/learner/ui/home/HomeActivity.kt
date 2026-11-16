@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import com.ute.co_study.shared.data.DemoRole
+import com.ute.co_study.shared.data.DemoSession
+import com.ute.co_study.feature.learner.ui.study.MessagesActivity
+import com.ute.co_study.feature.learner.ui.study.ScheduleActivity
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityHomeBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
@@ -20,7 +24,14 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val email = intent.getStringExtra(EXTRA_EMAIL)
+        val session = DemoSession(this)
+        val incomingEmail = intent.getStringExtra(EXTRA_EMAIL)
+        if (!incomingEmail.isNullOrBlank()) {
+            session.start(DemoRole.LEARNER, incomingEmail, intent.getStringExtra(EXTRA_NAME).orEmpty())
+            intent.removeExtra(EXTRA_EMAIL)
+            intent.removeExtra(EXTRA_NAME)
+        }
+        val email = session.email.takeIf { session.role == DemoRole.LEARNER }
         if (email.isNullOrBlank()) {
             finish()
             return
@@ -32,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.suggestionsTitle, true)
 
-        val name = intent.getStringExtra(EXTRA_NAME).orEmpty().trim()
+        val name = session.name.trim()
             .takeLastWhile { !it.isWhitespace() }
         binding.screenTitle.text = if (name.isEmpty()) {
             getString(R.string.home_greeting)
@@ -45,10 +56,10 @@ class HomeActivity : AppCompatActivity() {
         navigation.homeTab.markCurrentLearnerTab()
         binding.discoverButton.setOnClickListener { openDiscovery() }
         navigation.matchTab.setOnClickListener { openDiscovery() }
+        navigation.messagesTab.setOnClickListener { startActivity(Intent(this, MessagesActivity::class.java)) }
+        navigation.scheduleTab.setOnClickListener { startActivity(Intent(this, ScheduleActivity::class.java)) }
         showLearnerFeatureUnavailable(
             binding.notificationsButton,
-            navigation.messagesTab,
-            navigation.scheduleTab,
             navigation.profileTab
         )
     }
