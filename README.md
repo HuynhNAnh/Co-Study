@@ -2,7 +2,7 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Kho mã nguồn hiện có khung ứng dụng Android viết bằng Kotlin và XML. Các luồng nghiệp vụ dưới đây được mô phỏng trong prototype Figma.
+Kho mã nguồn hiện có màn **Khám phá bạn học** viết bằng Kotlin và XML, sử dụng dữ liệu mẫu. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma. Xác thực, phân quyền, xử lý báo cáo và nhật ký quản trị là các phần cần triển khai khi kết nối với hệ thống xử lý dữ liệu.
 
 ## Chức năng theo vai trò
 
@@ -41,6 +41,16 @@ Người dùng có thể xem huy hiệu đã nhận, điều kiện mở khóa v
 - Xem xét báo cáo do kiểm duyệt viên chuyển lên.
 - Quản lý danh mục kỹ năng, cấu hình hệ thống và nhật ký quản trị.
 - Quản lý quy tắc ghi nhận chuỗi học tập và điều kiện trao huy hiệu.
+
+## Quy ước chung cấp hệ thống
+
+1. **Một trải nghiệm, ba vai trò.** Người dùng học tập, kết nối, trao đổi và quản lý lịch học. Kiểm duyệt viên tiếp nhận và xử lý báo cáo trong phạm vi được giao. Admin quản lý tài khoản, phân quyền, danh mục kỹ năng, cấu hình và vụ việc chuyển cấp. Mỗi vai trò có điều hướng, dữ liệu và thao tác phù hợp với trách nhiệm được giao. Tầng xử lý kiểm tra quyền và phạm vi dữ liệu trước khi cho phép đọc hoặc ghi, kể cả khi yêu cầu được gửi trực tiếp ngoài giao diện.
+2. **Dùng chung tài nguyên giao diện.** Đặt màu, kiểu chữ, khoảng cách, bo góc và kiểu thành phần trong `res/values/`. Các màn hình dùng `Theme.CoStudy` và các kiểu dùng chung cho nút, ô nhập, thẻ, thông báo và trạng thái. Bản Figma dùng nền sáng, chữ xanh đậm và điểm nhấn xanh lá. Khung 390 × 844 px dùng để đối chiếu bố cục. Layout Android thích ứng theo chiều rộng khả dụng và kích cỡ chữ. Thể hiện khác biệt giữa các vai trò qua tên khu vực, nội dung và quyền thao tác.
+3. **Xác định quyền và trách nhiệm cho từng chức năng.** Ghi rõ ai được xem, sửa và phê duyệt, cùng các hành động cần ghi nhật ký. Với khóa tài khoản, phân quyền, xử lý báo cáo và đổi cấu hình, cung cấp đủ thông tin để ra quyết định và nêu hậu quả trước khi xác nhận. Tầng xử lý kiểm tra quyền được cấp và ghi nhận người thực hiện, thời điểm, lý do và kết quả.
+4. **Thống nhất trạng thái và quy trình.** Dùng chung tên gọi và ý nghĩa của mỗi trạng thái giữa màn hình danh sách, chi tiết và lịch sử. Các nhãn như **Mới tiếp nhận**, **Đang xử lý**, **Cần bổ sung**, **Đã xử lý** và **Đã chuyển cấp** cần nhất quán trong toàn bộ luồng báo cáo. Với mỗi quy trình, xác định điểm bắt đầu, người chịu trách nhiệm, điều kiện chuyển bước và kết quả cuối. Giữ liên kết với hồ sơ, lịch sử và bằng chứng khi bàn giao vụ việc.
+5. **Trình bày dữ liệu có ngữ cảnh.** Mỗi chỉ số tổng quan cần có định nghĩa và nguồn dữ liệu. Danh sách cần chỉ rõ mục cần chú ý và lý do. Gắn nhãn dữ liệu mẫu trên màn hình trình diễn và dùng cách trình bày nhất quán cho mã tài khoản, mã báo cáo, thời điểm và người xử lý.
+6. **Hỗ trợ thao tác thực tế.** Ưu tiên nội dung và hành động chính, dùng nhãn tiếng Việt cụ thể và thông báo kết quả sau khi lưu, gửi, khóa hoặc chuyển cấp. Mỗi màn hình cần có phản hồi phù hợp khi dữ liệu rỗng, đang tải, gặp lỗi hoặc thao tác thành công. Dùng chữ để diễn đạt trạng thái và kiểm tra bố cục với dữ liệu dài, chữ lớn và màn hình hẹp.
+7. **Phát triển từ một nguồn chuẩn.** Tổ chức màn hình và điều hướng theo `feature/learner/`, `feature/moderation/` và `feature/admin/`. Mỗi màn hình có một Activity và một layout XML riêng. Đặt mô hình trạng thái, quy tắc chuyển bước và nghiệp vụ dùng chung dưới `shared/`. Cập nhật màu, kiểu thành phần và nhãn trạng thái tại tài nguyên chung để các màn hình sử dụng cùng một định nghĩa.
 
 ## Chạy dự án Android
 
@@ -86,7 +96,6 @@ Co-Study/
         ├── main/
         │   ├── AndroidManifest.xml
         │   ├── java/com/ute/co_study/
-        │   │   ├── MainActivity.kt
         │   │   └── feature/        # Package MVVM theo vai trò
         │   ├── res/
         │   │   ├── layout/         # Giao diện XML
@@ -114,10 +123,10 @@ Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiế
 
 ~~~text
 com.ute.co_study/
-├── MainActivity.kt
 └── feature/
     ├── learner/                   # Người dùng
     │   ├── ui/
+    │   │   └── discovery/StudyPartnerListActivity.kt
     │   ├── viewmodel/
     │   ├── model/
     │   └── data/repository/
@@ -135,12 +144,14 @@ com.ute.co_study/
 
 | Package | Trách nhiệm |
 | --- | --- |
-| `ui/` | Fragment, adapter và mã View Binding. UI gửi thao tác tới ViewModel và hiển thị trạng thái nhận được. |
+| `ui/` | Activity, adapter và mã View Binding. UI gửi thao tác tới ViewModel và hiển thị trạng thái nhận được. |
 | `viewmodel/` | ViewModel và lớp `UiState` của từng màn hình. ViewModel gọi repository và công bố trạng thái để UI quan sát theo vòng đời. |
 | `model/` | Mô hình nghiệp vụ riêng của vai trò, dùng Kotlin thuần. |
 | `data/repository/` | Repository cung cấp dữ liệu và tập trung các thao tác ghi. Khi có nguồn dữ liệu, đặt mã truy cập dưới `data/local/` hoặc `data/remote/`. |
 
 Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và `viewmodel/`. Ví dụ hồ sơ người dùng đặt ở `learner/ui/profile/` và `learner/viewmodel/profile/`. Dùng `moderation/ui/report/` cho xử lý báo cáo và `admin/ui/account/` cho quản lý tài khoản.
+
+Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Hiện ứng dụng khởi động trực tiếp vào `StudyPartnerListActivity` với layout `activity_study_partner_list.xml`. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
 
 Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
 
@@ -152,9 +163,9 @@ Dùng từ tiếng Anh ngắn, mô tả chức năng hoặc nội dung của t�
 
 | Loại tệp | Cách đặt tên | Ví dụ |
 | --- | --- | --- |
-| Kotlin (`.kt`) | `PascalCase`. Nếu tệp có một lớp hoặc interface chính, lấy tên đó làm tên tệp. Thêm hậu tố thể hiện trách nhiệm khi cần. | `ProfileFragment.kt`, `ProfileViewModel.kt`, `ProfileUiState.kt`, `ReportRepository.kt`, `StudySession.kt` |
-| Kiểm thử Kotlin (`.kt`) | Thêm `Test` vào tên lớp được kiểm thử. Dùng cùng package với mã được kiểm thử và đặt tệp trong `src/test/` hoặc `src/androidTest/`. | `ProfileViewModelTest.kt`, `ProfileFragmentTest.kt` |
-| Layout Android (`res/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_`, `fragment_`, `dialog_` hoặc `item_`. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_main.xml`, `fragment_learner_profile.xml`, `fragment_admin_profile.xml`, `item_study_session.xml` |
+| Kotlin (`.kt`) | `PascalCase`. Nếu tệp có một lớp hoặc interface chính, lấy tên đó làm tên tệp. Thêm hậu tố thể hiện trách nhiệm khi cần. | `ProfileActivity.kt`, `ProfileViewModel.kt`, `ProfileUiState.kt`, `ReportRepository.kt`, `StudySession.kt` |
+| Kiểm thử Kotlin (`.kt`) | Thêm `Test` vào tên lớp được kiểm thử. Dùng cùng package với mã được kiểm thử và đặt tệp trong `src/test/` hoặc `src/androidTest/`. | `ProfileViewModelTest.kt`, `ProfileActivityTest.kt` |
+| Layout Android (`res/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_` cho màn hình, `dialog_` cho hộp thoại và `item_` cho mục trong danh sách. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_study_partner_list.xml`, `activity_admin_profile.xml`, `item_study_session.xml` |
 | Tài nguyên Android khác (`res/`) | `snake_case`. Dùng `ic_` cho biểu tượng, `bg_` cho nền và `img_` cho ảnh minh họa. | `ic_calendar.xml`, `bg_profile_card.xml`, `img_study_group.webp` |
 | Tài liệu và ảnh xuất từ Figma | Dùng chữ thường và dấu gạch nối. Với ảnh Figma, giữ mã màn hình ở đầu nếu mã đó được dùng để đối chiếu luồng. | `setup-guide.md`, `u01-login.png`, `chat-03-propose-session.png`, `m02-reports.png` |
 
