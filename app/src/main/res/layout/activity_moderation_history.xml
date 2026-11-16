@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_study_surface"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        style="@style/Widget.CoStudy.Auth.Header"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/screen_title"
+            style="@style/TextAppearance.CoStudy.Title"
+            android:text="@string/mod_history_title" />
+
+        <TextView
+            android:id="@+id/screen_subtitle"
+            style="@style/TextAppearance.CoStudy.Subtitle"
+            android:layout_marginTop="@dimen/co_study_space_4"
+            android:text="@string/mod_history_subtitle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/co_study_space_16">
+
+            <!-- Card 1: CS-202609-018 -->
+            <LinearLayout
+                android:id="@+id/history_item_018"
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_co_study_card"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CS-202609-018 · Đã giải quyết"
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Title"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="Đã cảnh báo &amp; ẩn nội dung"
+                    android:textSize="18sp" />
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:layout_marginTop="@dimen/co_study_space_4"
+                    android:lineSpacingExtra="3dp"
+                    android:text="ND-018 · Quảng cáo lặp lại\n30/09/2026 · 14:20 · KDV-01"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Card 2: Mint notice -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Card"
+                android:background="@drawable/bg_auth_notice">
+
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Body"
+                    android:text="Mỗi bản ghi gồm bằng chứng, lý do, người xử lý, thời gian và biện pháp đã áp dụng."
+                    android:textColor="@color/co_mint_dark"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/moderation_navigation"
+        layout="@layout/view_moderation_navigation" />
+</LinearLayout>
