@@ -9,7 +9,11 @@ import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityExchangeConnectedBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
+import com.ute.co_study.feature.learner.model.SamplePartners
+import com.ute.co_study.feature.learner.model.StudyConversation
 import com.ute.co_study.feature.learner.ui.study.ConversationActivity
+import com.ute.co_study.feature.learner.ui.study.arguments
+import com.ute.co_study.feature.learner.ui.study.studyConversation
 
 class ExchangeConnectedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +23,15 @@ class ExchangeConnectedActivity : AppCompatActivity() {
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.connectionTitle, true)
+
+        val conversation = intent.studyConversation()
+        val partner = SamplePartners.find(conversation) ?: return finish()
+        binding.partnerInitials.text = conversation.initials
+        binding.partnerName.text = conversation.title
+        binding.partnerSubtitle.text = conversation.subtitle
+        binding.connectionTitle.text = getString(R.string.exchange_connected_confirmation, conversation.title)
+        binding.partnerSkill.text = getString(R.string.exchange_connected_partner_skill, conversation.title, partner.shares)
+        binding.messageButton.text = getString(R.string.exchange_connected_message, conversation.title)
 
         val sharedSkill = intent.getStringExtra(EXTRA_SHARED_SKILL).orEmpty()
         binding.sharedSkill.text = getString(
@@ -31,13 +44,17 @@ class ExchangeConnectedActivity : AppCompatActivity() {
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(home)
         }
-        binding.messageButton.setOnClickListener { startActivity(Intent(this, ConversationActivity::class.java)) }
+        binding.messageButton.setOnClickListener {
+            startActivity(Intent(this, ConversationActivity::class.java).putExtras(conversation.arguments()))
+        }
     }
 
     companion object {
         private const val EXTRA_SHARED_SKILL = "shared_skill"
 
-        internal fun createIntent(context: Context, sharedSkill: String): Intent =
-            Intent(context, ExchangeConnectedActivity::class.java).putExtra(EXTRA_SHARED_SKILL, sharedSkill)
+        internal fun createIntent(context: Context, conversation: StudyConversation, sharedSkill: String): Intent =
+            Intent(context, ExchangeConnectedActivity::class.java)
+                .putExtras(conversation.arguments())
+                .putExtra(EXTRA_SHARED_SKILL, sharedSkill)
     }
 }

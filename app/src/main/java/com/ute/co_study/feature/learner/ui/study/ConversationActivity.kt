@@ -1,8 +1,6 @@
 package com.ute.co_study.feature.learner.ui.study
 
 import com.ute.co_study.R
-import com.ute.co_study.feature.learner.model.StudyConversation
-import android.os.Bundle
 import android.widget.TextView
 
 class ConversationActivity : StudyActivity(R.layout.activity_conversation) {
@@ -17,9 +15,9 @@ class ConversationActivity : StudyActivity(R.layout.activity_conversation) {
         study.sessions().filter { it.partner == conversation.title }.asReversed().forEach { item ->
             row(item.subject, "${item.status.label} · ${item.slot.display}") { openDetails(item) }
         }
-        if (conversation != StudyConversation.ANDROID) {
+        if (!conversation.isGroup) {
             button("Đề xuất lịch học", parent = body) {
-                open(ProposeStudyActivity::class.java, Bundle().apply { putString(StudyActivity.CONVERSATION, conversation.name) })
+                open(ProposeStudyActivity::class.java, conversation.arguments())
             }
         }
         val composer = input("Tin nhắn", hint = "Nhập tin nhắn…", multiline = true, parent = actions)

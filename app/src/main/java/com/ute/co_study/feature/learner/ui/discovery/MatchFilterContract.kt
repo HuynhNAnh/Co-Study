@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContract
-import com.ute.co_study.R
 import com.ute.co_study.feature.learner.model.MatchFilters
 import com.ute.co_study.feature.learner.model.MatchLevel
 import com.ute.co_study.feature.learner.model.StudyDay
@@ -28,11 +27,11 @@ internal class MatchFilterContract : ActivityResultContract<MatchFilters, MatchF
     }
 }
 
-internal fun Context.defaultMatchFilters() = MatchFilters(
-    skill = getString(R.string.discovery_search_hint),
-    level = MatchLevel.BEGINNER_TO_INTERMEDIATE,
-    mode = StudyMode.ONLINE,
-    timeSlot = WeeklyTimeSlot(StudyDay.THURSDAY, 19 * 60, 20 * 60)
+internal fun defaultMatchFilters() = MatchFilters(
+    skill = "",
+    level = MatchLevel.ANY,
+    mode = StudyMode.ANY,
+    timeSlot = null
 )
 
 internal fun MatchFilters.toBundle() = Bundle().apply {

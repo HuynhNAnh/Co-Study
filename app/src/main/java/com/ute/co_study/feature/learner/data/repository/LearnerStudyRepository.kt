@@ -3,6 +3,7 @@ package com.ute.co_study.feature.learner.data.repository
 import android.content.Context
 import com.ute.co_study.feature.learner.model.LearningBadge
 import com.ute.co_study.feature.learner.model.LearningProgress
+import com.ute.co_study.feature.learner.model.SampleStudySchedule
 import com.ute.co_study.shared.data.CommunityRulesRepository
 import com.ute.co_study.shared.model.StudyRecognitionPolicy
 import com.ute.co_study.feature.learner.model.StudyConversation
@@ -33,10 +34,13 @@ internal class LearnerStudyRepository(context: Context, email: String) {
     }
 
     fun sessions(): List<StudySession> {
-        val saved = store.getString("$account:sessions", null)
-        if (saved == null) return listOf(sampleSession)
+        val saved = store.getString("$account:sessions", "[]") ?: "[]"
         val rows = JSONArray(saved)
-        return List(rows.length()) { index -> rows.getJSONObject(index).toSession() }
+        val sessions = List(rows.length()) { index -> rows.getJSONObject(index).toSession() }
+        val presentIds = sessions.mapTo(mutableSetOf()) { it.id }
+        val missing = SampleStudySchedule.missingFrom(presentIds, System.currentTimeMillis())
+        if (missing.isEmpty()) return sessions
+        return (sessions + missing).also(::save)
     }
 
     fun find(id: Long): StudySession? = sessions().firstOrNull { it.id == id }
@@ -141,10 +145,5 @@ internal class LearnerStudyRepository(context: Context, email: String) {
 
     private companion object {
         val confirmed = setOf(StudyStatus.CONFIRMED, StudyStatus.RESCHEDULED)
-        val sampleSession = StudySession(
-            1L, "Minh Anh", "Kotlin Activity & Intent",
-            StudySlot("08/10/2026", "19:00", "20:00"), "Trực tuyến · Google Meet",
-            StudyStatus.CONFIRMED
-        )
     }
 }

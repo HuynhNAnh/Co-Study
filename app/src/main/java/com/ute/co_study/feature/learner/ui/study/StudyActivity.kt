@@ -55,23 +55,21 @@ abstract class StudyActivity(layout: Int) : LearnerActivity(layout) {
 
     internal fun openDetails(item: StudySession) = openSession(destination(item), item.id)
 
-    internal fun conversation(): StudyConversation =
-        StudyConversation.entries.find { it.name == intent.getStringExtra(CONVERSATION) }
-            ?: StudyConversation.MINH_ANH
+    internal fun conversation(): StudyConversation = intent.studyConversation()
 
     internal fun openConversation(conversation: StudyConversation) =
-        open(ConversationActivity::class.java, Bundle().apply { putString(CONVERSATION, conversation.name) })
+        open(ConversationActivity::class.java, conversation.arguments())
 
     internal fun openConversationFor(item: StudySession) =
-        openConversation(StudyConversation.entries.firstOrNull { it.title == item.partner } ?: StudyConversation.MINH_ANH)
+        openConversation(StudyConversation.forPartner(item.partner) ?: StudyConversation.MINH_ANH)
 
     internal fun sessionCard(item: StudySession) {
         card(item.subject, "${item.status.label}\n\nNGÀY HỌC\n${item.slot.date}\n\nTHỜI GIAN\n${item.slot.start} – ${item.slot.end} · ${item.slot.minutes} phút\n\nHÌNH THỨC\n${item.mode}")
     }
 
     internal fun partnerCard(name: String) {
-        val partner = StudyConversation.entries.firstOrNull { it.title == name } ?: StudyConversation.MINH_ANH
-        person(partner.initials, partner.title, partner.subtitle)
+        val partner = StudyConversation.forPartner(name)
+        person(partner?.initials ?: name.take(2).uppercase(), name, partner?.subtitle ?: "Bạn học Co-Study")
     }
 
     internal fun slotFields(slot: StudySlot): SlotFields = SlotFields(
@@ -114,6 +112,5 @@ abstract class StudyActivity(layout: Int) : LearnerActivity(layout) {
         }
 
         const val SESSION_ID = "study_session_id"
-        const val CONVERSATION = "study_conversation"
     }
 }

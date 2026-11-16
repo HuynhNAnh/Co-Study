@@ -3,13 +3,16 @@ package com.ute.co_study.feature.learner.ui.exchange
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.ute.co_study.feature.learner.data.repository.ExchangeQuota
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityExchangeRequestBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.learner.data.repository.ExchangeQuota
+import com.ute.co_study.feature.learner.model.SamplePartners
+import com.ute.co_study.feature.learner.ui.study.studyConversation
 
 class ExchangeRequestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,15 @@ class ExchangeRequestActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.partnerName, true)
 
+        val conversation = intent.studyConversation()
+        val partner = SamplePartners.find(conversation) ?: return finish()
+        binding.partnerInitials.text = conversation.initials
+        binding.partnerName.text = conversation.title
+        binding.partnerSubtitle.text = conversation.subtitle
+        binding.shareInput.hint = partner.wants
+        binding.learnInput.hint = partner.shares
+        binding.messageInput.hint = getString(R.string.exchange_request_message_hint, conversation.title)
+
         binding.backButton.setOnClickListener { finish() }
         val quota = ExchangeQuota(this)
         binding.sendButton.setOnClickListener {
@@ -29,6 +41,7 @@ class ExchangeRequestActivity : AppCompatActivity() {
             }
             val pending = ExchangePendingActivity.createIntent(
                 this,
+                conversation,
                 sharedSkill = binding.shareInput.text.toString().trim(),
                 learningSkill = binding.learnInput.text.toString().trim(),
                 message = binding.messageInput.text.toString().trim()

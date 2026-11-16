@@ -15,6 +15,8 @@ import com.ute.co_study.feature.learner.ui.study.MessagesActivity
 import com.ute.co_study.feature.learner.ui.study.ScheduleActivity
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityDiscoveryBinding
+import com.ute.co_study.databinding.ItemSamplePartnerBinding
+import com.ute.co_study.feature.learner.ui.study.arguments
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.model.MatchFilters
 import com.ute.co_study.feature.learner.model.MatchLevel
@@ -37,7 +39,6 @@ class DiscoveryActivity : AppCompatActivity() {
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setScreenReaderFocusable(binding.filterButton, true)
-        ViewCompat.setScreenReaderFocusable(binding.partnerCard, true)
 
         val editFilters = registerForActivityResult(MatchFilterContract()) { filters ->
             if (filters != null) {
@@ -65,12 +66,6 @@ class DiscoveryActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
         }
-        binding.partnerCard.setOnClickListener {
-            WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
-            val profile = Intent(this, PartnerProfileActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(profile)
-        }
         navigation.messagesTab.setOnClickListener { startActivity(Intent(this, MessagesActivity::class.java)) }
         navigation.scheduleTab.setOnClickListener { startActivity(Intent(this, ScheduleActivity::class.java)) }
         navigation.profileTab.setOnClickListener { startActivity(Intent(this, LearnerProfileActivity::class.java)) }
@@ -91,9 +86,23 @@ class DiscoveryActivity : AppCompatActivity() {
         ).joinToString(getString(R.string.match_filter_separator))
             .ifEmpty { getString(R.string.match_filter_none) }
 
-        val hasMatch = viewModel.matchesSample(binding.searchInput.text.toString(), filters)
-        binding.partnerCard.isVisible = hasMatch
-        binding.emptyResults.isVisible = !hasMatch
+        val partners = viewModel.findPartners(binding.searchInput.text.toString(), filters)
+        binding.partnerResults.removeAllViews()
+        binding.emptyResults.isVisible = partners.isEmpty()
+        partners.forEach { partner ->
+            val item = ItemSamplePartnerBinding.inflate(layoutInflater, binding.partnerResults, false)
+            item.partnerInitials.text = partner.conversation.initials
+            item.partnerName.text = partner.conversation.title
+            item.partnerSkills.text = getString(R.string.discovery_partner_skills, partner.shares, partner.wants)
+            item.partnerMatch.text = getString(R.string.discovery_partner_match, partner.matchScore, partner.trustScore)
+            item.partnerAvailability.text = partner.availability.joinToString("\n") { timeSlotLabel(it) }
+            ViewCompat.setScreenReaderFocusable(item.root, true)
+            item.root.setOnClickListener {
+                WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
+                startActivity(Intent(this, PartnerProfileActivity::class.java).putExtras(partner.conversation.arguments()))
+            }
+            binding.partnerResults.addView(item.root)
+        }
     }
 
     private companion object {

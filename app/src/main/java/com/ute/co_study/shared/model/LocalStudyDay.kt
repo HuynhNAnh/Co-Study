@@ -1,7 +1,7 @@
 package com.ute.co_study.shared.model
 
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
@@ -11,7 +11,13 @@ internal object LocalStudyDay {
 
     fun index(timestamp: Long): Long = Math.floorDiv(timestamp + zone.getOffset(timestamp), MILLIS_PER_DAY)
 
-    fun format(timestamp: Long): String = SimpleDateFormat("dd/MM/yyyy", Locale.US).apply {
-        timeZone = zone
-    }.format(Date(timestamp))
+    fun format(timestamp: Long, daysAfter: Int = 0): String {
+        val calendar = Calendar.getInstance(zone).apply {
+            timeInMillis = timestamp
+            add(Calendar.DAY_OF_MONTH, daysAfter)
+        }
+        return SimpleDateFormat("dd/MM/yyyy", Locale.US).apply {
+            timeZone = zone
+        }.format(calendar.time)
+    }
 }

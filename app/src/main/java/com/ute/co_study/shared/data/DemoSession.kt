@@ -17,7 +17,8 @@ internal class DemoSession(context: Context) {
         get() = DemoRole.entries.find { it.name == preferences.getString("role", null) }
     val email: String get() = preferences.getString("email", "").orEmpty()
     val name: String get() = preferences.getString("name", "").orEmpty()
-    val connected: Boolean get() = learners.getBoolean(accountKey(email, "minh_anh"), false)
+    fun isConnected(partnerKey: String): Boolean =
+        learners.getBoolean(accountKey(email, partnerKey.lowercase(Locale.ROOT)), false)
 
     fun start(role: DemoRole, email: String, name: String) {
         if (role == DemoRole.LEARNER) {
@@ -38,8 +39,9 @@ internal class DemoSession(context: Context) {
         preferences.edit().putString("name", name).apply()
     }
 
-    fun connectWithMinhAnh() {
-        if (role == DemoRole.LEARNER) learners.edit().putBoolean(accountKey(email, "minh_anh"), true).apply()
+    fun connectWith(partnerKey: String) {
+        if (role != DemoRole.LEARNER) return
+        learners.edit().putBoolean(accountKey(email, partnerKey.lowercase(Locale.ROOT)), true).apply()
     }
 
     fun end() {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.ute.co_study.R
 import com.ute.co_study.feature.learner.model.StudyStatus
 import com.ute.co_study.feature.learner.ui.study.StudyActivity
+import com.ute.co_study.feature.learner.ui.study.studyConversation
 
 class ReportPartnerActivity : ProfileActivity(R.layout.activity_report_partner) {
     override fun render() {
@@ -14,8 +15,9 @@ class ReportPartnerActivity : ProfileActivity(R.layout.activity_report_partner) 
             finish()
             return
         }
-        val subject = studyItem?.partner ?: "Minh Anh"
-        if (studyItem == null) person("MA", subject, "Hồ sơ được báo cáo")
+        val partner = intent.studyConversation()
+        val subject = studyItem?.partner ?: partner.title
+        if (studyItem == null) person(partner.initials, subject, "Hồ sơ được báo cáo")
         else info("Buổi học được phản ánh", "${studyItem.subject} · ${studyItem.slot.display} · $subject")
         val reasons = if (studyItem != null) listOf("Ghi nhận buổi học", "Thời lượng không chính xác", "Kết quả xác nhận không chính xác")
             else listOf("Thông tin hồ sơ không phù hợp", "Spam hoặc quảng cáo", "Hành vi gây quấy rối", "Lý do khác")

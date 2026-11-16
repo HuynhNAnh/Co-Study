@@ -3,16 +3,18 @@ package com.ute.co_study.feature.learner.ui.profile
 import com.ute.co_study.R
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 import android.os.Bundle
+import com.ute.co_study.feature.learner.model.SamplePartners
 import com.ute.co_study.feature.learner.ui.study.ConversationActivity
+import com.ute.co_study.feature.learner.ui.study.arguments
 import com.ute.co_study.feature.learner.ui.study.StudyActivity
 
 class NotificationsActivity : ProfileActivity(R.layout.activity_learner_notifications) {
     override val refreshOnReturn = true
 
     override fun render() {
-        if (session.connected) {
-            row("Minh Anh đã đồng ý kết nối", "Bạn có thể bắt đầu nhắn tin và đặt lịch.") {
-                open(ConversationActivity::class.java)
+        SamplePartners.all.map { it.conversation }.filter { session.isConnected(it.name) }.forEach { partner ->
+            row("${partner.title} đã đồng ý kết nối", "Bạn có thể bắt đầu nhắn tin và đặt lịch.") {
+                open(ConversationActivity::class.java, partner.arguments())
             }
         }
         study.sessions().asReversed().forEach { item ->

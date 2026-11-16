@@ -9,7 +9,10 @@ import com.ute.co_study.R
 import com.ute.co_study.shared.data.DemoSession
 import com.ute.co_study.databinding.ActivityExchangePendingBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
+import com.ute.co_study.feature.learner.model.StudyConversation
 import com.ute.co_study.feature.learner.ui.discovery.DiscoveryActivity
+import com.ute.co_study.feature.learner.ui.study.arguments
+import com.ute.co_study.feature.learner.ui.study.studyConversation
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 
 class ExchangePendingActivity : AppCompatActivity() {
@@ -20,6 +23,13 @@ class ExchangePendingActivity : AppCompatActivity() {
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.partnerName, true)
+
+        val conversation = intent.studyConversation()
+        binding.partnerInitials.text = conversation.initials
+        binding.partnerName.text = conversation.title
+        binding.partnerSubtitle.text = conversation.subtitle
+        binding.simulateAcceptanceButton.text =
+            getString(R.string.exchange_pending_simulate_acceptance, conversation.title)
 
         val sharedSkill = intent.getStringExtra(EXTRA_SHARED_SKILL).orEmpty()
         val learningSkill = intent.getStringExtra(EXTRA_LEARNING_SKILL).orEmpty()
@@ -35,8 +45,8 @@ class ExchangePendingActivity : AppCompatActivity() {
             .ifBlank { getString(R.string.exchange_pending_no_message) }
 
         binding.simulateAcceptanceButton.setOnClickListener {
-            DemoSession(this).connectWithMinhAnh()
-            val connected = ExchangeConnectedActivity.createIntent(this, sharedSkill)
+            DemoSession(this).connectWith(conversation.name)
+            val connected = ExchangeConnectedActivity.createIntent(this, conversation, sharedSkill)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(connected)
             finish()
@@ -59,10 +69,12 @@ class ExchangePendingActivity : AppCompatActivity() {
 
         internal fun createIntent(
             context: Context,
+            conversation: StudyConversation,
             sharedSkill: String,
             learningSkill: String,
             message: String
         ): Intent = Intent(context, ExchangePendingActivity::class.java)
+            .putExtras(conversation.arguments())
             .putExtra(EXTRA_SHARED_SKILL, sharedSkill)
             .putExtra(EXTRA_LEARNING_SKILL, learningSkill)
             .putExtra(EXTRA_MESSAGE, message)

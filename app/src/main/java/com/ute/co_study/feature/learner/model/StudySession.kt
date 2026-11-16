@@ -1,6 +1,7 @@
 package com.ute.co_study.feature.learner.model
 
 import com.ute.co_study.shared.model.StudyRecognitionPolicy
+import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -48,23 +49,26 @@ internal data class StudySession(
 internal data class StudySlot(val date: String, val start: String, val end: String) {
     val display: String get() = "$date · $start – $end"
     val minutes: Int get() = toMinutes(end) - toMinutes(start)
+    val startsAt: Long
+        get() = dateFormat("dd/MM/yyyy HH:mm").parse("$date $start", ParsePosition(0))?.time ?: Long.MAX_VALUE
 
     companion object {
         private val datePattern = Regex("""\d{2}/\d{2}/\d{4}""")
         private val timePattern = Regex("""([01]\d|2[0-3]):[0-5]\d""")
 
         fun parse(date: String, start: String, end: String): StudySlot? {
-            val format = SimpleDateFormat("dd/MM/yyyy", Locale.US).apply {
-                isLenient = false
-                timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh")
-            }
             if (!datePattern.matches(date) || !timePattern.matches(start) || !timePattern.matches(end)) return null
             try {
-                format.parse(date)
+                dateFormat("dd/MM/yyyy").parse(date)
             } catch (_: java.text.ParseException) {
                 return null
             }
             return StudySlot(date, start, end).takeIf { it.minutes > 0 }
+        }
+
+        private fun dateFormat(pattern: String) = SimpleDateFormat(pattern, Locale.US).apply {
+            isLenient = false
+            timeZone = TimeZone.getTimeZone("Asia/Ho_Chi_Minh")
         }
 
         private fun toMinutes(time: String): Int =

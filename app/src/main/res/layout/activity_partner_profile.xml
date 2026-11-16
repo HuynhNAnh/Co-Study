@@ -74,7 +74,7 @@
                     android:background="@drawable/bg_co_study_mint_circle"
                     android:gravity="center"
                     android:importantForAccessibility="no"
-                    android:text="@string/home_suggested_initials"
+                    android:id="@+id/partner_initials"
                     android:textColor="@color/co_study_green"
                     android:textSize="18sp" />
 
@@ -94,7 +94,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Subtitle"
                         android:layout_marginTop="@dimen/co_study_space_4"
-                        android:text="@string/partner_profile_bio" />
+                        android:id="@+id/partner_bio" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -111,7 +111,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
                         android:gravity="center"
-                        android:text="@string/partner_profile_trust_value"
+                        android:id="@+id/partner_trust"
                         android:textColor="@color/co_study_green"
                         android:textSize="18sp" />
 
@@ -130,7 +130,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
                         android:gravity="center"
-                        android:text="@string/partner_profile_rating_value"
+                        android:id="@+id/partner_rating"
                         android:textColor="@color/co_study_green"
                         android:textSize="18sp" />
 
@@ -149,7 +149,7 @@
                     <TextView
                         style="@style/TextAppearance.CoStudy.Title"
                         android:gravity="center"
-                        android:text="@string/partner_profile_completed_value"
+                        android:id="@+id/partner_completed"
                         android:textColor="@color/co_study_green"
                         android:textSize="18sp" />
 
@@ -171,7 +171,7 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_16"
-                    android:text="@string/partner_profile_share_value" />
+                    android:id="@+id/partner_shares" />
             </LinearLayout>
 
             <LinearLayout style="@style/Widget.CoStudy.PartnerProfile.Skill">
@@ -183,7 +183,7 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_16"
-                    android:text="@string/partner_profile_learn_value" />
+                    android:id="@+id/partner_wants" />
             </LinearLayout>
 
             <TextView
@@ -195,7 +195,7 @@
                 android:gravity="center_vertical"
                 android:minHeight="68dp"
                 android:padding="@dimen/co_study_space_16"
-                android:text="@string/partner_profile_match"
+                android:id="@+id/partner_match"
                 android:textColor="@color/co_study_green" />
 
             <Space
