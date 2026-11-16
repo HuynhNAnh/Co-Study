@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/workflow_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/co_study_space_24"
+            android:paddingVertical="@dimen/co_study_space_20" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/workflow_footer"
+        style="@style/Widget.CoStudy.Auth.Actions"
+        android:paddingTop="@dimen/co_study_space_8" />
+</merge>
