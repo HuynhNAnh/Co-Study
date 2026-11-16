@@ -1,7 +1,6 @@
 package com.ute.co_study.feature.learner.data.repository
 
 import android.content.Context
-import androidx.core.content.edit
 import com.ute.co_study.feature.learner.model.ProfileSetupDraft
 import org.json.JSONException
 import org.json.JSONObject
@@ -24,13 +23,13 @@ internal class ProfileSetupRepository(context: Context) {
         )
     }
 
-    fun save(email: String, draft: ProfileSetupDraft) {
+    fun save(email: String, draft: ProfileSetupDraft): Boolean {
         val json = JSONObject()
             .put(KEY_SKILLS_TO_SHARE, draft.skillsToShare)
             .put(KEY_SKILLS_TO_LEARN, draft.skillsToLearn)
             .put(KEY_LEARNING_GOAL, draft.learningGoal)
             .put(KEY_AVAILABILITY, draft.availability)
-        drafts.edit { putString(email, json.toString()) }
+        return drafts.edit().putString(email, json.toString()).commit()
     }
 
     private companion object {

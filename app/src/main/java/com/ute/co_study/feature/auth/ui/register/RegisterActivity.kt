@@ -50,9 +50,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun submit(binding: ActivityRegisterBinding) {
+        val name = binding.nameInput.text.toString()
         val email = binding.emailInput.text.toString()
         val state = viewModel.validate(
-            binding.nameInput.text.toString(),
+            name,
             email,
             binding.passwordInput.text.toString(),
             binding.confirmationInput.text.toString()
@@ -68,7 +69,7 @@ class RegisterActivity : AppCompatActivity() {
         if (firstInvalidField != null) {
             firstInvalidField.requestFocus()
         } else {
-            startActivity(ProfileSetupActivity.createIntent(this, email))
+            startActivity(ProfileSetupActivity.createIntent(this, email, name))
         }
     }
 
