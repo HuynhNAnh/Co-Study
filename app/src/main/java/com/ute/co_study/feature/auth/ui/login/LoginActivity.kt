@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
+import com.ute.co_study.feature.learner.data.repository.ProfileSetupRepository
+import com.ute.co_study.feature.learner.ui.home.HomeActivity
+import com.ute.co_study.shared.data.DemoSession
 import com.ute.co_study.databinding.ActivityLoginBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.auth.ui.register.RegisterActivity
@@ -45,6 +48,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun openLocalProfile(email: String) {
+        val session = DemoSession(this)
+        val savedEmail = session.learnerEmail(email) ?: email.takeIf { ProfileSetupRepository(this).hasDraft(it) }
+        if (savedEmail == null) {
+            Toast.makeText(this, R.string.auth_login_unavailable, Toast.LENGTH_LONG).show()
+            return
+        }
+        val name = session.learnerName(savedEmail).ifBlank { savedEmail.substringBefore('@') }
+        startActivity(HomeActivity.createIntent(this, savedEmail, name)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+    }
+
     private fun submit(binding: ActivityLoginBinding) {
         val state = viewModel.validate(
             binding.emailInput.text.toString(),
@@ -55,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
         when {
             state.emailError != null -> binding.emailInput.requestFocus()
             state.passwordError != null -> binding.passwordInput.requestFocus()
-            else -> Toast.makeText(this, R.string.auth_login_unavailable, Toast.LENGTH_LONG).show()
+            else -> openLocalProfile(binding.emailInput.text.toString().trim())
         }
     }
 }

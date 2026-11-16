@@ -19,7 +19,7 @@ class ConversationActivity : StudyActivity(R.layout.activity_conversation) {
         }
         if (conversation != StudyConversation.ANDROID) {
             button("Đề xuất lịch học", parent = body) {
-                open(ProposeStudyActivity::class.java, Bundle().apply { putString(CONVERSATION, conversation.name) })
+                open(ProposeStudyActivity::class.java, Bundle().apply { putString(StudyActivity.CONVERSATION, conversation.name) })
             }
         }
         val composer = input("Tin nhắn", hint = "Nhập tin nhắn…", multiline = true, parent = actions)

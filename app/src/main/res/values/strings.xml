@@ -12,12 +12,12 @@
     <string name="welcome_trust_description">Xem đánh giá và uy tín của bạn học.</string>
     <string name="auth_login">Đăng nhập</string>
     <string name="auth_register">Tạo tài khoản</string>
-    <string name="auth_login_unavailable">Tính năng đăng nhập đang được phát triển.</string>
+    <string name="auth_login_unavailable">Chưa có hồ sơ cho email này trên thiết bị.</string>
     <string name="login_title">Chào mừng trở lại</string>
     <string name="login_subtitle">Đăng nhập để tiếp tục cùng Co-Study</string>
     <string name="auth_back">Quay lại</string>
     <string name="login_intro_title">Hôm nay bạn muốn học gì?</string>
-    <string name="login_intro_description">Một kết nối mới có thể bắt đầu từ đây.</string>
+    <string name="login_intro_description">Phiên trình diễn mở hồ sơ đã lưu trên thiết bị theo email. Mật khẩu chỉ dùng để điền biểu mẫu.</string>
     <string name="auth_email">EMAIL</string>
     <string name="auth_password">MẬT KHẨU</string>
     <string name="login_forgot_password">Quên mật khẩu?</string>

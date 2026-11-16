@@ -21,7 +21,7 @@ import com.ute.co_study.feature.learner.model.MatchLevel
 import com.ute.co_study.feature.learner.model.StudyMode
 import com.ute.co_study.feature.learner.ui.markCurrentLearnerTab
 import com.ute.co_study.feature.learner.ui.profile.PartnerProfileActivity
-import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
+import com.ute.co_study.feature.learner.ui.profile.LearnerProfileActivity
 import com.ute.co_study.feature.learner.viewmodel.discovery.DiscoveryViewModel
 
 class DiscoveryActivity : AppCompatActivity() {
@@ -73,7 +73,7 @@ class DiscoveryActivity : AppCompatActivity() {
         }
         navigation.messagesTab.setOnClickListener { startActivity(Intent(this, MessagesActivity::class.java)) }
         navigation.scheduleTab.setOnClickListener { startActivity(Intent(this, ScheduleActivity::class.java)) }
-        showLearnerFeatureUnavailable(navigation.profileTab)
+        navigation.profileTab.setOnClickListener { startActivity(Intent(this, LearnerProfileActivity::class.java)) }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

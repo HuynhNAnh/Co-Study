@@ -16,11 +16,14 @@ import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.model.ProfileSetupDraft
 import com.ute.co_study.feature.learner.ui.discovery.DiscoveryActivity
 import com.ute.co_study.feature.learner.ui.markCurrentLearnerTab
-import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
+import com.ute.co_study.feature.learner.ui.profile.LearnerProfileActivity
+import com.ute.co_study.feature.learner.ui.profile.NotificationsActivity
 import com.ute.co_study.feature.learner.viewmodel.home.HomeViewModel
 
 class HomeActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModels()
+
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,20 +40,11 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
-        val binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         ViewCompat.setAccessibilityHeading(binding.suggestionsTitle, true)
-
-        val name = session.name.trim()
-            .takeLastWhile { !it.isWhitespace() }
-        binding.screenTitle.text = if (name.isEmpty()) {
-            getString(R.string.home_greeting)
-        } else {
-            getString(R.string.home_greeting_named, name)
-        }
-        binding.heroDescription.text = heroDescription(viewModel.loadProfile(email))
 
         val navigation = binding.learnerNavigation
         navigation.homeTab.markCurrentLearnerTab()
@@ -58,10 +52,18 @@ class HomeActivity : AppCompatActivity() {
         navigation.matchTab.setOnClickListener { openDiscovery() }
         navigation.messagesTab.setOnClickListener { startActivity(Intent(this, MessagesActivity::class.java)) }
         navigation.scheduleTab.setOnClickListener { startActivity(Intent(this, ScheduleActivity::class.java)) }
-        showLearnerFeatureUnavailable(
-            binding.notificationsButton,
-            navigation.profileTab
-        )
+        binding.notificationsButton.setOnClickListener { startActivity(Intent(this, NotificationsActivity::class.java)) }
+        navigation.profileTab.setOnClickListener { startActivity(Intent(this, LearnerProfileActivity::class.java)) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!::binding.isInitialized) return
+        val session = DemoSession(this)
+        val name = session.name.trim().takeLastWhile { !it.isWhitespace() }
+        binding.screenTitle.text = if (name.isEmpty()) getString(R.string.home_greeting)
+            else getString(R.string.home_greeting_named, name)
+        binding.heroDescription.text = heroDescription(viewModel.loadProfile(session.email))
     }
 
     private fun openDiscovery() {
