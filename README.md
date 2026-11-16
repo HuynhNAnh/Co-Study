@@ -86,7 +86,8 @@ Co-Study/
         ├── main/
         │   ├── AndroidManifest.xml
         │   ├── java/com/ute/co_study/
-        │   │   └── MainActivity.kt
+        │   │   ├── MainActivity.kt
+        │   │   └── feature/        # Package MVVM theo vai trò
         │   ├── res/
         │   │   ├── layout/         # Giao diện XML
         │   │   ├── drawable/       # Hình và nền dùng trong ứng dụng
@@ -107,48 +108,57 @@ Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiế
 | [02_Kiem_duyet_vien](figma/02_Kiem_duyet_vien/) | 21 ảnh giao diện kiểm duyệt và quy trình xử lý báo cáo |
 | [03_Admin](figma/03_Admin/) | 25 ảnh giao diện quản trị hệ thống |
 
-### Cây package Android dự kiến
+### Cấu trúc MVVM theo vai trò
 
-Giữ một module Gradle `:app` và đặt `MainActivity.kt` tại package gốc `com.ute.co_study`. Tạo các package dưới đây khi triển khai chức năng tương ứng.
+Ứng dụng dùng một module Gradle `:app`. Ba vai trò có cùng cấu trúc package dưới `app/src/main/java/com/ute/co_study/`. Các thư mục chứa `.gitkeep` là vị trí dành cho mã sẽ được thêm khi triển khai từng chức năng.
 
-```text
+~~~text
 com.ute.co_study/
 ├── MainActivity.kt
-├── navigation/                    # Điều hướng và luồng theo vai trò
-├── feature/
-│   ├── auth/                      # Đăng nhập, đăng ký, đặt lại mật khẩu
-│   ├── learner/
-│   │   ├── home/                  # Trang chủ người học
-│   │   ├── profile/               # Hồ sơ, kỹ năng và mục tiêu học tập
-│   │   ├── matching/              # Tìm bạn học và gửi đề nghị kết nối
-│   │   ├── chat/                  # Trò chuyện
-│   │   ├── session/               # Lịch, xác nhận buổi học và đánh giá
-│   │   ├── notification/          # Thông báo
-│   │   ├── report/                # Gửi báo cáo vi phạm
-│   │   ├── streak/                # Chuỗi học tập và lịch sử ghi nhận
-│   │   ├── badge/                 # Huy hiệu và hiển thị trên hồ sơ
-│   │   └── settings/              # Cài đặt tài khoản
-│   ├── moderation/
-│   │   ├── dashboard/             # Tổng quan kiểm duyệt
-│   │   ├── report/                # Bằng chứng, xử lý và chuyển cấp
-│   │   └── history/               # Lịch sử xử lý
-│   └── admin/
-│       ├── dashboard/             # Tổng quan hệ thống
-│       ├── account/               # Quản lý tài khoản và phân quyền
-│       ├── report/                # Báo cáo chuyển cấp
-│       ├── skill/                 # Danh mục kỹ năng
-│       ├── policy/                # Quy tắc chuỗi học tập và huy hiệu
-│       ├── settings/              # Cấu hình hệ thống
-│       └── audit/                 # Nhật ký quản trị
-├── domain/
-│   ├── model/                     # Mô hình nghiệp vụ dùng chung
-│   ├── repository/                # Giao diện truy cập dữ liệu
-│   └── usecase/                   # Quy tắc nghiệp vụ cần kiểm thử độc lập
-└── data/
-    └── repository/                # Triển khai giao diện truy cập dữ liệu
-```
+└── feature/
+    ├── learner/                   # Người dùng
+    │   ├── ui/
+    │   ├── viewmodel/
+    │   ├── model/
+    │   └── data/repository/
+    ├── moderation/                # Kiểm duyệt viên
+    │   ├── ui/
+    │   ├── viewmodel/
+    │   ├── model/
+    │   └── data/repository/
+    └── admin/                     # Quản trị viên
+        ├── ui/
+        ├── viewmodel/
+        ├── model/
+        └── data/repository/
+~~~
 
-Đặt màn hình và ViewModel trong package của chức năng tương ứng. Đặt tiền tố vai trò hoặc chức năng cho layout mới, ví dụ `fragment_learner_profile.xml` và `fragment_admin_accounts.xml`. Trong `src/test/` và `src/androidTest/`, đặt tệp kiểm thử theo package chứa mã được kiểm thử.
+| Package | Trách nhiệm |
+| --- | --- |
+| `ui/` | Fragment, adapter và mã View Binding. UI gửi thao tác tới ViewModel và hiển thị trạng thái nhận được. |
+| `viewmodel/` | ViewModel và lớp `UiState` của từng màn hình. ViewModel gọi repository và công bố trạng thái để UI quan sát theo vòng đời. |
+| `model/` | Mô hình nghiệp vụ riêng của vai trò, dùng Kotlin thuần. |
+| `data/repository/` | Repository cung cấp dữ liệu và tập trung các thao tác ghi. Khi có nguồn dữ liệu, đặt mã truy cập dưới `data/local/` hoặc `data/remote/`. |
+
+Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và `viewmodel/`. Ví dụ hồ sơ người dùng đặt ở `learner/ui/profile/` và `learner/viewmodel/profile/`. Dùng `moderation/ui/report/` cho xử lý báo cáo và `admin/ui/account/` cho quản lý tài khoản.
+
+Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
+
+Tham khảo [hướng dẫn kiến trúc ứng dụng Android](https://developer.android.com/topic/architecture) về trách nhiệm của UI, ViewModel và repository.
+
+## Quy ước đặt tên tệp
+
+Dùng từ tiếng Anh ngắn, mô tả chức năng hoặc nội dung của tệp. Dùng cùng một từ cho cùng một chức năng, ví dụ `Profile` trong Kotlin và `profile` trong XML. Tránh tên chung chung như `Utils.kt`, `screen_1.xml` và tên gắn với người dùng mẫu. Giữ các tên chuẩn của dự án và công cụ, ví dụ `README.md`, `AndroidManifest.xml`, `build.gradle.kts` và `.gitignore`.
+
+| Loại tệp | Cách đặt tên | Ví dụ |
+| --- | --- | --- |
+| Kotlin (`.kt`) | `PascalCase`. Nếu tệp có một lớp hoặc interface chính, lấy tên đó làm tên tệp. Thêm hậu tố thể hiện trách nhiệm khi cần. | `ProfileFragment.kt`, `ProfileViewModel.kt`, `ProfileUiState.kt`, `ReportRepository.kt`, `StudySession.kt` |
+| Kiểm thử Kotlin (`.kt`) | Thêm `Test` vào tên lớp được kiểm thử. Dùng cùng package với mã được kiểm thử và đặt tệp trong `src/test/` hoặc `src/androidTest/`. | `ProfileViewModelTest.kt`, `ProfileFragmentTest.kt` |
+| Layout Android (`res/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_`, `fragment_`, `dialog_` hoặc `item_`. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_main.xml`, `fragment_learner_profile.xml`, `fragment_admin_profile.xml`, `item_study_session.xml` |
+| Tài nguyên Android khác (`res/`) | `snake_case`. Dùng `ic_` cho biểu tượng, `bg_` cho nền và `img_` cho ảnh minh họa. | `ic_calendar.xml`, `bg_profile_card.xml`, `img_study_group.webp` |
+| Tài liệu và ảnh xuất từ Figma | Dùng chữ thường và dấu gạch nối. Với ảnh Figma, giữ mã màn hình ở đầu nếu mã đó được dùng để đối chiếu luồng. | `setup-guide.md`, `u01-login.png`, `chat-03-propose-session.png`, `m02-reports.png` |
+
+Áp dụng quy ước khi thêm hoặc đổi tên tệp.
 
 ## Thành viên dự án
 
