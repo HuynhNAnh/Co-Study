@@ -1,5 +1,6 @@
 package com.ute.co_study.feature.learner.ui.discovery
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ import com.ute.co_study.feature.learner.model.MatchFilters
 import com.ute.co_study.feature.learner.model.MatchLevel
 import com.ute.co_study.feature.learner.model.StudyMode
 import com.ute.co_study.feature.learner.ui.markCurrentLearnerTab
+import com.ute.co_study.feature.learner.ui.profile.PartnerProfileActivity
 import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
 import com.ute.co_study.feature.learner.viewmodel.discovery.DiscoveryViewModel
 
@@ -57,8 +59,13 @@ class DiscoveryActivity : AppCompatActivity() {
         val navigation = binding.learnerNavigation
         navigation.matchTab.markCurrentLearnerTab()
         navigation.homeTab.setOnClickListener { finish() }
+        binding.partnerCard.setOnClickListener {
+            WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
+            val profile = Intent(this, PartnerProfileActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(profile)
+        }
         showLearnerFeatureUnavailable(
-            binding.partnerCard,
             navigation.messagesTab,
             navigation.scheduleTab,
             navigation.profileTab
