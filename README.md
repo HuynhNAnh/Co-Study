@@ -144,9 +144,21 @@ Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và 
 
 Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
 
-Layout XML nằm trong `app/src/main/res/layout/`. Đặt tiền tố vai trò hoặc chức năng, ví dụ `fragment_learner_profile.xml`, `fragment_moderation_report.xml` và `fragment_admin_accounts.xml`. Tệp kiểm thử trong `src/test/` và `src/androidTest/` dùng cùng package với mã được kiểm thử.
-
 Tham khảo [hướng dẫn kiến trúc ứng dụng Android](https://developer.android.com/topic/architecture) về trách nhiệm của UI, ViewModel và repository.
+
+## Quy ước đặt tên tệp
+
+Dùng từ tiếng Anh ngắn, mô tả chức năng hoặc nội dung của tệp. Dùng cùng một từ cho cùng một chức năng, ví dụ `Profile` trong Kotlin và `profile` trong XML. Tránh tên chung chung như `Utils.kt`, `screen_1.xml` và tên gắn với người dùng mẫu. Giữ các tên chuẩn của dự án và công cụ, ví dụ `README.md`, `AndroidManifest.xml`, `build.gradle.kts` và `.gitignore`.
+
+| Loại tệp | Cách đặt tên | Ví dụ |
+| --- | --- | --- |
+| Kotlin (`.kt`) | `PascalCase`. Nếu tệp có một lớp hoặc interface chính, lấy tên đó làm tên tệp. Thêm hậu tố thể hiện trách nhiệm khi cần. | `ProfileFragment.kt`, `ProfileViewModel.kt`, `ProfileUiState.kt`, `ReportRepository.kt`, `StudySession.kt` |
+| Kiểm thử Kotlin (`.kt`) | Thêm `Test` vào tên lớp được kiểm thử. Dùng cùng package với mã được kiểm thử và đặt tệp trong `src/test/` hoặc `src/androidTest/`. | `ProfileViewModelTest.kt`, `ProfileFragmentTest.kt` |
+| Layout Android (`res/layout/`) | `snake_case` theo mẫu `<type>_<name>.xml`. Dùng tiền tố `activity_`, `fragment_`, `dialog_` hoặc `item_`. Thêm tên vai trò sau tiền tố nếu cần phân biệt các màn hình cùng tên. | `activity_main.xml`, `fragment_learner_profile.xml`, `fragment_admin_profile.xml`, `item_study_session.xml` |
+| Tài nguyên Android khác (`res/`) | `snake_case`. Dùng `ic_` cho biểu tượng, `bg_` cho nền và `img_` cho ảnh minh họa. | `ic_calendar.xml`, `bg_profile_card.xml`, `img_study_group.webp` |
+| Tài liệu và ảnh xuất từ Figma | Dùng chữ thường và dấu gạch nối. Với ảnh Figma, giữ mã màn hình ở đầu nếu mã đó được dùng để đối chiếu luồng. | `setup-guide.md`, `u01-login.png`, `chat-03-propose-session.png`, `m02-reports.png` |
+
+Áp dụng quy ước khi thêm hoặc đổi tên tệp.
 
 ## Thành viên dự án
 
