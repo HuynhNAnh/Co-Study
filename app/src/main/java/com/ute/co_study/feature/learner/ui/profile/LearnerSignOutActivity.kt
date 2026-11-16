@@ -1,7 +1,7 @@
 package com.ute.co_study.feature.learner.ui.profile
 
 import com.ute.co_study.R
-import com.ute.co_study.feature.auth.ui.welcome.WelcomeActivity
+import com.ute.co_study.feature.role.ui.RoleSelectionActivity
 
 class LearnerSignOutActivity : ProfileActivity(R.layout.activity_learner_sign_out) {
     override fun render() {
@@ -9,7 +9,7 @@ class LearnerSignOutActivity : ProfileActivity(R.layout.activity_learner_sign_ou
         identity()
         button("Xác nhận đăng xuất", Tone.DANGER) {
             session.end()
-            replaceTask(WelcomeActivity::class.java)
+            replaceTask(RoleSelectionActivity::class.java)
         }
         button("Ở lại", Tone.PLAIN) { finish() }
     }

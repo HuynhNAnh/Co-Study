@@ -6,8 +6,9 @@ Co-Study là dự án Android thuộc học phần **Lập trình trên thiết 
 
 ## Mở các luồng trình diễn
 
-- **Người dùng** mở **Đăng ký**, hoàn tất hồ sơ, rồi dùng các tab Ghép cặp, Tin nhắn, Lịch học và Cá nhân. Sau khi đăng xuất, nhập email đã dùng để mở lại hồ sơ cục bộ.
-- **Kiểm duyệt viên** và **Admin** mở màn **Đăng nhập**, chọn nút demo tương ứng, rồi dùng thông tin đã điền sẵn. Đăng xuất ở màn tài khoản để quay lại trang chào mừng và chuyển vai trò.
+- **Người dùng** chạm **Học viên** để dùng hồ sơ mẫu hoặc chọn **Đăng nhập hoặc tạo hồ sơ học viên** để mở hồ sơ cục bộ riêng.
+- **Kiểm duyệt viên** và **Admin** chọn vai trò tại màn khởi động và dùng thông tin đăng nhập demo đã điền sẵn. Đăng xuất ở màn tài khoản để quay lại màn chọn vai trò.
+- Trong **Admin → Hệ thống → Quản trị minh họa**, có thể xem các quy trình mẫu về tài khoản, báo cáo chuyển cấp, lượt học và chính sách ghi nhận. Các thao tác trong mục này dùng dữ liệu mẫu riêng.
 - **Kiểm duyệt** dùng một luồng giao diện cho tổng quan, hàng đợi, xử lý và lịch sử. Báo cáo và quyết định được lưu trong cùng kho dữ liệu cục bộ với Người dùng và Admin.
 - Sau khi hoàn thành một buổi học, chọn **Mô phỏng bạn học xác nhận tham gia** để xem kết quả ghi nhận. Chuỗi dùng ngày người học đánh dấu hoàn thành theo giờ Việt Nam. Cấu hình được chụp lại khi hoàn thành buổi học để lịch sử và huy hiệu đã đạt vẫn có thể tra cứu.
 
@@ -185,7 +186,7 @@ com.ute.co_study/
 
 Khi triển khai một chức năng, dùng cùng tên package con ở `ui/` và `viewmodel/`. Ví dụ hồ sơ người dùng đặt ở `learner/ui/profile/` và `learner/viewmodel/profile/`. Dùng `moderation/ui/report/` cho xử lý báo cáo và `admin/ui/account/` cho quản lý tài khoản.
 
-Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Ứng dụng khởi động vào `WelcomeActivity` với layout `activity_welcome.xml`, rồi mở `LoginActivity` với layout `activity_login.xml` khi người dùng chọn đăng nhập hoặc `RegisterActivity` với layout `activity_register.xml` khi người dùng chọn tạo tài khoản. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
+Khai báo từng Activity trong `AndroidManifest.xml` và gắn với layout `activity_<name>.xml`. Ứng dụng khởi động vào `RoleSelectionActivity` với layout `activity_role_selection.xml`. Người dùng chọn mở hồ sơ mẫu hoặc vào `WelcomeActivity` để đăng nhập hay đăng ký. Các Activity chỉ dùng nội bộ ứng dụng khai báo `android:exported="false"`.
 
 Khi triển khai đăng nhập hoặc dữ liệu dùng chung, đặt luồng xác thực dưới `feature/auth/` và model, repository dùng chung dưới `shared/`. Ví dụ, ba vai trò có thể dùng chung một repository cho dữ liệu báo cáo và mỗi vai trò có ViewModel riêng cho màn hình của mình.
 

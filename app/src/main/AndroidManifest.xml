@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoStudy">
         <activity
-            android:name=".feature.auth.ui.welcome.WelcomeActivity"
+            android:name=".feature.role.ui.RoleSelectionActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -21,6 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.auth.ui.welcome.WelcomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.admin.ui.AdminPrototypeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.auth.ui.login.LoginActivity"
             android:exported="false"
