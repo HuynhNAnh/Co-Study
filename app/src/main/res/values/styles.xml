@@ -141,7 +141,7 @@
         <item name="android:paddingBottom">@dimen/co_study_space_4</item>
         <item name="android:textColorHint">@color/co_study_muted</item>
     </style>
-    <style name="Widget.CoStudy.Home.Tab" parent="Widget.AppCompat.Button.Borderless">
+    <style name="Widget.CoStudy.Learner.Tab" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -158,10 +158,4 @@
         <item name="drawableTint">@color/co_study_muted</item>
     </style>
 
-    <style name="Widget.CoStudy.Home.Tab.Current" parent="Widget.CoStudy.Home.Tab">
-        <item name="android:background">@drawable/bg_auth_notice</item>
-        <item name="android:clickable">false</item>
-        <item name="android:textColor">@color/co_study_green</item>
-        <item name="drawableTint">@color/co_study_green</item>
-    </style>
 </resources>

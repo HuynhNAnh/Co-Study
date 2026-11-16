@@ -43,6 +43,10 @@
         <activity
             android:name=".feature.learner.ui.home.HomeActivity"
             android:exported="false" />
+        <activity
+            android:name=".feature.learner.ui.discovery.DiscoveryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

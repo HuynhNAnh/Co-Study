@@ -171,43 +171,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/co_study_space_24"
-        android:layout_marginEnd="@dimen/co_study_space_24"
-        android:layout_marginBottom="@dimen/co_study_space_16"
-        android:background="@drawable/bg_co_study_card"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/home_tab"
-            style="@style/Widget.CoStudy.Home.Tab.Current"
-            android:text="@string/home_tab_home"
-            app:drawableTopCompat="@drawable/ic_home" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/match_tab"
-            style="@style/Widget.CoStudy.Home.Tab"
-            android:text="@string/home_tab_match"
-            app:drawableTopCompat="@drawable/ic_study_partners" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/messages_tab"
-            style="@style/Widget.CoStudy.Home.Tab"
-            android:text="@string/home_tab_messages"
-            app:drawableTopCompat="@drawable/ic_message" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/schedule_tab"
-            style="@style/Widget.CoStudy.Home.Tab"
-            android:text="@string/home_tab_schedule"
-            app:drawableTopCompat="@drawable/ic_study_calendar" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/profile_tab"
-            style="@style/Widget.CoStudy.Home.Tab"
-            android:text="@string/home_tab_profile"
-            app:drawableTopCompat="@drawable/ic_person" />
-    </LinearLayout>
+    <include
+        android:id="@+id/learner_navigation"
+        layout="@layout/view_learner_navigation" />
 </LinearLayout>
