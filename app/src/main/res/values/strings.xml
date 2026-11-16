@@ -44,4 +44,13 @@
     <string name="reset_registered_email">EMAIL ĐÃ ĐĂNG KÝ</string>
     <string name="reset_send_link">Gửi liên kết đặt lại mật khẩu</string>
     <string name="reset_back_to_login">Quay lại đăng nhập</string>
+    <string name="reset_check_email">Kiểm tra email</string>
+    <string name="reset_recovery_subtitle">Hướng dẫn khôi phục tài khoản</string>
+    <string name="reset_confirmation_title">Yêu cầu đã được ghi nhận</string>
+    <string name="reset_confirmation_description">Nếu email đã đăng ký, bạn sẽ nhận được hướng dẫn đặt lại mật khẩu.</string>
+    <string name="reset_receiving_email">EMAIL NHẬN HƯỚNG DẪN</string>
+    <string name="reset_security_tip">Kiểm tra cả thư mục Spam. Không chia sẻ liên kết khôi phục với người khác.</string>
+    <string name="reset_preview_notice">Mô phỏng · Chưa gửi email thực tế</string>
+    <string name="reset_return_to_login">Về đăng nhập</string>
+    <string name="reset_change_email">Nhập email khác</string>
 </resources>

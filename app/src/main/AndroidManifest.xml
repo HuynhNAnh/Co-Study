@@ -33,6 +33,9 @@
             android:name=".feature.auth.ui.reset.ResetPasswordActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.auth.ui.reset.ResetLinkSentActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
