@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_learner_profile_title">Hồ sơ của tôi</string>
+    <string name="screen_learner_profile_subtitle">Kỹ năng và hành trình học tập</string>
+    <string name="screen_edit_learner_profile_title">Chỉnh sửa hồ sơ</string>
+    <string name="screen_edit_learner_profile_subtitle">Thông tin giúp bạn học hiểu về bạn</string>
+    <string name="screen_reputation_title">Uy tín &amp; đánh giá</string>
+    <string name="screen_reputation_subtitle">Ghi nhận từ những buổi học cùng nhau</string>
+    <string name="screen_learner_settings_title">Cài đặt tài khoản</string>
+    <string name="screen_learner_settings_subtitle">Quản lý tài khoản Co-Study</string>
+    <string name="screen_learner_sign_out_title">Đăng xuất tài khoản</string>
+    <string name="screen_learner_sign_out_subtitle">Bạn muốn kết thúc phiên đăng nhập?</string>
+    <string name="screen_learner_notifications_title">Thông báo</string>
+    <string name="screen_learner_notifications_subtitle">Các cập nhật dành cho bạn</string>
+    <string name="screen_report_partner_title">Báo cáo vi phạm</string>
+    <string name="screen_report_partner_subtitle">Giúp cộng đồng học tập an toàn</string>
+    <string name="screen_report_sent_title">Đã gửi báo cáo</string>
+    <string name="screen_report_sent_subtitle">Theo dõi kết quả trong mục Thông báo</string>
+</resources>

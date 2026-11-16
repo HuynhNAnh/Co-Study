@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.CoStudy.Heading" parent="TextAppearance.CoStudy.Label">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Widget.CoStudy.Workflow.Root" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/co_study_surface</item>
+    </style>
+    <style name="Widget.CoStudy.Workflow.Header" parent="Widget.CoStudy.Auth.Header">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingTop">@dimen/co_study_space_24</item>
+    </style>
+    <style name="Widget.CoStudy.Workflow.Back" parent="">
+        <item name="android:layout_width">@dimen/workflow_touch_target</item>
+        <item name="android:layout_height">@dimen/workflow_touch_target</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:contentDescription">@string/workflow_back</item>
+        <item name="android:src">@drawable/ic_back</item>
+    </style>
+    <color name="co_study_danger">#9E3646</color>
+    <color name="co_study_danger_surface">#FCEBEE</color>
+    <dimen name="workflow_touch_target">48dp</dimen>
+    <dimen name="workflow_avatar">48dp</dimen>
+    <dimen name="workflow_button_height">52dp</dimen>
+    <dimen name="workflow_stroke">1dp</dimen>
+    <string name="workflow_back">Quay lại</string>
+    <string name="workflow_required">Vui lòng nhập thông tin</string>
+    <string name="workflow_demo">Dữ liệu minh họa</string>
+</resources>

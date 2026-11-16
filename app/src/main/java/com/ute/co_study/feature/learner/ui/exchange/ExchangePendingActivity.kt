@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.ute.co_study.R
+import com.ute.co_study.shared.data.DemoSession
 import com.ute.co_study.databinding.ActivityExchangePendingBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.ui.discovery.DiscoveryActivity
@@ -34,6 +35,7 @@ class ExchangePendingActivity : AppCompatActivity() {
             .ifBlank { getString(R.string.exchange_pending_no_message) }
 
         binding.simulateAcceptanceButton.setOnClickListener {
+            DemoSession(this).connectWithMinhAnh()
             val connected = ExchangeConnectedActivity.createIntent(this, sharedSkill)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(connected)

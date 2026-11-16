@@ -8,6 +8,8 @@ import org.json.JSONObject
 internal class ProfileSetupRepository(context: Context) {
     private val drafts = context.getSharedPreferences("profile_setup_drafts", Context.MODE_PRIVATE)
 
+    fun hasDraft(email: String) = drafts.contains(email)
+
     fun load(email: String): ProfileSetupDraft {
         val rawDraft = drafts.getString(email, null) ?: return ProfileSetupDraft()
         val draft = try {

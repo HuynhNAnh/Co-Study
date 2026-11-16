@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityModeratorLogoutBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
-import com.ute.co_study.feature.moderation.ui.login.ModeratorLoginActivity
+import com.ute.co_study.feature.auth.ui.welcome.WelcomeActivity
+import com.ute.co_study.shared.data.DemoSession
 
 class ModeratorLogoutActivity : AppCompatActivity() {
 
@@ -21,7 +22,8 @@ class ModeratorLogoutActivity : AppCompatActivity() {
         binding.continueWorkButton.setOnClickListener { finish() }
 
         binding.confirmLogoutButton.setOnClickListener {
-            val intent = Intent(this, ModeratorLoginActivity::class.java).apply {
+            DemoSession(this).end()
+            val intent = Intent(this, WelcomeActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)

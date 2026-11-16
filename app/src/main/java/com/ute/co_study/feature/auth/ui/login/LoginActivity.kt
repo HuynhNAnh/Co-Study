@@ -3,15 +3,27 @@ package com.ute.co_study.feature.auth.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.widget.doAfterTextChanged
 import com.ute.co_study.R
+import com.ute.co_study.feature.admin.ui.AdminLoginActivity
+import com.ute.co_study.shared.data.DemoMemberDirectory
+import com.ute.co_study.shared.data.DemoRole
+import com.ute.co_study.feature.moderation.ui.ModeratorLoginActivity
+import com.ute.co_study.feature.learner.data.repository.ProfileSetupRepository
+import com.ute.co_study.feature.learner.ui.home.HomeActivity
+import com.ute.co_study.shared.data.DemoSession
 import com.ute.co_study.databinding.ActivityLoginBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
-import com.ute.co_study.feature.moderation.ui.overview.ModerationOverviewActivity
+import com.ute.co_study.feature.auth.ui.register.RegisterActivity
+import com.ute.co_study.feature.auth.ui.reset.ResetPasswordActivity
+import com.ute.co_study.feature.auth.viewmodel.login.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,39 +32,61 @@ class LoginActivity : AppCompatActivity() {
         applyAuthInsets(binding.root, binding.statusBarSpace)
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
 
+        binding.backButton.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.loginButton.setOnClickListener { submit(binding) }
+        binding.passwordInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId != EditorInfo.IME_ACTION_DONE) {
+                return@setOnEditorActionListener false
+            }
+            submit(binding)
+            true
+        }
         binding.emailInput.doAfterTextChanged { binding.emailInput.error = null }
         binding.passwordInput.doAfterTextChanged { binding.passwordInput.error = null }
-
-        binding.passwordInput.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                performLogin(binding)
-                true
-            } else false
+        binding.forgotPasswordButton.setOnClickListener {
+            val email = binding.emailInput.text.toString()
+            startActivity(ResetPasswordActivity.createIntent(this, email))
         }
-
-        binding.loginButton.setOnClickListener {
-            performLogin(binding)
+        binding.adminLoginButton.setOnClickListener {
+            startActivity(Intent(this, AdminLoginActivity::class.java))
+        }
+        binding.moderatorLoginButton.setOnClickListener {
+            startActivity(Intent(this, ModeratorLoginActivity::class.java))
+        }
+        binding.registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
-    private fun performLogin(binding: ActivityLoginBinding) {
-        val email = binding.emailInput.text?.toString()?.trim().orEmpty()
-        val pass = binding.passwordInput.text?.toString()?.trim().orEmpty()
-
-        if (email.isBlank()) {
-            binding.emailInput.error = getString(R.string.auth_email_required)
-            binding.emailInput.requestFocus()
+    private fun openLocalProfile(email: String) {
+        val session = DemoSession(this)
+        val managed = DemoMemberDirectory(this).findByEmail(email)
+        if (managed?.locked == true || managed?.role == DemoRole.MODERATOR) {
+            Toast.makeText(this, R.string.auth_managed_unavailable, Toast.LENGTH_LONG).show()
             return
         }
-        if (pass.isBlank()) {
-            binding.passwordInput.error = getString(R.string.auth_password_required)
-            binding.passwordInput.requestFocus()
+        val savedEmail = managed?.email ?: session.learnerEmail(email)
+            ?: email.takeIf { ProfileSetupRepository(this).hasDraft(it) }
+        if (savedEmail == null) {
+            Toast.makeText(this, R.string.auth_login_unavailable, Toast.LENGTH_LONG).show()
             return
         }
+        val name = managed?.name ?: session.learnerName(savedEmail).ifBlank { savedEmail.substringBefore('@') }
+        startActivity(HomeActivity.createIntent(this, savedEmail, name)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+    }
 
-        val intent = Intent(this, ModerationOverviewActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+    private fun submit(binding: ActivityLoginBinding) {
+        val state = viewModel.validate(
+            binding.emailInput.text.toString(),
+            binding.passwordInput.text.toString()
+        )
+        binding.emailInput.error = state.emailError?.let { getString(it) }
+        binding.passwordInput.error = state.passwordError?.let { getString(it) }
+        when {
+            state.emailError != null -> binding.emailInput.requestFocus()
+            state.passwordError != null -> binding.passwordInput.requestFocus()
+            else -> openLocalProfile(binding.emailInput.text.toString().trim())
         }
-        startActivity(intent)
     }
 }

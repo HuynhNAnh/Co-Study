@@ -7,7 +7,6 @@ import androidx.core.view.ViewCompat
 import com.ute.co_study.databinding.ActivityPartnerProfileBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.ui.exchange.ExchangeRequestActivity
-import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
 
 class PartnerProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +23,6 @@ class PartnerProfileActivity : AppCompatActivity() {
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(request)
         }
-        showLearnerFeatureUnavailable(binding.reportButton)
+        binding.reportButton.setOnClickListener { startActivity(Intent(this, ReportPartnerActivity::class.java)) }
     }
 }

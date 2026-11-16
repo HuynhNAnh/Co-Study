@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_messages_title">Tin nhắn</string>
+    <string name="screen_messages_subtitle">Cùng học, cùng tiến bộ</string>
+    <string name="screen_conversation_title">Minh Anh</string>
+    <string name="screen_conversation_subtitle">Đang hoạt động · Bạn học Kotlin</string>
+    <string name="screen_propose_study_title">Đề xuất lịch học</string>
+    <string name="screen_propose_study_subtitle">Thống nhất lịch trước khi bắt đầu</string>
+    <string name="screen_pending_study_title">Chờ xác nhận</string>
+    <string name="screen_pending_study_subtitle">Đề xuất đã được gửi đến bạn học</string>
+    <string name="screen_study_details_title">Chi tiết buổi học</string>
+    <string name="screen_study_details_subtitle">Sẵn sàng học cùng nhau</string>
+    <string name="screen_reschedule_study_title">Đề nghị đổi lịch</string>
+    <string name="screen_reschedule_study_subtitle">Trao đổi để tìm thời gian phù hợp</string>
+    <string name="screen_cancel_study_title">Hủy lịch học</string>
+    <string name="screen_cancel_study_subtitle">Thông báo lý do cho bạn học</string>
+    <string name="screen_completed_study_title">Hoàn thành buổi học</string>
+    <string name="screen_completed_study_subtitle">Thêm một bước tiến cùng Co-Study</string>
+    <string name="screen_review_partner_title">Đánh giá bạn học</string>
+    <string name="screen_review_partner_subtitle">Góp ý để những buổi học sau tốt hơn</string>
+    <string name="screen_review_sent_title">Đã gửi đánh giá</string>
+    <string name="screen_review_sent_subtitle">Cảm ơn bạn đã cùng xây dựng Co-Study</string>
+    <string name="screen_pending_reschedule_title">Chờ đổi lịch</string>
+    <string name="screen_pending_reschedule_subtitle">Đã gửi đề nghị đến bạn học</string>
+    <string name="screen_canceled_study_title">Lịch học đã hủy</string>
+    <string name="screen_canceled_study_subtitle">Bạn học đã được thông báo</string>
+    <string name="screen_rescheduled_study_title">Lịch mới đã xác nhận</string>
+    <string name="screen_rescheduled_study_subtitle">Cả hai đã thống nhất thời gian mới</string>
+    <string name="screen_completed_reschedule_title">Hoàn thành buổi học</string>
+    <string name="screen_completed_reschedule_subtitle">Đã hoàn thành buổi học theo lịch mới</string>
+    <string name="screen_schedule_title">Lịch học của tôi</string>
+    <string name="screen_schedule_subtitle">Các buổi học và đề xuất lịch</string>
+</resources>

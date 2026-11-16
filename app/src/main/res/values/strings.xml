@@ -12,12 +12,12 @@
     <string name="welcome_trust_description">Xem đánh giá và uy tín của bạn học.</string>
     <string name="auth_login">Đăng nhập</string>
     <string name="auth_register">Tạo tài khoản</string>
-    <string name="auth_login_unavailable">Tính năng đăng nhập đang được phát triển.</string>
+    <string name="auth_login_unavailable">Chưa có hồ sơ cho email này trên thiết bị.</string>
     <string name="login_title">Chào mừng trở lại</string>
     <string name="login_subtitle">Đăng nhập để tiếp tục cùng Co-Study</string>
     <string name="auth_back">Quay lại</string>
     <string name="login_intro_title">Hôm nay bạn muốn học gì?</string>
-    <string name="login_intro_description">Một kết nối mới có thể bắt đầu từ đây.</string>
+    <string name="login_intro_description">Phiên trình diễn mở hồ sơ đã lưu trên thiết bị theo email. Mật khẩu chỉ dùng để điền biểu mẫu.</string>
     <string name="auth_email">EMAIL</string>
     <string name="auth_password">MẬT KHẨU</string>
     <string name="login_forgot_password">Quên mật khẩu?</string>
@@ -162,6 +162,9 @@
     <string name="exchange_connected_partner_skill">Minh Anh chia sẻ: Kotlin / Android</string>
     <string name="exchange_connected_message">Nhắn tin cho Minh Anh</string>
     <string name="exchange_pending_simulate_acceptance">Mô phỏng Minh Anh đồng ý</string>
+    <string name="auth_admin_demo">Đăng nhập demo quản trị</string>
+    <string name="auth_moderator_demo">Đăng nhập demo kiểm duyệt</string>
+    <string name="auth_managed_unavailable">Tài khoản đang tạm khóa hoặc cần đăng nhập qua khu vực kiểm duyệt.</string>
     <string name="mod_login_title">Co-Study</string>
     <string name="mod_login_subtitle">Đăng nhập · Khu vực kiểm duyệt</string>
     <string name="mod_login_banner_title">Cộng đồng học tập tích cực</string>
@@ -281,4 +284,11 @@
     <string name="mod_filter_subtitle">Chọn phạm vi công việc cần xem</string>
     <string name="mod_btn_apply_filter">Áp dụng bộ lọc</string>
     <string name="mod_btn_back_to_list">Quay lại danh sách</string>
+    <string name="mod_sample_entry">Xem luồng kiểm duyệt minh họa</string>
+    <string name="mod_sample_title">Kiểm duyệt · Dữ liệu minh họa</string>
+    <string name="mod_sample_start">Mở bản minh họa</string>
+    <string name="mod_sample_description">Tài khoản demo đã điền sẵn. Thao tác trong bản minh họa dùng báo cáo mẫu.</string>
+    <string name="mod_sample_workspace">Mở hàng đợi kiểm duyệt trên thiết bị</string>
+    <string name="mod_sample_email_error">Dùng email demo %1$s</string>
+    <string name="mod_sample_password_error">Mật khẩu demo là %1$s</string>
 </resources>

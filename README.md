@@ -2,7 +2,14 @@
 
 Co-Study là dự án Android thuộc học phần **Lập trình trên thiết bị di động**. Ứng dụng hướng đến sinh viên muốn tìm bạn học phù hợp, trao đổi kỹ năng và lên lịch học cùng nhau. Chuỗi học tập và bộ sưu tập huy hiệu giúp sinh viên theo dõi tiến độ và ghi nhận các cột mốc học chung.
 
-Ứng dụng mở màn chào mừng Co-Study (U00). Từ đây, người dùng có thể mở biểu mẫu đăng nhập (U01) hoặc đăng ký (U02). Nút **Quên mật khẩu?** tại U01 mở biểu mẫu nhập email (U03) và dẫn đến màn xác nhận (U04). Ứng dụng kiểm tra dữ liệu nhập trên thiết bị. Khi biểu mẫu U02 hợp lệ, ứng dụng mở màn Thiết lập hồ sơ (U05). Nút **Hoàn tất và khám phá** tại U05 lưu hồ sơ trên thiết bị theo email nhập ở U02, rồi mở Trang chủ người dùng (U06). Lời chào và phần giới thiệu ở U06 dùng tên và kỹ năng vừa nhập. Gợi ý ghép cặp, lịch học và số thông báo dùng dữ liệu mẫu. Nút **Khám phá bạn học** và tab **Ghép cặp** ở U06 mở màn Khám phá bạn học (U07). U07 hỗ trợ tìm tên và kỹ năng trong dữ liệu mẫu. Mục **Bộ lọc đang áp dụng** mở U08 để chọn kỹ năng, trình độ, hình thức học và khung giờ rảnh. Khi áp dụng, U07 cập nhật tiêu chí và kết quả cùng với từ khóa đang nhập. Chạm thẻ Minh Anh ở U07 để xem hồ sơ mẫu (U09). Nút **Đề nghị trao đổi kỹ năng** tại U09 mở biểu mẫu U10 để nhập kỹ năng chia sẻ, kỹ năng cần hỗ trợ và lời nhắn. Nút **Gửi đề nghị kết nối** ở U10 mở U11 và hiển thị nội dung vừa nhập. U11 mô phỏng trạng thái chờ phản hồi. Nút **Mô phỏng Minh Anh đồng ý** mở màn Kết nối thành công (U12), hiển thị kỹ năng chia sẻ đã nhập ở U10. Ứng dụng chưa gửi đề nghị qua máy chủ. U04 mô phỏng kết quả yêu cầu. Xác thực, tạo tài khoản và gửi email khôi phục qua máy chủ chưa được tích hợp. Các luồng nghiệp vụ theo vai trò được mô phỏng trong prototype Figma.
+Ứng dụng Android triển khai các màn hình trong thư mục ảnh `figma/` cho cả ba vai trò. Hồ sơ, tin nhắn, lịch học, báo cáo và quyết định quản trị được lưu trên thiết bị. Báo cáo của người học xuất hiện trong hàng đợi kiểm duyệt. Kiểm duyệt viên có thể chuyển hồ sơ cho Admin, và Admin có thể trả lại để bổ sung. Các thao tác qua máy chủ, xác thực và gửi email khôi phục được mô phỏng.
+
+## Mở các luồng trình diễn
+
+- **Người dùng** mở **Đăng ký**, hoàn tất hồ sơ, rồi dùng các tab Ghép cặp, Tin nhắn, Lịch học và Cá nhân. Sau khi đăng xuất, nhập email đã dùng để mở lại hồ sơ cục bộ.
+- **Kiểm duyệt viên** và **Admin** mở màn **Đăng nhập**, chọn nút demo tương ứng, rồi dùng thông tin đã điền sẵn. Đăng xuất ở màn tài khoản để quay lại trang chào mừng và chuyển vai trò.
+- Từ màn đăng nhập kiểm duyệt, nút **Xem luồng kiểm duyệt minh họa** mở các giao diện của nhánh `Lanh` với báo cáo mẫu. Nút **Mở hàng đợi kiểm duyệt trên thiết bị** chuyển sang luồng dùng chung báo cáo với Người dùng và Admin.
+- Sau khi hoàn thành một buổi học, chọn **Mô phỏng bạn học xác nhận tham gia** để xem kết quả ghi nhận. Chuỗi dùng ngày người học đánh dấu hoàn thành theo giờ Việt Nam. Cấu hình được chụp lại khi hoàn thành buổi học để lịch sử và huy hiệu đã đạt vẫn có thể tra cứu.
 
 ## Chức năng theo vai trò
 
@@ -18,11 +25,11 @@ Co-Study là dự án Android thuộc học phần **Lập trình trên thiết 
 
 Chuỗi học tập ghi nhận số ngày liên tiếp có buổi học hợp lệ. Người dùng có thể xem chuỗi hiện tại, lịch sử các ngày đã ghi nhận và trạng thái xác nhận của từng buổi. Một ngày bị bỏ lỡ sẽ ngắt chuỗi. Buổi học hợp lệ tiếp theo bắt đầu chuỗi mới.
 
-Theo quy tắc minh họa trong prototype, buổi học cần kéo dài ít nhất **25 phút** và được cả hai bạn học xác nhận trong vòng **48 giờ**. Mỗi ngày theo giờ Việt Nam được tính tối đa một lần vào chuỗi.
+Theo cấu hình mặc định, buổi học cần kéo dài ít nhất **25 phút** và được cả hai bạn học xác nhận trong vòng **48 giờ**. Mỗi ngày theo giờ Việt Nam được tính tối đa một lần vào chuỗi.
 
 #### Bộ sưu tập huy hiệu
 
-Người dùng có thể xem huy hiệu đã nhận, điều kiện mở khóa và chọn huy hiệu hiển thị trên hồ sơ cá nhân. Prototype minh họa hai cách mở khóa huy hiệu.
+Người dùng có thể xem huy hiệu đã nhận, điều kiện mở khóa và chọn huy hiệu hiển thị trên hồ sơ cá nhân. Cấu hình mặc định có hai cách mở khóa huy hiệu.
 
 | Loại huy hiệu | Điều kiện |
 | --- | --- |
@@ -119,7 +126,7 @@ Thư mục `figma/` dùng để tra cứu thiết kế. Hình dùng trực tiế
 
 ### Cấu trúc MVVM theo vai trò
 
-Ứng dụng dùng một module Gradle `:app`. Ba vai trò có cùng cấu trúc package dưới `app/src/main/java/com/ute/co_study/`. Các thư mục chứa `.gitkeep` là vị trí dành cho mã sẽ được thêm khi triển khai từng chức năng.
+Ứng dụng dùng một module Gradle `:app`. Ba vai trò có cùng cấu trúc package dưới `app/src/main/java/com/ute/co_study/`. Các vai trò dùng chung phiên trình diễn, báo cáo, quy tắc ghi nhận và thành phần giao diện trong `shared/`.
 
 ~~~text
 com.ute.co_study/

@@ -25,7 +25,7 @@
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
             android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="Đăng nhập · Khu vực kiểm duyệt"
+            android:text="@string/mod_sample_entry"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -77,7 +77,6 @@
                     android:hint="moderator@costudy.example"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:text="moderator@costudy.example"
                     android:textColor="@color/co_study_ink"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -99,7 +98,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:text="••••••••••"
+                    android:saveEnabled="false"
                     android:textColor="@color/co_study_ink"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -112,7 +111,7 @@
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:lineSpacingExtra="2dp"
-                    android:text="Chỉ tài khoản được cấp quyền Kiểm duyệt viên mới có thể truy cập khu vực này."
+                    android:text="@string/mod_sample_description"
                     android:textColor="@color/co_mint_dark"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -124,6 +123,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             style="@style/Widget.CoStudy.Button.Primary"
-            android:text="Đăng nhập kiểm duyệt" />
+            android:text="@string/mod_sample_start" />
     </LinearLayout>
 </LinearLayout>

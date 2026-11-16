@@ -9,7 +9,7 @@ import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityExchangeConnectedBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
-import com.ute.co_study.feature.learner.ui.showLearnerFeatureUnavailable
+import com.ute.co_study.feature.learner.ui.study.ConversationActivity
 
 class ExchangeConnectedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class ExchangeConnectedActivity : AppCompatActivity() {
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(home)
         }
-        showLearnerFeatureUnavailable(binding.messageButton)
+        binding.messageButton.setOnClickListener { startActivity(Intent(this, ConversationActivity::class.java)) }
     }
 
     companion object {

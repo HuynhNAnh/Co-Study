@@ -8,7 +8,6 @@ import com.ute.co_study.databinding.ActivityWelcomeBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
 import com.ute.co_study.feature.auth.ui.login.LoginActivity
 import com.ute.co_study.feature.auth.ui.register.RegisterActivity
-import com.ute.co_study.feature.moderation.ui.login.ModeratorLoginActivity
 
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,7 @@ class WelcomeActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.heroTitle, true)
 
         binding.loginButton.setOnClickListener {
-            startActivity(Intent(this, ModeratorLoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
         binding.registerButton.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))

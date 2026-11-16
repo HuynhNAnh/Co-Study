@@ -24,7 +24,7 @@
             android:id="@+id/screen_subtitle"
             style="@style/TextAppearance.CoStudy.Subtitle"
             android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="Xin chào, Kiểm duyệt viên" />
+            android:text="@string/mod_sample_title" />
     </LinearLayout>
 
     <ScrollView
@@ -166,6 +166,14 @@
                 android:layout_marginEnd="@dimen/co_study_space_24"
                 android:layout_marginTop="@dimen/co_study_space_20"
                 android:text="Xem tất cả báo cáo" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/workspace_button"
+                style="@style/Widget.CoStudy.Button.Outlined"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_8"
+                android:text="@string/mod_sample_workspace" />
         </LinearLayout>
     </ScrollView>
 

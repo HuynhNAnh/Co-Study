@@ -3,127 +3,170 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/co_study_surface"
     android:orientation="vertical">
 
     <View
         android:id="@+id/status_bar_space"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
-
-    <LinearLayout
-        style="@style/Widget.CoStudy.Auth.Header"
-        android:background="@color/white">
-
-        <TextView
-            android:id="@+id/screen_title"
-            style="@style/TextAppearance.CoStudy.Title"
-            android:text="Co-Study"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/screen_subtitle"
-            style="@style/TextAppearance.CoStudy.Subtitle"
-            android:layout_marginTop="@dimen/co_study_space_4"
-            android:text="Đăng nhập · Khu vực kiểm duyệt"
-            android:textSize="14sp" />
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:importantForAccessibility="no" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/co_study_space_16">
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
-            <!-- Banner Card -->
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Header"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/co_study_space_12"
+                android:paddingEnd="@dimen/co_study_space_24"
+                android:paddingTop="@dimen/co_study_space_16"
+                android:paddingBottom="@dimen/co_study_space_16">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/auth_back"
+                    app:srcCompat="@drawable/ic_back"
+                    app:tint="@color/co_study_ink" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/co_study_space_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Title"
+                        android:id="@+id/screen_title"
+                        android:text="@string/login_title" />
+
+                    <TextView
+                        style="@style/TextAppearance.CoStudy.Subtitle"
+                        android:layout_marginTop="@dimen/co_study_space_8"
+                        android:text="@string/login_subtitle" />
+                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout
                 style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_co_study_primary_card">
+                android:layout_marginTop="@dimen/co_study_space_20"
+                android:background="@drawable/bg_auth_notice"
+                android:minHeight="84dp">
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Title"
-                    android:text="Cộng đồng học tập tích cực"
-                    android:textColor="@color/white"
+                    android:text="@string/login_intro_title"
                     android:textSize="18sp" />
 
                 <TextView
                     style="@style/TextAppearance.CoStudy.Body"
                     android:layout_marginTop="@dimen/co_study_space_8"
-                    android:lineSpacingExtra="3dp"
-                    android:text="Xem xét công bằng. Xử lý có căn cứ.\nMỗi quyết định đều được lưu lại."
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:text="@string/login_intro_description"
+                    android:textColor="@color/co_study_muted" />
             </LinearLayout>
 
-            <!-- Field 1: EMAIL TÀI KHOẢN ĐƯỢC CẤP -->
-            <LinearLayout
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_field">
-
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
                 <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="EMAIL TÀI KHOẢN ĐƯỢC CẤP" />
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/email_input"
+                    android:text="@string/auth_email"
+                    android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/email_input"
+                    android:id="@id/email_input"
                     style="@style/Widget.CoStudy.Auth.Input"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:hint="moderator@costudy.example"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:text="moderator@costudy.example"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="15sp" />
+                    android:nextFocusForward="@id/password_input"
+                    android:singleLine="true" />
             </LinearLayout>
 
-            <!-- Field 2: MẬT KHẨU -->
-            <LinearLayout
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_field">
-
+            <LinearLayout style="@style/Widget.CoStudy.Auth.Field">
                 <TextView
-                    style="@style/TextAppearance.CoStudy.Label"
-                    android:text="MẬT KHẨU" />
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@+id/password_input"
+                    android:text="@string/auth_password"
+                    android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/password_input"
+                    android:id="@id/password_input"
                     style="@style/Widget.CoStudy.Auth.Input"
-                    android:layout_marginTop="@dimen/co_study_space_4"
-                    android:hint="••••••••••"
+                    android:autofillHints="password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:text="••••••••••"
-                    android:textColor="@color/co_study_ink"
-                    android:textSize="16sp" />
+                    android:saveEnabled="false"
+                    android:singleLine="true" />
             </LinearLayout>
 
-            <!-- Card 3: Notice -->
-            <LinearLayout
-                style="@style/Widget.CoStudy.Auth.Card"
-                android:background="@drawable/bg_auth_notice">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/forgot_password_button"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/co_study_space_12"
+                android:layout_marginTop="@dimen/co_study_space_8"
+                android:minHeight="48dp"
+                android:text="@string/login_forgot_password"
+                android:textColor="@color/co_study_green" />
 
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Body"
-                    android:lineSpacingExtra="2dp"
-                    android:text="Chỉ tài khoản được cấp quyền Kiểm duyệt viên mới có thể truy cập khu vực này."
-                    android:textColor="@color/co_mint_dark"
-                    android:textSize="13sp" />
+            <TextView
+                style="@style/TextAppearance.CoStudy.Subtitle"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_8"
+                android:background="@drawable/bg_auth_notice"
+                android:gravity="center_vertical"
+                android:minHeight="68dp"
+                android:padding="@dimen/co_study_space_16"
+                android:text="@string/login_privacy_note"
+                android:textColor="@color/co_study_green" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/auth_login" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/login_register_prompt" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/moderator_login_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/auth_moderator_demo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/admin_login_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/auth_admin_demo" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout style="@style/Widget.CoStudy.Auth.Actions">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_button"
-            style="@style/Widget.CoStudy.Button.Primary"
-            android:text="Đăng nhập kiểm duyệt" />
-    </LinearLayout>
 </LinearLayout>
