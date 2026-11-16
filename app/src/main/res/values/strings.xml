@@ -37,4 +37,11 @@
     <string name="register_name_required">Vui lòng nhập họ và tên.</string>
     <string name="register_confirmation_required">Vui lòng nhập lại mật khẩu.</string>
     <string name="register_confirmation_mismatch">Mật khẩu nhập lại không khớp.</string>
+    <string name="reset_title">Quên mật khẩu</string>
+    <string name="reset_subtitle">Lấy lại quyền truy cập tài khoản</string>
+    <string name="reset_intro_title">Chúng mình sẽ giúp bạn</string>
+    <string name="reset_intro_description">Nhập email đã đăng ký. Bạn sẽ nhận được liên kết để đặt lại mật khẩu.</string>
+    <string name="reset_registered_email">EMAIL ĐÃ ĐĂNG KÝ</string>
+    <string name="reset_send_link">Gửi liên kết đặt lại mật khẩu</string>
+    <string name="reset_back_to_login">Quay lại đăng nhập</string>
 </resources>
