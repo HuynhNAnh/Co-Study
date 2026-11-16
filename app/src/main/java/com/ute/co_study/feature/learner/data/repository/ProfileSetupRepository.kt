@@ -2,36 +2,39 @@ package com.ute.co_study.feature.learner.data.repository
 
 import android.content.Context
 import com.ute.co_study.feature.learner.model.ProfileSetupDraft
-import org.json.JSONException
-import org.json.JSONObject
+import com.ute.co_study.shared.data.LearnerProfileStore
+import com.ute.co_study.shared.data.SkillEvidenceRepository
+import com.ute.co_study.shared.model.SkillEvidence
+import com.ute.co_study.shared.model.SkillEvidenceInput
 
 internal class ProfileSetupRepository(context: Context) {
-    private val drafts = context.getSharedPreferences("profile_setup_drafts", Context.MODE_PRIVATE)
+    private val profiles = LearnerProfileStore(context)
 
-    fun hasDraft(email: String) = drafts.contains(email)
+    fun hasDraft(email: String) = profiles.contains(email)
 
     fun load(email: String): ProfileSetupDraft {
-        val rawDraft = drafts.getString(email, null) ?: return ProfileSetupDraft()
-        val draft = try {
-            JSONObject(rawDraft)
-        } catch (_: JSONException) {
-            return ProfileSetupDraft()
-        }
+        val profile = profiles.read(email)
         return ProfileSetupDraft(
-            skillsToShare = draft.optString(KEY_SKILLS_TO_SHARE),
-            skillsToLearn = draft.optString(KEY_SKILLS_TO_LEARN),
-            learningGoal = draft.optString(KEY_LEARNING_GOAL),
-            availability = draft.optString(KEY_AVAILABILITY)
+            skillsToShare = profile.optString(KEY_SKILLS_TO_SHARE),
+            skillsToLearn = profile.optString(KEY_SKILLS_TO_LEARN),
+            learningGoal = profile.optString(KEY_LEARNING_GOAL),
+            availability = profile.optString(KEY_AVAILABILITY),
+            evidence = SkillEvidenceRepository.read(profile, email)?.input ?: SkillEvidenceInput()
         )
     }
 
-    fun save(email: String, draft: ProfileSetupDraft): Boolean {
-        val json = JSONObject()
-            .put(KEY_SKILLS_TO_SHARE, draft.skillsToShare)
-            .put(KEY_SKILLS_TO_LEARN, draft.skillsToLearn)
-            .put(KEY_LEARNING_GOAL, draft.learningGoal)
-            .put(KEY_AVAILABILITY, draft.availability)
-        return drafts.edit().putString(email, json.toString()).commit()
+    fun evidence(email: String): SkillEvidence? = SkillEvidenceRepository.read(profiles.read(email), email)
+
+    fun save(email: String, learnerName: String, draft: ProfileSetupDraft): Boolean {
+        if (email.isBlank() || (draft.skillsToShare.isBlank() && !draft.evidence.isEmpty)) return false
+        return profiles.update(email) { profile ->
+            profile.put(KEY_SKILLS_TO_SHARE, draft.skillsToShare)
+                .put(KEY_SKILLS_TO_LEARN, draft.skillsToLearn)
+                .put(KEY_LEARNING_GOAL, draft.learningGoal)
+                .put(KEY_AVAILABILITY, draft.availability)
+            SkillEvidenceRepository.updateSubmission(profile, email, learnerName, draft.skillsToShare, draft.evidence)
+            true
+        }
     }
 
     private companion object {

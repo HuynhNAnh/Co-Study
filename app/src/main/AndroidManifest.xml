@@ -296,6 +296,13 @@
             android:name=".feature.moderation.ui.overview.ModerationOverviewActivity"
             android:exported="false" />
         <activity
+            android:name=".feature.moderation.ui.skill.SkillEvidenceQueueActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.moderation.ui.skill.SkillEvidenceReviewActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".feature.moderation.ui.report.ReportListActivity"
             android:exported="false" />
         <activity

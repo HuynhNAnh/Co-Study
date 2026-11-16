@@ -116,6 +116,14 @@
                 android:textColor="@color/co_study_green"
                 android:textStyle="bold" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/skill_evidence_button"
+                style="@style/Widget.CoStudy.Button.Outlined"
+                android:layout_marginStart="@dimen/co_study_space_24"
+                android:layout_marginEnd="@dimen/co_study_space_24"
+                android:layout_marginTop="@dimen/co_study_space_12"
+                android:text="@string/mod_skill_evidence_queue" />
+
             <LinearLayout
                 android:id="@+id/report_cards"
                 android:layout_width="match_parent"

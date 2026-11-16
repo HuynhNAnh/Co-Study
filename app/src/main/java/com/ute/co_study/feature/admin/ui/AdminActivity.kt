@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ute.co_study.R
 import com.ute.co_study.shared.model.ManagedAccount
-import com.ute.co_study.feature.admin.model.ManagedSkill
+import com.ute.co_study.shared.model.ManagedSkill
 import com.ute.co_study.feature.admin.viewmodel.AdminViewModel
 import com.ute.co_study.shared.data.DemoRole
 import com.ute.co_study.shared.model.CommunityReport

@@ -53,10 +53,6 @@
     <string name="reset_change_email">Nhập email khác</string>
     <string name="profile_setup_title">Thiết lập hồ sơ</string>
     <string name="profile_setup_subtitle">Cho Co-Study biết bạn muốn học gì</string>
-    <string name="profile_setup_skills_to_share">TÔI CÓ THỂ CHIA SẺ</string>
-    <string name="profile_setup_skills_to_share_hint">Thiết kế giao diện · Figma cơ bản</string>
-    <string name="profile_setup_skills_to_learn">TÔI MUỐN HỌC</string>
-    <string name="profile_setup_skills_to_learn_hint">Lập trình Android · Kotlin</string>
     <string name="profile_setup_learning_goal">MỤC TIÊU</string>
     <string name="profile_setup_learning_goal_hint">Tự xây dựng ứng dụng Android đầu tiên</string>
     <string name="profile_setup_availability">THỜI GIAN VÀ HÌNH THỨC</string>

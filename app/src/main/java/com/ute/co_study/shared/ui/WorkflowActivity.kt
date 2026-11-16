@@ -124,10 +124,10 @@ abstract class WorkflowActivity(
         if (detail.isNotEmpty()) textView(panel, detail, R.style.TextAppearance_CoStudy_Body, tone, title.isNotEmpty())
     }
 
-    protected fun info(label: CharSequence, value: CharSequence) {
+    protected fun info(label: CharSequence, value: CharSequence): TextView {
         val panel = panel()
         textView(panel, label, R.style.TextAppearance_CoStudy_Subtitle)
-        textView(panel, value, R.style.TextAppearance_CoStudy_Body, separated = true)
+        return textView(panel, value, R.style.TextAppearance_CoStudy_Body, separated = true)
     }
 
     protected fun note(text: CharSequence, tone: Tone = Tone.MINT) = card("", text, tone)

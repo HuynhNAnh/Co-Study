@@ -39,5 +39,53 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/view_workflow_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/Widget.CoStudy.ProfileSetup.Field">
+                <TextView
+                    style="@style/TextAppearance.CoStudy.Subtitle"
+                    android:labelFor="@id/learner_name_input"
+                    android:text="@string/profile_edit_name" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/learner_name_input"
+                    style="@style/Widget.CoStudy.Auth.Input"
+                    android:autofillHints="name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLength="100"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <include
+                android:id="@+id/profile_fields"
+                layout="@layout/view_learner_profile_fields" />
+
+            <LinearLayout
+                style="@style/Widget.CoStudy.Auth.Actions"
+                android:layout_marginTop="@dimen/co_study_space_24">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_button"
+                    style="@style/Widget.CoStudy.Button.Primary"
+                    android:text="@string/profile_edit_save" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginTop="@dimen/co_study_space_8"
+                    android:text="@string/profile_edit_cancel" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

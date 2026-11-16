@@ -15,7 +15,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.ute.co_study.R
 import com.ute.co_study.databinding.ActivityProfileSetupBinding
 import com.ute.co_study.feature.auth.ui.applyAuthInsets
-import com.ute.co_study.feature.learner.model.ProfileSetupDraft
 import com.ute.co_study.feature.learner.ui.home.HomeActivity
 import com.ute.co_study.feature.learner.viewmodel.profile.ProfileSetupViewModel
 import com.ute.co_study.feature.learner.viewmodel.profile.ProfileSetupViewModel.SaveState
@@ -23,6 +22,7 @@ import kotlinx.coroutines.launch
 
 class ProfileSetupActivity : AppCompatActivity() {
     private val viewModel: ProfileSetupViewModel by viewModels()
+    private lateinit var fields: LearnerProfileFields
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +38,10 @@ class ProfileSetupActivity : AppCompatActivity() {
         ViewCompat.setAccessibilityHeading(binding.screenTitle, true)
         binding.backButton.setOnClickListener { finish() }
 
-        if (savedInstanceState == null) {
-            val draft = viewModel.loadDraft(email)
-            binding.skillsToShareInput.setText(draft.skillsToShare)
-            binding.skillsToLearnInput.setText(draft.skillsToLearn)
-            binding.learningGoalInput.setText(draft.learningGoal)
-            binding.availabilityInput.setText(draft.availability)
-        }
+        fields = LearnerProfileFields(
+            this, binding.profileFields, viewModel.skillNames(), viewModel.loadDraft(email),
+            viewModel.evidence(email), savedInstanceState
+        )
 
         val name = intent.getStringExtra(EXTRA_NAME).orEmpty()
         lifecycleScope.launch {
@@ -78,15 +75,15 @@ class ProfileSetupActivity : AppCompatActivity() {
         }
 
         binding.completeButton.setOnClickListener {
-            val draft = ProfileSetupDraft(
-                skillsToShare = binding.skillsToShareInput.text.toString().trim(),
-                skillsToLearn = binding.skillsToLearnInput.text.toString().trim(),
-                learningGoal = binding.learningGoalInput.text.toString().trim(),
-                availability = binding.availabilityInput.text.toString().trim()
-            )
-            viewModel.saveDraft(email, draft)
+            val draft = fields.draft() ?: return@setOnClickListener
+            viewModel.saveDraft(email, name, draft)
             WindowCompat.getInsetsController(window, binding.root).hide(WindowInsetsCompat.Type.ime())
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        if (::fields.isInitialized) fields.saveState(outState)
+        super.onSaveInstanceState(outState)
     }
 
     companion object {

@@ -60,74 +60,9 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/Widget.CoStudy.ProfileSetup.Field"
-                android:layout_marginTop="@dimen/co_study_space_20">
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:labelFor="@+id/skills_to_share_input"
-                    android:text="@string/profile_setup_skills_to_share"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@id/skills_to_share_input"
-                    style="@style/Widget.CoStudy.ProfileSetup.Input"
-                    android:hint="@string/profile_setup_skills_to_share_hint"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:nextFocusForward="@id/skills_to_learn_input"
-                    android:scrollHorizontally="false" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/Widget.CoStudy.ProfileSetup.Field">
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:labelFor="@+id/skills_to_learn_input"
-                    android:text="@string/profile_setup_skills_to_learn"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@id/skills_to_learn_input"
-                    style="@style/Widget.CoStudy.ProfileSetup.Input"
-                    android:hint="@string/profile_setup_skills_to_learn_hint"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:nextFocusForward="@id/learning_goal_input"
-                    android:scrollHorizontally="false" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/Widget.CoStudy.ProfileSetup.Field">
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:labelFor="@+id/learning_goal_input"
-                    android:text="@string/profile_setup_learning_goal"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@id/learning_goal_input"
-                    style="@style/Widget.CoStudy.ProfileSetup.Input"
-                    android:hint="@string/profile_setup_learning_goal_hint"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:nextFocusForward="@id/availability_input"
-                    android:scrollHorizontally="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/Widget.CoStudy.ProfileSetup.Field"
-                android:minHeight="@dimen/profile_setup_availability_height">
-                <TextView
-                    style="@style/TextAppearance.CoStudy.Subtitle"
-                    android:labelFor="@+id/availability_input"
-                    android:text="@string/profile_setup_availability"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@id/availability_input"
-                    style="@style/Widget.CoStudy.ProfileSetup.Input"
-                    android:hint="@string/profile_setup_availability_hint"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:minLines="2"
-                    android:scrollHorizontally="false" />
-            </LinearLayout>
-
+            <include
+                android:id="@+id/profile_fields"
+                layout="@layout/view_learner_profile_fields" />
             <TextView
                 style="@style/TextAppearance.CoStudy.Subtitle"
                 android:layout_marginStart="@dimen/co_study_space_24"

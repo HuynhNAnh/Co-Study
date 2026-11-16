@@ -4,12 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.ute.co_study.feature.admin.model.AdminEvent
 import com.ute.co_study.shared.model.ManagedAccount
-import com.ute.co_study.feature.admin.model.ManagedSkill
+import com.ute.co_study.shared.model.ManagedSkill
 import com.ute.co_study.shared.data.CommunityRulesRepository
 import com.ute.co_study.shared.data.DemoMemberDirectory
 import com.ute.co_study.shared.data.DemoRole
 import com.ute.co_study.shared.data.DemoSession
 import com.ute.co_study.shared.data.ReportRepository
+import com.ute.co_study.shared.data.SkillCatalog
 import com.ute.co_study.shared.data.communityPreferences
 import com.ute.co_study.shared.model.CommunityRules
 import com.ute.co_study.shared.model.ReportAction
@@ -26,6 +27,7 @@ internal class AdminRepository(context: Context) {
     private val session = DemoSession(context)
     private val directory = DemoMemberDirectory(context)
     private val rules = CommunityRulesRepository(context)
+    private val skillCatalog = SkillCatalog(context)
     val reports = ReportRepository(context)
 
     fun accounts(): List<ManagedAccount> = if (isAdmin()) directory.all() else emptyList()
@@ -70,27 +72,14 @@ internal class AdminRepository(context: Context) {
         }
     }
 
-    fun skills(): List<ManagedSkill> {
-        if (!isAdmin()) return emptyList()
-        val saved = store.getString(SKILLS, null) ?: return sampleSkills
-        val items = JSONArray(saved)
-        return List(items.length()) { index ->
-            val data = items.getJSONObject(index)
-            ManagedSkill(data.getString("id"), data.getString("name"), data.getString("group"),
-                data.getString("description"), data.getBoolean("visible"))
-        }
-    }
+    fun skills(): List<ManagedSkill> = if (isAdmin()) skillCatalog.load() else emptyList()
 
     fun saveSkill(skill: ManagedSkill): Boolean {
         val existing = skills()
         if (existing.none { it.id == skill.id } || skill.name.isBlank() || skill.group.isBlank() || skill.description.isBlank()) return false
-        val rows = JSONArray()
-        existing.map { if (it.id == skill.id) skill else it }.forEach {
-            rows.put(JSONObject().put("id", it.id).put("name", it.name).put("group", it.group)
-                .put("description", it.description).put("visible", it.visible))
-        }
+        val updated = existing.map { if (it.id == skill.id) skill else it }
         return persist { editor ->
-            editor.putString(SKILLS, rows.toString())
+            skillCatalog.writeTo(editor, updated)
             writeEvent(editor, "Cập nhật kỹ năng", "${skill.id} · ${skill.name}\n${skill.group} · ${skill.status}\n${skill.description}")
         }
     }
@@ -147,14 +136,7 @@ internal class AdminRepository(context: Context) {
     private fun isAdmin() = session.role == DemoRole.ADMIN
 
     private companion object {
-        const val SKILLS = "admin_skills"
         const val JOURNAL = "admin_journal"
-        val sampleSkills = listOf(
-            ManagedSkill("SK-001", "Kotlin / Android", "Lập trình", "Lập trình Android bằng Kotlin, Activity, Intent và ViewBinding.", true),
-            ManagedSkill("SK-002", "Figma", "Thiết kế", "Thiết kế và dựng mẫu giao diện.", true),
-            ManagedSkill("SK-003", "Tiếng Anh", "Ngôn ngữ", "Luyện giao tiếp và đọc tài liệu.", true),
-            ManagedSkill("SK-004", "Tiếng Nhật", "Ngôn ngữ", "Từ vựng và hội thoại cơ bản.", true)
-        )
         val sampleJournal = listOf(
             AdminEvent("Cập nhật kỹ năng SK-006", "Admin-01", "05/10/2026 · 09:20", "Đổi nhóm: Khác → Ngôn ngữ. Chuẩn hóa danh mục."),
             AdminEvent("Mở khóa TV-011", "Admin-01", "04/10/2026 · 15:40", "Đã xác minh và khắc phục nội dung vi phạm."),

@@ -4,11 +4,13 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import com.ute.co_study.shared.data.ReportRepository
+import com.ute.co_study.shared.data.SkillEvidenceRepository
 import com.ute.co_study.shared.model.CommunityReport
 import com.ute.co_study.shared.model.ReportStatus
 
 internal class ModerationViewModel(application: Application) : AndroidViewModel(application) {
     val reports = ReportRepository(application)
+    val skillEvidence = SkillEvidenceRepository(application)
     private val preferences = application.getSharedPreferences("moderation_filters", Context.MODE_PRIVATE)
 
     val query get() = preferences.getString("query", "").orEmpty()
