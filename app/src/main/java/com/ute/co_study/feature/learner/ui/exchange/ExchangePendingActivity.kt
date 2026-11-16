@@ -33,6 +33,12 @@ class ExchangePendingActivity : AppCompatActivity() {
         binding.requestMessage.text = intent.getStringExtra(EXTRA_MESSAGE).orEmpty()
             .ifBlank { getString(R.string.exchange_pending_no_message) }
 
+        binding.simulateAcceptanceButton.setOnClickListener {
+            val connected = ExchangeConnectedActivity.createIntent(this, sharedSkill)
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(connected)
+            finish()
+        }
         binding.backButton.setOnClickListener { finish() }
         binding.homeButton.setOnClickListener { returnTo(HomeActivity::class.java) }
         binding.discoverButton.setOnClickListener { returnTo(DiscoveryActivity::class.java) }

@@ -161,4 +161,5 @@
     <string name="exchange_connected_summary">Trao đổi hai chiều</string>
     <string name="exchange_connected_partner_skill">Minh Anh chia sẻ: Kotlin / Android</string>
     <string name="exchange_connected_message">Nhắn tin cho Minh Anh</string>
+    <string name="exchange_pending_simulate_acceptance">Mô phỏng Minh Anh đồng ý</string>
 </resources>

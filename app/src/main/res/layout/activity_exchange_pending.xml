@@ -159,6 +159,12 @@
                 android:layout_marginTop="@dimen/co_study_space_24">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/simulate_acceptance_button"
+                    style="@style/Widget.CoStudy.Button.Outlined"
+                    android:layout_marginBottom="@dimen/co_study_space_8"
+                    android:text="@string/exchange_pending_simulate_acceptance" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/home_button"
                     style="@style/Widget.CoStudy.Button.Primary"
                     android:text="@string/exchange_pending_home" />
